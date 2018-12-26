@@ -2,3 +2,6 @@
 *.lastbuildstate
 libs/SFML-2.5.1/doc/
 libs/SFML-2.5.1/examples/
+libs/SFML-2.5.1/readme.md
+libs/SFML-2.5.1/license.md
+.vs/
