@@ -4,5 +4,7 @@ class CSystemManager;
 
 namespace SystemsRegistry
 {
-	void RegisterAll(CSystemManager& systemManager);
+	void RegisterAllSingletons();
+	void UnregisterAllSingletons();
+	void RegisterAllSystems();
 };

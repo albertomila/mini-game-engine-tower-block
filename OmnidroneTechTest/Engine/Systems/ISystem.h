@@ -6,4 +6,5 @@ class ISystem : public IUpdatable
 {
 public:
 	~ISystem() override {}
+	virtual void PreUpdate() {}
 };
