@@ -1,0 +1,4 @@
+*.tlog
+*.lastbuildstate
+libs/SFML-2.5.1/doc/
+libs/SFML-2.5.1/examples/
