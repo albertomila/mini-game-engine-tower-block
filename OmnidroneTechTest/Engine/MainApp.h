@@ -2,6 +2,9 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <Engine/Systems/IState.h>
+#include <Engine/Systems/StateManager.h>
+
 class CMainApp 
 {
 public:

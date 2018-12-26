@@ -160,12 +160,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\BasicTypes.h" />
+    <ClInclude Include="Engine\Crc32.h" />
+    <ClInclude Include="Engine\IUpdatable.h" />
     <ClInclude Include="Engine\MainApp.h" />
+    <ClInclude Include="Engine\StringID.h" />
+    <ClInclude Include="Engine\Systems\IScreen.h" />
+    <ClInclude Include="Engine\Systems\IState.h" />
+    <ClInclude Include="Engine\IObject.h" />
+    <ClInclude Include="Engine\Systems\ISystem.h" />
+    <ClInclude Include="Engine\Systems\StateManager.h" />
+    <ClInclude Include="Engine\Systems\SystemManager.h" />
+    <ClInclude Include="Game\SystemsRegistry.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\MainApp.cpp" />
+    <ClCompile Include="Engine\StringID.cpp" />
+    <ClCompile Include="Engine\Systems\StateManager.cpp" />
+    <ClCompile Include="Engine\Systems\SystemManager.cpp" />
+    <ClCompile Include="Game\SystemsRegistry.cpp" />
     <ClCompile Include="OmnidroneTechTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
