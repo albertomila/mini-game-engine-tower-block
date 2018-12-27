@@ -7,7 +7,7 @@
 
 void CMainRenderer::Init()
 {
-	CMainWindow* mainWindow = CSystemManager::Get()->GetSystem<CMainWindow>();
+	CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();
 	_window = &mainWindow->GerRenderWindow();
 }
 

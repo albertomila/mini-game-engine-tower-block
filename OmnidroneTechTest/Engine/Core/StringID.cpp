@@ -3,42 +3,36 @@
 
 #include <Engine/Core/Crc32.h>
 
-////////////////////////////////////////////////////////////////////////////////
 void CStringID::SetContent(const char* content)
 {
 	if(content == NULL || content[0] == '\0')
 	{
-		m_value = InvalidID;
+		_value = InvalidID;
 #ifdef STRINGID_USESTRINGCONTENT
-		m_content.clear();
+		_content.clear();
 #endif
 	}
 	else
 	{
-		m_value = ComputeCrc32( content );
+		_value = CrcUtils::ComputeCrc32(content);
 #ifdef STRINGID_USESTRINGCONTENT
-		m_content = content;
+		_content = content;
 #endif
 	}
 }
 
-////////////////////////////////////////////////////////////////////////////////
 void CStringID::SetContentWithExpectedCRC(const char* content, IDType crc)
 {
 	SetContent(content);
 
-	if (crc != m_value)
+	if (crc != _value)
 	{
 		Invalidate();
-		//error
 	}
 }
 
-
-// Inlines
-////////////////////////////////////////////////////////////////////////////////
 CStringID::CStringID()
-	: m_value(InvalidID)
+	: _value(InvalidID)
 {
 }
 
@@ -48,19 +42,19 @@ CStringID::CStringID(const char* str)
 }
 
 #if (defined(STRINGID_USESTRINGCONTENT))
-////////////////////////////////////////////////////////////////////////////////
+
 CStringID::CStringID(const CStringID& other)
 {
-	m_value = other.m_value;
+	_value = other._value;
 #ifdef STRINGID_USESTRINGCONTENT
-	m_content = other.m_content;
+	_content = other._content;
 #endif
 }
 #endif
 
-////////////////////////////////////////////////////////////////////////////////
+
 CStringID::CStringID(IDType crc)
-	: m_value(crc)
+	: _value(crc)
 {
 }
 
@@ -69,62 +63,58 @@ CStringID::CStringID(IDType crc, const char* str)
 {
 	SetContentWithExpectedCRC(str, crc);
 }
-////////////////////////////////////////////////////////////////////////////////
+
 #else
 CStringID::CStringID(IDType crc, const char*)
-	: m_value(crc)
+	: _value(crc)
 {
 }
-#endif // #ifdef STRINGID_USESTRINGCONTENT
+#endif
 
-////////////////////////////////////////////////////////////////////////////////
+
 #ifdef STRINGID_USESTRINGCONTENT
 const char* CStringID::c_str() const
 {
-	return m_content.c_str();
+	return _content.c_str();
 }
-#endif // #ifdef STRINGID_USESTRINGCONTENT
+#endif 
 
 
-//! Returns true if the string ID is valid.
 bool CStringID::IsValid() const
 {
-	return m_value != static_cast<IDType>(InvalidID);
+	return _value != static_cast<IDType>(InvalidID);
 }
 
-//! Remove the string and set the CRC to the invalid ID
 void CStringID::Invalidate()
 {
 	SetContent(NULL);
 }
 
-//! Compare two string ID CRCs
-bool CStringID::operator==(ParamType r) const
+bool CStringID::operator==(const CStringID& other) const
 {
-	return GetUniqueID() == r.GetUniqueID();
+	return GetUniqueID() == other.GetUniqueID();
 }
-bool CStringID::operator!=(ParamType r) const
+bool CStringID::operator!=(const CStringID& other) const
 {
-	return GetUniqueID() != r.GetUniqueID();
-}
-
-//! Sort operator for storing the string ID in a sorted container.
-bool CStringID::operator<(ParamType r) const
-{
-	return GetUniqueID() < r.GetUniqueID();
+	return GetUniqueID() != other.GetUniqueID();
 }
 
-bool CStringID::operator<=(ParamType r) const
+bool CStringID::operator<(const CStringID& other) const
 {
-	return GetUniqueID() <= r.GetUniqueID();
+	return GetUniqueID() < other.GetUniqueID();
 }
 
-bool CStringID::operator>(ParamType r) const
+bool CStringID::operator<=(const CStringID& other) const
 {
-	return GetUniqueID() > r.GetUniqueID();
+	return GetUniqueID() <= other.GetUniqueID();
 }
 
-bool CStringID::operator>=(ParamType r) const
+bool CStringID::operator>(const CStringID& other) const
 {
-	return GetUniqueID() >= r.GetUniqueID();
+	return GetUniqueID() > other.GetUniqueID();
+}
+
+bool CStringID::operator>=(const CStringID& other) const
+{
+	return GetUniqueID() >= other.GetUniqueID();
 }

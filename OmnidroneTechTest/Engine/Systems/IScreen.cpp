@@ -48,7 +48,7 @@ void CScreenBase::Load(const std::string& fileName)
 
 void CScreenBase::Update()
 {
-	CMainWindow* mainWindow = CSystemManager::Get()->GetSystem<CMainWindow>();
+	CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
@@ -64,7 +64,7 @@ void CScreenBase::Update()
 		}
 	}
 
-	CMainRenderer* mainRenderer = CSystemManager::Get()->GetSystem<CMainRenderer>();
+	CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
 	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
 	{
 		mainRenderer->RequestRender(*screenObject);

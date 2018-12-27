@@ -196,6 +196,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Core\Crc32.cpp" />
     <ClCompile Include="Engine\EntityComponent\BaseObject.cpp" />
     <ClCompile Include="Engine\UI\ButtonObject.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />

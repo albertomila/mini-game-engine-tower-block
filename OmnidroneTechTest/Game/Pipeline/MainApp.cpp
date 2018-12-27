@@ -13,16 +13,16 @@ void CMainApp::Run()
 	PipelineRegistry::RegisterAllSingletons();
 	PipelineRegistry::RegisterAllPipeline();
 
-	CSystemManager* systemManager = CSystemManager::Get();
-	systemManager->Init();
+	CSystemManager& systemManager = CSystemManager::Get();
+	systemManager.Init();
 
-	CMainWindow* mainWindow = systemManager->GetSystem<CMainWindow>();
+	CMainWindow* mainWindow = systemManager.GetSystem<CMainWindow>();
 	while (!mainWindow->HasQuit())
 	{
-		systemManager->PreUpdate();
-		systemManager->Update();
+		systemManager.PreUpdate();
+		systemManager.Update();
 	}
 
-	systemManager->Shutdown();
+	systemManager.Shutdown();
 	PipelineRegistry::UnregisterAllSingletons();
 }
