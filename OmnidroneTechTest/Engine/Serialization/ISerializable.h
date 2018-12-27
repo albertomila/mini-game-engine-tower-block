@@ -1,6 +1,6 @@
 #pragma once
 
-#include <libs\pugixml\pugixml.hpp>
+#include <libs/pugixml/pugixml.hpp>
 
 #include <vector>
 

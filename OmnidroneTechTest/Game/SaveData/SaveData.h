@@ -1,6 +1,6 @@
 #pragma once
-#include <Engine\Serialization\ISerializable.h>
-#include <Engine\Singleton.h>
+#include <Engine/Serialization/ISerializable.h>
+#include <Engine/Core/Singleton.h>
 
 struct SSaveDataRankingDescriptor : public CSerializableObject
 {

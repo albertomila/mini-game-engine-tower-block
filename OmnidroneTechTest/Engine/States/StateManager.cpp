@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include <Engine/Systems/StateManager.h>
+#include <Engine/States/StateManager.h>
 
-#include <Engine/Systems/IState.h>
+#include <Engine/States/IState.h>
 
 CStateManagerBase::CStateManagerBase()
 	: _currentStateId(State::INVALID_STATE_ID)

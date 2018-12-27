@@ -1,6 +1,6 @@
 #pragma once
-#include <Engine\Systems\StateManager.h>
-#include <Engine\Systems\ISystem.h>
+#include <Engine/States/StateManager.h>
+#include <Engine/Systems/ISystem.h>
 
 class CGameStateManager : public ISystem
 {

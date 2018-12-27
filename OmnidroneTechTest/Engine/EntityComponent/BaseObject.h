@@ -1,7 +1,7 @@
 #pragma once
-#include <SFML\Graphics\Texture.hpp>
-#include <SFML\Graphics\Sprite.hpp>
-#include <Engine\EntityComponent\IObject.h>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <Engine/EntityComponent/IObject.h>
 
 class CBaseObject : public IObject
 {

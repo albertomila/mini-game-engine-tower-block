@@ -1,6 +1,6 @@
 #pragma once
 
-#include <Engine/IUpdatable.h>
+#include <Engine/Core/IUpdatable.h>
 #include <Engine/EntityComponent/IObject.h>
 
 #include <vector>

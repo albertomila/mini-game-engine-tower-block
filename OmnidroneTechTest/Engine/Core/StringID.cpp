@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include <Engine/StringID.h>
+#include <Engine/Core/StringID.h>
 
-#include <Engine/Crc32.h>
+#include <Engine/Core/Crc32.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 void CStringID::SetContent(const char* content)

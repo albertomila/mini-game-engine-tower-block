@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include <Game\Pipeline\GameStateManager.h>
-#include <Game\States\MainMenuState.h>
-#include <Game\States\TutorialState.h>
-#include <Game\States\GamePlayState.h>
-#include <Game\States\FinishGameState.h>
+#include <Game/Pipeline/GameStateManager.h>
+#include <Game/States/MainMenuState.h>
+#include <Game/States/TutorialState.h>
+#include <Game/States/GamePlayState.h>
+#include <Game/States/FinishGameState.h>
 
 CGameStateManager::CGameStateManager()
 {

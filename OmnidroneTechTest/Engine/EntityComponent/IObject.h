@@ -1,6 +1,6 @@
 #pragma once
-#include <SFML\Graphics\Sprite.hpp>
-#include <SFML\Graphics\Texture.hpp>
+#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 class IObject
 {

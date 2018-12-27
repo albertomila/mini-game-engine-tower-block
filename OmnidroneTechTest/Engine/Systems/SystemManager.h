@@ -1,8 +1,8 @@
 #pragma once
 
-#include <Engine/IUpdatable.h>
-#include <Engine/StringID.h>
-#include <Engine/Singleton.h>
+#include <Engine/Core/IUpdatable.h>
+#include <Engine/Core/StringID.h>
+#include <Engine/Core/Singleton.h>
 
 #include <vector>
 #include <memory>

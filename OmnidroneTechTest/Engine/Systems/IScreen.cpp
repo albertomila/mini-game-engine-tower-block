@@ -6,7 +6,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <Engine/Systems/MainRenderer.h>
 #include <Engine/Systems/SystemManager.h>
-#include <Engine/StringID.h>
+#include <Engine/Core/StringID.h>
 #include <Engine/EntityComponent/BaseObject.h>
 #include <Engine/UI/ButtonObject.h>
 #include <Engine/Systems/MainWindow.h>

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include <Game/MainApp.h>
 
-#include <Engine/Systems/IState.h>
-#include <Engine/Systems/StateManager.h>
+#include <Engine/States/IState.h>
+#include <Engine/States/StateManager.h>
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Systems/MainWindow.h>
 #include <Game/SystemsRegistry.h>

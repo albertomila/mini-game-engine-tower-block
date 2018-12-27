@@ -1,6 +1,6 @@
 #pragma once
-#include <Engine\Systems\IState.h>
-#include <Game\Screens\MainMenuScreen.h>
+#include <Engine/States/IState.h>
+#include <Game/Screens/MainMenuScreen.h>
 
 class CFinishGameState : public CStateBase
 {

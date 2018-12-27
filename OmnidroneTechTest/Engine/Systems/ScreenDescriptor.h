@@ -1,5 +1,5 @@
 #pragma once
-#include <Engine\Serialization\ISerializable.h>
+#include <Engine/Serialization/ISerializable.h>
 
 struct SObjectDescriptor : public CSerializableObject
 {
