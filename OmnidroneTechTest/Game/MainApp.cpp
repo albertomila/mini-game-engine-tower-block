@@ -7,6 +7,7 @@
 #include <Engine/Systems/MainWindow.h>
 #include <Game/SystemsRegistry.h>
 
+
 void CMainApp::Run()
 {
 	SystemsRegistry::RegisterAllSingletons();

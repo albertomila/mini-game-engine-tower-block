@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <Engine/Systems/IState.h>
+
 #include <algorithm>
 
 CStateBase::CStateBase(int stateId)

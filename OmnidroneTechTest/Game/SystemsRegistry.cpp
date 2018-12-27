@@ -4,15 +4,18 @@
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/MainRenderer.h>
+#include <Game/Settings.h>
 
 void SystemsRegistry::RegisterAllSingletons()
 {
+	CSettings::CreateInstance();
 	CSystemManager::CreateInstance();
 }
 
 void SystemsRegistry::UnregisterAllSingletons()
 {
 	CSystemManager::DestroyInstance();
+	CSettings::DestroyInstance();
 }
 
 void SystemsRegistry::RegisterAllSystems()
