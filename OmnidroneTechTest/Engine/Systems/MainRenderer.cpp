@@ -3,6 +3,7 @@
 
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/SystemManager.h>
+#include <Engine/EntityComponent/IObject.h>
 
 void CMainRenderer::Init()
 {
@@ -17,16 +18,25 @@ void CMainRenderer::PreUpdate()
 
 void CMainRenderer::Update()
 {
-	for (std::reference_wrapper<sf::Drawable>& drawableObject : _requestedRenderObjects)
+	using TObjectRef = std::reference_wrapper<IObject>;
+	std::sort(std::begin(_requestedRenderObjects), std::end(_requestedRenderObjects), [](const TObjectRef& element1, const TObjectRef& element2)
 	{
-		_window->draw(drawableObject);
+		return element1.get().GetZPos() < element2.get().GetZPos();
+	});
+
+	for (std::reference_wrapper<IObject>& object : _requestedRenderObjects)
+	{
+		_window->draw(object.get().GetDrawable());
 	}
 	_requestedRenderObjects.clear();
 
 	_window->display();
 }
 
-void CMainRenderer::RequestRender(sf::Drawable& drawableObject)
+void CMainRenderer::RequestRender(IObject& gameObject)
 {
-	_requestedRenderObjects.push_back(std::ref(drawableObject));
+	if (gameObject.IsEnabled())
+	{
+		_requestedRenderObjects.push_back(std::ref(gameObject));
+	}
 }

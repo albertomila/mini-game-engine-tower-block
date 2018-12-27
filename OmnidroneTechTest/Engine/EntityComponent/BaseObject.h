@@ -14,9 +14,16 @@ public:
 	const sf::FloatRect GetRect() const override;
 
 	void OnPressed() override {}
+	void SetZPos(float z) override { _z = z; }
+	float GetZPos() const override { return _z; }
+	void SetAlpha(float alphaNormalized) override;
+	void SetEnabled(bool enabled) override { _enabled = enabled; }
+	bool IsEnabled() const { return _enabled; }
 
 private:
 	CStringID _id;
 	sf::Texture _texture;
 	sf::Sprite _sprite;
+	float _z = 0.0f;
+	bool _enabled = true;
 };

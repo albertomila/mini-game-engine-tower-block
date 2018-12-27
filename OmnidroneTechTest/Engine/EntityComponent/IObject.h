@@ -11,4 +11,9 @@ public:
 	virtual sf::Drawable& GetDrawable() = 0;
 	virtual const sf::FloatRect GetRect() const = 0;
 	virtual void OnPressed() = 0;
+	virtual void SetZPos(float z) = 0;
+	virtual float GetZPos() const = 0;
+	virtual void SetAlpha(float alphaNormalized) = 0;
+	virtual void SetEnabled(bool enabled) = 0;
+	virtual bool IsEnabled() const = 0;
 };

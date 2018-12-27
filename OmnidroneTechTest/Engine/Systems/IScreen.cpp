@@ -24,8 +24,8 @@ void CScreenBase::Load(const std::string& fileName)
 	_screenObjects.reserve(screenDescriptor._objects.size());
 	for (const SObjectDescriptor& screenObjectDescriptor : screenDescriptor._objects)
 	{
-		sf::IntRect textureRect(static_cast<int>(screenObjectDescriptor._x),
-			static_cast<int>(screenObjectDescriptor._y),
+		sf::IntRect textureRect(static_cast<int>(0),
+			static_cast<int>(0),
 			static_cast<int>(screenObjectDescriptor._width),
 			static_cast<int>(screenObjectDescriptor._height));
 
@@ -39,6 +39,9 @@ void CScreenBase::Load(const std::string& fileName)
 		}
 
 		std::unique_ptr<IObject>& gameObject = _screenObjects.back();
+		gameObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
+		gameObject->SetZPos(screenObjectDescriptor._z);
+		gameObject->SetAlpha(screenObjectDescriptor._alpha);
 		gameObject->LoadFromFile(screenObjectDescriptor._texture, textureRect);
 	}
 }
@@ -64,6 +67,6 @@ void CScreenBase::Update()
 	CMainRenderer* mainRenderer = CSystemManager::Get()->GetSystem<CMainRenderer>();
 	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
 	{
-		mainRenderer->RequestRender(screenObject->GetDrawable());
+		mainRenderer->RequestRender(*screenObject);
 	}
 }

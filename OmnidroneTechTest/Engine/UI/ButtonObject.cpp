@@ -13,7 +13,7 @@ void CButtonObject::SetOnPressCallback(std::function<void()> onPressCallback)
 
 void CButtonObject::OnPressed()
 {
-	if (_onPressCallback)
+	if (IsEnabled() && _onPressCallback)
 	{
 		_onPressCallback();
 	}

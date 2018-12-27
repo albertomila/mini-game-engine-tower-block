@@ -23,3 +23,10 @@ const sf::FloatRect CBaseObject::GetRect() const
 	return rect;
 }
 
+void CBaseObject::SetAlpha(float alphaNormalized)
+{
+	const sf::Uint8 alpha = static_cast<sf::Uint8>(alphaNormalized * 255.0f);
+	
+	_sprite.setColor(sf::Color(255, 255, 255, alpha));
+}
+

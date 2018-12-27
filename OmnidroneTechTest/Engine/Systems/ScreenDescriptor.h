@@ -16,6 +16,7 @@ struct SObjectDescriptor : public CSerializableObject
 		SERIALIZE(node, "texture", _texture);
 		SERIALIZE(node, "x", _x);
 		SERIALIZE(node, "y", _y);
+		SERIALIZE(node, "z", _z);
 		SERIALIZE(node, "width", _width);
 		SERIALIZE(node, "height", _height);
 		SERIALIZE(node, "alpha", _alpha);
@@ -26,9 +27,10 @@ struct SObjectDescriptor : public CSerializableObject
 	std::string _texture;
 	float _x = 0.0f;
 	float _y = 0.0f;
+	float _z = 0.0f;
 	float _width = 0.0f;
 	float _height = 0.0f;
-	float _alpha = 0.0f;
+	float _alpha = 1.0f;
 };
 
 struct SScreenDescriptor : public CSerializableObject

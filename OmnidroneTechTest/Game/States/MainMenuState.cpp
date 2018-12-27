@@ -19,9 +19,9 @@ State::TStateId CMainMenuState::Update()
 {
 	_mainMenuScreen->Update();
 
-	//return State::INVALID_STATE_ID;
+	return State::INVALID_STATE_ID;
 
-	return GameStateIds::STATE_ID_TUTORIAL;
+	//return GameStateIds::STATE_ID_TUTORIAL;
 }
 
 void CMainMenuState::ClearState()

@@ -7,6 +7,8 @@
 
 #include <vector>
 
+class IObject;
+
 class CMainRenderer : public ISystem
 {
 public:
@@ -14,12 +16,12 @@ public:
 	void PreUpdate() override;
 	void Update() override;
 	void Shutdown() override {}
-	void RequestRender(sf::Drawable& drawableObject);
+	void RequestRender(IObject& object);
 
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 
 	sf::RenderWindow* _window;
-	std::vector<std::reference_wrapper<sf::Drawable>> _requestedRenderObjects;
+	std::vector<std::reference_wrapper<IObject>> _requestedRenderObjects;
 };
