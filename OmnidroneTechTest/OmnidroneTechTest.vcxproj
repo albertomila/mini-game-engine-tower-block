@@ -171,7 +171,7 @@
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
     <ClInclude Include="Game\Settings\AppConfig.h" />
     <ClInclude Include="Game\Settings\GameConfig.h" />
-    <ClInclude Include="Game\MainApp.h" />
+    <ClInclude Include="Game\Pipeline\MainApp.h" />
     <ClInclude Include="Engine\Core\StringID.h" />
     <ClInclude Include="Engine\Systems\IScreen.h" />
     <ClInclude Include="Engine\States\IState.h" />
@@ -204,7 +204,7 @@
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
     <ClCompile Include="Game\Settings\AppConfig.cpp" />
     <ClCompile Include="Game\Settings\GameConfig.cpp" />
-    <ClCompile Include="Game\MainApp.cpp" />
+    <ClCompile Include="Game\Pipeline\MainApp.cpp" />
     <ClCompile Include="Engine\Core\StringID.cpp" />
     <ClCompile Include="Engine\States\StateManager.cpp" />
     <ClCompile Include="Engine\Systems\SystemManager.cpp" />

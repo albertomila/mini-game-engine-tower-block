@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <Game/MainApp.h>
+#include <Game/Pipeline/MainApp.h>
 
 #include <Engine/States/IState.h>
 #include <Engine/States/StateManager.h>
