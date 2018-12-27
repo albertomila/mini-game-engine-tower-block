@@ -11,3 +11,11 @@ void CButtonObject::SetOnPressCallback(std::function<void()> onPressCallback)
 	_onPressCallback = onPressCallback;
 }
 
+void CButtonObject::OnPressed()
+{
+	if (_onPressCallback)
+	{
+		_onPressCallback();
+	}
+}
+

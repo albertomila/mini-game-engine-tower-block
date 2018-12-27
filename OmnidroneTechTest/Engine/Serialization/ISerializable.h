@@ -28,7 +28,7 @@ struct SSerializatorEnum
 {
 	static void Serialize(pugi::xml_node& node, const char* key, T& member)
 	{
-		member = static_cast<T>(node.attribute(key).as_int(0));
+		member = static_cast<T>(node.attribute(key).as_int(static_cast<int>(member)));
 	}
 };
 
@@ -64,7 +64,7 @@ struct SSerializatorTraits<int>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, int& member)
 	{
-		member = node.attribute(key).as_int(0);
+		member = node.attribute(key).as_int(member);
 	}
 };
 
@@ -73,7 +73,7 @@ struct SSerializatorTraits<bool>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, bool& member)
 	{
-		member = node.attribute(key).as_bool(false);
+		member = node.attribute(key).as_bool(member);
 	}
 };
 
@@ -82,7 +82,7 @@ struct SSerializatorTraits<float>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, float& member)
 	{
-		member = node.attribute(key).as_float(0.0f);
+		member = node.attribute(key).as_float(member);
 	}
 };
 
@@ -91,7 +91,7 @@ struct SSerializatorTraits<double>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, double& member)
 	{
-		member = node.attribute(key).as_double(0.0);
+		member = node.attribute(key).as_double(member);
 	}
 };
 
@@ -100,7 +100,7 @@ struct SSerializatorTraits<long long>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, long long& member)
 	{
-		member = node.attribute(key).as_llong(0L);
+		member = node.attribute(key).as_llong(member);
 	}
 };
 
@@ -109,7 +109,7 @@ struct SSerializatorTraits<std::string>
 {
 	static void Serialize(pugi::xml_node& node, const char* key, std::string& member)
 	{
-		member = node.attribute(key).as_string("");
+		member = node.attribute(key).as_string(member.c_str());
 	}
 };
 

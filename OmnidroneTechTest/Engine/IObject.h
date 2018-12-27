@@ -19,7 +19,18 @@ public:
 	const CStringID& GetId() const { return _id; }
 	sf::Transformable& GetTransform() { return _sprite; }
 	sf::Drawable& GetDrawable() { return _sprite; }
+	const sf::FloatRect GetRect() const 
+	{ 
+		sf::FloatRect rect;
+		rect.top = _sprite.getPosition().y;
+		rect.left = _sprite.getPosition().x;
+		rect.width = static_cast<float>(_sprite.getTextureRect().width);
+		rect.height = static_cast<float>(_sprite.getTextureRect().height);
 
+		return rect;
+	}
+
+	virtual void OnPressed(){}
 
 private:
 	CStringID _id;

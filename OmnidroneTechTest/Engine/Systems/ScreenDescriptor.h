@@ -11,7 +11,7 @@ struct SObjectDescriptor : public CSerializableObject
 
 	void OnLoad(pugi::xml_node& node) override
 	{
-		SERIALIZE_ENUM(node, "value1", _type);
+		SERIALIZE_ENUM(node, "type", _type);
 		SERIALIZE(node, "id", _id);
 		SERIALIZE(node, "texture", _texture);
 		SERIALIZE(node, "x", _x);
@@ -21,7 +21,7 @@ struct SObjectDescriptor : public CSerializableObject
 		SERIALIZE(node, "alpha", _alpha);
 	}
 
-	EType _type;
+	EType _type = EType::Texture;
 	std::string _id;
 	std::string _texture;
 	float _x = 0.0f;

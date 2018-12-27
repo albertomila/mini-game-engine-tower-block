@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <dbObject screenId="MainMenu">
 	<objects>
-		<object id="test" type="button" texture="data/textures/tex09.png" x="0.0f" y="0.0f" width="300.0f" height="300.0f" alpha="1.0f" />
+		<object id="test" type="1" texture="data/textures/tex09.png" x="0.0f" y="0.0f" width="300.0f" height="300.0f" alpha="1.0f" />
 	</objects>
 </dbObject>
