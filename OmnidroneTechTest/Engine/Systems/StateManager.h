@@ -20,8 +20,8 @@ public:
 	void Shutdown() override;
 
 private:
-	std::vector<std::unique_ptr<IState>> mStates;
-	std::size_t mCurrentStateIndex;
+	std::vector<std::unique_ptr<IState>> _states;
+	std::size_t _currentStateId;
 };
 
 

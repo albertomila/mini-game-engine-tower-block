@@ -3,63 +3,64 @@
 
 #include <Engine/Systems/IState.h>
 
-namespace Internal
-{
-	static const size_t INVALID_STATE_INDEX = -1;
-}
-
 CStateManagerBase::CStateManagerBase()
-	: mCurrentStateIndex(Internal::INVALID_STATE_INDEX)
+	: _currentStateId(State::INVALID_STATE_ID)
 {
 }
 
 template<class T>
 void CStateManagerBase::RegisterState()
 {
-	mStates.emplace_back(std::make_unique<T>());
+	_states.emplace_back(std::make_unique<T>());
 }
 
 void CStateManagerBase::Init()
 {
-	if (!mStates.empty())
+	if (!_states.empty())
 	{
-		mCurrentStateIndex = 0;
-		std::unique_ptr<IState>& currentState = mStates[mCurrentStateIndex];
-		currentState->Init();
+		_currentStateId = 0;
+		std::unique_ptr<IState>& currentState = _states[_currentStateId];
+		currentState->EnterState();
 	}
 }
 
 void CStateManagerBase::Update()
 {
-	if (mCurrentStateIndex > Internal::INVALID_STATE_INDEX){
+	if (_currentStateId == State::INVALID_STATE_ID){
 		return;
 	}
 
-	std::unique_ptr<IState>& currentState = mStates[mCurrentStateIndex];
+	std::unique_ptr<IState>& currentState = _states[_currentStateId];
 
-	currentState->Update();
-	if (currentState->HasFinished())
+	State::TStateId nextStateId = currentState->Update();
+	if (nextStateId != State::INVALID_STATE_ID)
 	{
-		currentState->Shutdown();
+		currentState->ExitState();
 	}
 
-	++mCurrentStateIndex;
-	if (mCurrentStateIndex < mStates.size())
+	auto it = std::find_if(std::begin(_states), std::end(_states), [nextStateId](const std::unique_ptr<IState>& state)
 	{
-		std::unique_ptr<IState>& nextState = mStates[mCurrentStateIndex];
-		nextState->Init();
+		return nextStateId == state->GetStateId();
+	});
+
+	if (it != std::end(_states))
+	{
+		std::unique_ptr<IState>& nextState = (*it);
+		_currentStateId = nextState->GetStateId();
+		nextState->EnterState();
 	}
 	else
 	{
-		mCurrentStateIndex = Internal::INVALID_STATE_INDEX;
+		_currentStateId = State::INVALID_STATE_ID;
+		assert(false && "state doesn't exists");
 	}
 }
 
 void CStateManagerBase::Shutdown()
 {
-	if (mCurrentStateIndex > Internal::INVALID_STATE_INDEX)
+	if (_currentStateId > State::INVALID_STATE_ID)
 	{
-		std::unique_ptr<IState>& nextState = mStates[mCurrentStateIndex];
-		nextState->Shutdown();
+		std::unique_ptr<IState>& nextState = _states[_currentStateId];
+		nextState->ExitState();
 	}
 }
