@@ -2,7 +2,7 @@
 #include <Engine/UI/ButtonObject.h>
 
 CButtonObject::CButtonObject(const CStringID& id)
-	:IObject(id)
+	:CBaseObject(id)
 {
 }
 

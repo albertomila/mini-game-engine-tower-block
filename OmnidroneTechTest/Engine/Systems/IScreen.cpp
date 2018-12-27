@@ -7,6 +7,7 @@
 #include <Engine/Systems/MainRenderer.h>
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/StringID.h>
+#include <Engine/EntityComponent/BaseObject.h>
 #include <Engine/UI/ButtonObject.h>
 #include <Engine/Systems/MainWindow.h>
 
@@ -34,7 +35,7 @@ void CScreenBase::Load(const std::string& fileName)
 		}
 		else if(screenObjectDescriptor._type == SObjectDescriptor::EType::Texture)
 		{
-			_screenObjects.emplace_back(std::make_unique<IObject>(CStringID(screenObjectDescriptor._id.c_str())));
+			_screenObjects.emplace_back(std::make_unique<CBaseObject>(CStringID(screenObjectDescriptor._id.c_str())));
 		}
 
 		std::unique_ptr<IObject>& gameObject = _screenObjects.back();

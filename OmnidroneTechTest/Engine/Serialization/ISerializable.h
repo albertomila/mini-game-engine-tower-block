@@ -10,6 +10,10 @@ public:
 	virtual void Load(const std::string& fileName) = 0;
 	virtual void LoadXmlNode(pugi::xml_node& node) = 0;
 	virtual void OnLoad(pugi::xml_node& node) = 0;
+
+	virtual void Save(const std::string& fileName) = 0;
+	virtual void SaveXmlNode(pugi::xml_node& node) = 0;
+	virtual void OnSave(pugi::xml_node& node) = 0;
 };
 
 class CSerializableObject : public ISerializable
@@ -17,6 +21,9 @@ class CSerializableObject : public ISerializable
 public:
 	void Load(const std::string& fileName) override;
 	void LoadXmlNode(pugi::xml_node& node) override;
+	void Save(const std::string& fileName) override;
+	void SaveXmlNode(pugi::xml_node& node) override;
+	void OnSave(pugi::xml_node& node) override {}
 
 private:
 	pugi::xml_node _rootNode;
@@ -118,3 +125,32 @@ struct SSerializatorTraits<std::string>
 
 #define SERIALIZE_ENUM(XmlNode, KeyId, Member) \
 	SSerializatorEnum<decltype(Member)>::Serialize(XmlNode, KeyId, Member);
+
+
+
+template<class T>
+struct SDeserializatorTraits
+{
+	static void Deserialize(pugi::xml_node& node, const char* key, T& member)
+	{
+		node.append_attribute(key).set_value(member);
+	}
+};
+
+template<class T>
+struct SDeserializatorTraits<std::vector<T>>
+{
+	static void Deserialize(pugi::xml_node& node, const char* key, std::vector<T>& member)
+	{
+		pugi::xml_node newNode = node.append_child(key);
+
+		for (ISerializable& serializableObject : member)
+		{
+			pugi::xml_node newElementNode = newNode.append_child("element");
+			serializableObject.SaveXmlNode(newElementNode);
+		}
+	}
+};
+
+#define DESERIALIZE(XmlNode, KeyId, Member) \
+	SDeserializatorTraits<decltype(Member)>::Deserialize(XmlNode, KeyId, Member);

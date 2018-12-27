@@ -1,7 +1,7 @@
 #pragma once
 
 #include <Engine/IUpdatable.h>
-#include <Engine/IObject.h>
+#include <Engine/EntityComponent/IObject.h>
 
 #include <vector>
 

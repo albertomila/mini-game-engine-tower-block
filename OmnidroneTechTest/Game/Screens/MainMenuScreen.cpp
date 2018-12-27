@@ -8,9 +8,6 @@ CMainMenuScreen::CMainMenuScreen()
 	CButtonObject* buttonTest = GetObjectById<CButtonObject>(CStringID("test"));
 	buttonTest->GetTransform().setRotation(10);
 	buttonTest->GetTransform().setPosition(100.0f, 200.0f);
-	buttonTest->SetOnPressCallback([]() {
-		assert(false);
-	});
 
 
 }

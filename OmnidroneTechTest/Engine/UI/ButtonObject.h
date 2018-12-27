@@ -1,7 +1,7 @@
 #pragma once
-#include <Engine\IObject.h>
+#include <Engine/EntityComponent/BaseObject.h>
 
-class CButtonObject : public IObject
+class CButtonObject : public CBaseObject
 {
 public:
 	CButtonObject(const CStringID& id);

@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\EntityComponent\BaseObject.h" />
     <ClInclude Include="Engine\UI\ButtonObject.h" />
     <ClInclude Include="Engine\BasicTypes.h" />
     <ClInclude Include="Engine\Crc32.h" />
@@ -174,12 +175,13 @@
     <ClInclude Include="Engine\StringID.h" />
     <ClInclude Include="Engine\Systems\IScreen.h" />
     <ClInclude Include="Engine\Systems\IState.h" />
-    <ClInclude Include="Engine\IObject.h" />
+    <ClInclude Include="Engine\EntityComponent\IObject.h" />
     <ClInclude Include="Engine\Systems\ISystem.h" />
     <ClInclude Include="Engine\Systems\StateManager.h" />
     <ClInclude Include="Engine\Systems\SystemManager.h" />
     <ClInclude Include="Engine\Systems\MainWindow.h" />
     <ClInclude Include="Game\Pipeline\GameStateManager.h" />
+    <ClInclude Include="Game\SaveData\SaveData.h" />
     <ClInclude Include="Game\Settings.h" />
     <ClInclude Include="Game\States\MainMenuState.h" />
     <ClInclude Include="Game\SystemsRegistry.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\EntityComponent\BaseObject.cpp" />
     <ClCompile Include="Engine\UI\ButtonObject.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />
     <ClCompile Include="Engine\Systems\IScreen.cpp" />
@@ -203,6 +206,7 @@
     <ClCompile Include="Engine\Systems\SystemManager.cpp" />
     <ClCompile Include="Engine\Systems\MainWindow.cpp" />
     <ClCompile Include="Game\Pipeline\GameStateManager.cpp" />
+    <ClCompile Include="Game\SaveData\SaveData.cpp" />
     <ClCompile Include="Game\Settings.cpp" />
     <ClCompile Include="Game\States\MainMenuState.cpp" />
     <ClCompile Include="Game\SystemsRegistry.cpp" />
