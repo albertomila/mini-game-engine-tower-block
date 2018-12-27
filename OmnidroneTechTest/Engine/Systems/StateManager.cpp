@@ -8,12 +8,6 @@ CStateManagerBase::CStateManagerBase()
 {
 }
 
-template<class T>
-void CStateManagerBase::RegisterState()
-{
-	_states.emplace_back(std::make_unique<T>());
-}
-
 void CStateManagerBase::Init()
 {
 	if (!_states.empty())
@@ -33,10 +27,12 @@ void CStateManagerBase::Update()
 	std::unique_ptr<IState>& currentState = _states[_currentStateId];
 
 	State::TStateId nextStateId = currentState->Update();
-	if (nextStateId != State::INVALID_STATE_ID)
+	if (nextStateId == State::INVALID_STATE_ID)
 	{
-		currentState->ExitState();
+		return;
 	}
+
+	currentState->ExitState();
 
 	auto it = std::find_if(std::begin(_states), std::end(_states), [nextStateId](const std::unique_ptr<IState>& state)
 	{

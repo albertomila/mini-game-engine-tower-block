@@ -160,11 +160,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\UI\ButtonObject.h" />
     <ClInclude Include="Engine\BasicTypes.h" />
     <ClInclude Include="Engine\Crc32.h" />
     <ClInclude Include="Engine\IUpdatable.h" />
     <ClInclude Include="Engine\Serialization\ISerializable.h" />
     <ClInclude Include="Engine\Singleton.h" />
+    <ClInclude Include="Engine\Systems\ScreenDescriptor.h" />
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
     <ClInclude Include="Game\AppConfig.h" />
     <ClInclude Include="Game\GameConfig.h" />
@@ -177,15 +179,20 @@
     <ClInclude Include="Engine\Systems\StateManager.h" />
     <ClInclude Include="Engine\Systems\SystemManager.h" />
     <ClInclude Include="Engine\Systems\MainWindow.h" />
+    <ClInclude Include="Game\Pipeline\GameStateManager.h" />
     <ClInclude Include="Game\Settings.h" />
+    <ClInclude Include="Game\States\MainMenuState.h" />
     <ClInclude Include="Game\SystemsRegistry.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.hpp" />
     <ClInclude Include="libs\pugixml\pugixml.hpp" />
+    <ClInclude Include="Game\Screens\MainMenuScreen.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\UI\ButtonObject.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />
+    <ClCompile Include="Engine\Systems\IScreen.cpp" />
     <ClCompile Include="Engine\Systems\IState.cpp" />
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
     <ClCompile Include="Game\AppConfig.cpp" />
@@ -195,9 +202,12 @@
     <ClCompile Include="Engine\Systems\StateManager.cpp" />
     <ClCompile Include="Engine\Systems\SystemManager.cpp" />
     <ClCompile Include="Engine\Systems\MainWindow.cpp" />
+    <ClCompile Include="Game\Pipeline\GameStateManager.cpp" />
     <ClCompile Include="Game\Settings.cpp" />
+    <ClCompile Include="Game\States\MainMenuState.cpp" />
     <ClCompile Include="Game\SystemsRegistry.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
+    <ClCompile Include="Game\Screens\MainMenuScreen.cpp" />
     <ClCompile Include="OmnidroneTechTest.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

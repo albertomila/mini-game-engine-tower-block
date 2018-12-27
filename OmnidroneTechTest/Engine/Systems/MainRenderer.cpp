@@ -8,6 +8,13 @@ void CMainRenderer::Init()
 {
 	CMainWindow* mainWindow = CSystemManager::Get()->GetSystem<CMainWindow>();
 	_window = &mainWindow->GerRenderWindow();
+
+
+	if (!texture.loadFromFile("data/textures/tex09.png"))
+	{
+		assert(false);
+	}
+	sprite.setTexture(texture);
 }
 
 void CMainRenderer::PreUpdate()
@@ -17,8 +24,16 @@ void CMainRenderer::PreUpdate()
 
 void CMainRenderer::Update()
 {
-	/*sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
-	_window->draw(shape);*/
+	for (std::reference_wrapper<sf::Drawable>& drawableObject : _requestedRenderObjects)
+	{
+		_window->draw(drawableObject);
+	}
+	_requestedRenderObjects.clear();
+
 	_window->display();
+}
+
+void CMainRenderer::RequestRender(sf::Drawable& drawableObject)
+{
+	_requestedRenderObjects.push_back(std::ref(drawableObject));
 }

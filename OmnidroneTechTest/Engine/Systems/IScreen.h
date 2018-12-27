@@ -4,7 +4,6 @@
 #include <Engine/IObject.h>
 
 #include <vector>
-#include <memory>
 
 class IObject;
 
@@ -12,14 +11,20 @@ class IScreen : public IUpdatable
 {
 public:
 	~IScreen() override {}
-	virtual bool HasFinished() = 0;
 };
 
 class CScreenBase : public IScreen
 {
 public:
-	~CScreenBase() override {}
+	CScreenBase(const std::string& fileName);
+	~CScreenBase() override = default;
+	void Load(const std::string& fileName);
+	void Init() override {}
+	void Shutdown() override {}
+	void Update() override;
+
+	IObject* GetObjectById(const CStringID& gameObjectId);
 
 private:
-	std::vector<std::unique_ptr<IObject>> _screenObjecs;
+	std::vector<std::unique_ptr<IObject>> _screenObjects;
 };

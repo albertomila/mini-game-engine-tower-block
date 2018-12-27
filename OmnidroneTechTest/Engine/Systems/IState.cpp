@@ -3,12 +3,12 @@
 
 #include <algorithm>
 
-CStateBase::CStateBase(int stateId)
+CStateBase::CStateBase(State::TStateId stateId)
 	:_stateId(stateId)
 {
 }
 
-CStateBase::CStateBase(int stateId, std::vector<SStateTransition>&& transitionModel)
+CStateBase::CStateBase(State::TStateId stateId, std::vector<SStateTransition>&& transitionModel)
 	: _stateId(stateId)
 	, _transitionModel(std::move(transitionModel))
 {

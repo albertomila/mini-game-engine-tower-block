@@ -24,6 +24,15 @@ private:
 
 
 template<class T>
+struct SSerializatorEnum
+{
+	static void Serialize(pugi::xml_node& node, const char* key, T& member)
+	{
+		member = static_cast<T>(node.attribute(key).as_int(0));
+	}
+};
+
+template<class T>
 struct SSerializatorTraits
 {
 	static void Serialize(pugi::xml_node& node, const char* key, T& member) 
@@ -106,3 +115,6 @@ struct SSerializatorTraits<std::string>
 
 #define SERIALIZE(XmlNode, KeyId, Member) \
 	SSerializatorTraits<decltype(Member)>::Serialize(XmlNode, KeyId, Member);
+
+#define SERIALIZE_ENUM(XmlNode, KeyId, Member) \
+	SSerializatorEnum<decltype(Member)>::Serialize(XmlNode, KeyId, Member);

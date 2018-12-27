@@ -6,8 +6,8 @@
 
 namespace State
 {
-	using TStateId = int;
-	using TStateEventId = int;
+	using TStateId = size_t;
+	using TStateEventId = size_t;
 	static const TStateId INVALID_STATE_ID = -1;
 }
 
@@ -35,8 +35,8 @@ protected:
 class CStateBase : public IState
 {
 public:
-	CStateBase(int stateId);
-	CStateBase(int stateId, std::vector<SStateTransition>&& transitionModel);
+	CStateBase(State::TStateId stateId);
+	CStateBase(State::TStateId stateId, std::vector<SStateTransition>&& transitionModel);
 	~CStateBase() override {}
 
 	virtual State::TStateId GetStateId() const override;
@@ -47,6 +47,6 @@ public:
 protected:
 	State::TStateId GetNextState(const State::TStateEventId& stateEventId) override;
 
-	int _stateId = State::INVALID_STATE_ID;
+	State::TStateId _stateId = State::INVALID_STATE_ID;
 	std::vector<SStateTransition> _transitionModel;
 };

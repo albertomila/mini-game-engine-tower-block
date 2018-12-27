@@ -3,7 +3,7 @@
 
 namespace Internal
 {
-	static const char* const APP_CONFIG_PATH = "data/AppConfig.xml";
+	static const char* const APP_CONFIG_PATH = "data/test2.xml";
 }
 
 CSettings::CSettings()

@@ -5,6 +5,7 @@
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/MainRenderer.h>
 #include <Game/Settings.h>
+#include <Game/Pipeline/GameStateManager.h>
 
 void SystemsRegistry::RegisterAllSingletons()
 {
@@ -22,5 +23,6 @@ void SystemsRegistry::RegisterAllSystems()
 {
 	CSystemManager* systemManager = CSystemManager::Get();
 	systemManager->Register<CMainWindow>();
+	systemManager->Register<CGameStateManager>();
 	systemManager->Register<CMainRenderer>();
 }

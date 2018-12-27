@@ -24,6 +24,11 @@ private:
 	std::size_t _currentStateId;
 };
 
+template<class T>
+void CStateManagerBase::RegisterState()
+{
+	_states.emplace_back(std::make_unique<T>());
+}
 
 template<class T>
 class CStateManager : public CStateManagerBase
