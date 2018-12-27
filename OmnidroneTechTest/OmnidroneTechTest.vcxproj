@@ -183,7 +183,11 @@
     <ClInclude Include="Game\Pipeline\GameStateManager.h" />
     <ClInclude Include="Game\SaveData\SaveData.h" />
     <ClInclude Include="Game\Settings.h" />
+    <ClInclude Include="Game\States\FinishGameState.h" />
+    <ClInclude Include="Game\States\GamePlayState.h" />
+    <ClInclude Include="Game\States\GameStateIds.h" />
     <ClInclude Include="Game\States\MainMenuState.h" />
+    <ClInclude Include="Game\States\TutorialState.h" />
     <ClInclude Include="Game\SystemsRegistry.h" />
     <ClInclude Include="libs\pugixml\pugiconfig.hpp" />
     <ClInclude Include="libs\pugixml\pugixml.hpp" />
@@ -208,7 +212,10 @@
     <ClCompile Include="Game\Pipeline\GameStateManager.cpp" />
     <ClCompile Include="Game\SaveData\SaveData.cpp" />
     <ClCompile Include="Game\Settings.cpp" />
+    <ClCompile Include="Game\States\FinishGameState.cpp" />
+    <ClCompile Include="Game\States\GamePlayState.cpp" />
     <ClCompile Include="Game\States\MainMenuState.cpp" />
+    <ClCompile Include="Game\States\TutorialState.cpp" />
     <ClCompile Include="Game\SystemsRegistry.cpp" />
     <ClCompile Include="libs\pugixml\pugixml.cpp" />
     <ClCompile Include="Game\Screens\MainMenuScreen.cpp" />

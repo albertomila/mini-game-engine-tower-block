@@ -1,30 +1,28 @@
 #include "stdafx.h"
-#include <Game/States/MainMenuState.h>
+#include <Game/States/FinishGameState.h>
 
 #include <Game/States/GameStateIds.h>
 
-class CTutorialState;
-
-CMainMenuState::CMainMenuState()
+CFinishGameState::CFinishGameState()
 	: CStateBase(GameStateIds::STATE_ID_MAIN_MENU)
 {
+
 }
 
-void CMainMenuState::DoEnterState()
+void CFinishGameState::DoEnterState()
 {
 	_mainMenuScreen = std::make_unique<CMainMenuScreen>();
 }
 
-State::TStateId CMainMenuState::Update()
+State::TStateId CFinishGameState::Update()
 {
 	_mainMenuScreen->Update();
 
+	return GameStateIds::STATE_ID_MAIN_MENU;
 	//return State::INVALID_STATE_ID;
-
-	return GameStateIds::STATE_ID_TUTORIAL;
 }
 
-void CMainMenuState::ClearState()
+void CFinishGameState::DoExitState()
 {
 	_mainMenuScreen.reset(nullptr);
 }

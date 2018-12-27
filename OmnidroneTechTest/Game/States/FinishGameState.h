@@ -2,14 +2,14 @@
 #include <Engine\Systems\IState.h>
 #include <Game\Screens\MainMenuScreen.h>
 
-class CMainMenuState : public CStateBase
+class CFinishGameState : public CStateBase
 {
 public:
-	CMainMenuState();
+	CFinishGameState();
 
 	void DoEnterState() override;
 	virtual State::TStateId Update() override;
-	void ClearState() override;
+	void DoExitState()  override;
 
 private:
 	std::unique_ptr<CMainMenuScreen> _mainMenuScreen;

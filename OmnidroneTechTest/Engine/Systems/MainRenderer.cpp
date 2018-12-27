@@ -8,13 +8,6 @@ void CMainRenderer::Init()
 {
 	CMainWindow* mainWindow = CSystemManager::Get()->GetSystem<CMainWindow>();
 	_window = &mainWindow->GerRenderWindow();
-
-
-	if (!texture.loadFromFile("data/textures/tex09.png"))
-	{
-		assert(false);
-	}
-	sprite.setTexture(texture);
 }
 
 void CMainRenderer::PreUpdate()

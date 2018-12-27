@@ -24,6 +24,18 @@ State::TStateId CStateBase::Update()
 	return State::INVALID_STATE_ID;
 }
 
+void CStateBase::EnterState()
+{
+	SetDirty(false);
+	DoEnterState();
+}
+
+void CStateBase::ExitState()
+{
+	SetDirty(true);
+	DoExitState();
+}
+
 State::TStateId CStateBase::GetNextState(const State::TStateEventId& stateEventId)
 {
 	auto it = std::find_if(std::begin(_transitionModel), std::end(_transitionModel), [stateEventId](const SStateTransition& transition)

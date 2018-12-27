@@ -12,8 +12,8 @@ void CStateManagerBase::Init()
 {
 	if (!_states.empty())
 	{
-		_currentStateId = 0;
-		std::unique_ptr<IState>& currentState = _states[_currentStateId];
+		std::unique_ptr<IState>& currentState = *_states.begin();
+		_currentStateId = currentState->GetStateId();
 		currentState->EnterState();
 	}
 }
@@ -24,7 +24,17 @@ void CStateManagerBase::Update()
 		return;
 	}
 
-	std::unique_ptr<IState>& currentState = _states[_currentStateId];
+	auto itCurrentState = std::find_if(std::begin(_states), std::end(_states), [=](const std::unique_ptr<IState>& state)
+	{
+		return _currentStateId == state->GetStateId();
+	});
+
+	if (itCurrentState == std::end(_states))
+	{
+		assert(false && "state doesn't exists");
+	}
+
+	std::unique_ptr<IState>& currentState = *itCurrentState;
 
 	State::TStateId nextStateId = currentState->Update();
 	if (nextStateId == State::INVALID_STATE_ID)
@@ -58,5 +68,16 @@ void CStateManagerBase::Shutdown()
 	{
 		std::unique_ptr<IState>& nextState = _states[_currentStateId];
 		nextState->ExitState();
+	}
+}
+
+void CStateManagerBase::CleanDirtyState()
+{
+	for (std::unique_ptr<IState>& state : _states)
+	{
+		if (state->IsDirty())
+		{
+			state->ClearState();
+		}
 	}
 }

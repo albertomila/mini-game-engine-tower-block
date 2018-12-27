@@ -18,6 +18,7 @@ public:
 	void Init() override;
 	void Update() override;
 	void Shutdown() override;
+	void CleanDirtyState();
 
 private:
 	std::vector<std::unique_ptr<IState>> _states;
