@@ -19,7 +19,7 @@ void SystemsRegistry::UnregisterAllSingletons()
 	CSettings::DestroyInstance();
 }
 
-void SystemsRegistry::RegisterAllSystems()
+void SystemsRegistry::RegisterAllPipeline()
 {
 	CSystemManager* systemManager = CSystemManager::Get();
 	systemManager->Register<CMainWindow>();

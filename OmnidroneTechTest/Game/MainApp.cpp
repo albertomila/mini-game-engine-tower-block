@@ -11,7 +11,7 @@
 void CMainApp::Run()
 {
 	SystemsRegistry::RegisterAllSingletons();
-	SystemsRegistry::RegisterAllSystems();
+	SystemsRegistry::RegisterAllPipeline();
 
 	CSystemManager* systemManager = CSystemManager::Get();
 	systemManager->Init();

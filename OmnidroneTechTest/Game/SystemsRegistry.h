@@ -6,5 +6,5 @@ namespace SystemsRegistry
 {
 	void RegisterAllSingletons();
 	void UnregisterAllSingletons();
-	void RegisterAllSystems();
+	void RegisterAllPipeline();
 };
