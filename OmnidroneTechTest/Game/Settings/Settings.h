@@ -1,8 +1,8 @@
 #pragma once
 #include <Engine/Core/Singleton.h>
-#include <Game/GameConfig.h>
-#include <Game/AppConfig.h>
-#include <Game/SaveData/SaveData.h>
+#include <Game/Settings/GameConfig.h>
+#include <Game/Settings/AppConfig.h>
+#include <Game/Settings/SaveData.h>
 
 class CSettings : public CSingleton<CSettings>
 {

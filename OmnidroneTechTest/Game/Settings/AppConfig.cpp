@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <Game/AppConfig.h>
+#include <Game/Settings/AppConfig.h>
 
 void CAppConfig::OnLoad(pugi::xml_node& node)
 {

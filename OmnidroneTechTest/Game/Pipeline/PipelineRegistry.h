@@ -2,7 +2,7 @@
 
 class CSystemManager;
 
-namespace SystemsRegistry
+namespace PipelineRegistry
 {
 	void RegisterAllSingletons();
 	void UnregisterAllSingletons();

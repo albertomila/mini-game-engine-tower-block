@@ -5,13 +5,13 @@
 #include <Engine/States/StateManager.h>
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Systems/MainWindow.h>
-#include <Game/SystemsRegistry.h>
+#include <Game/Pipeline/PipelineRegistry.h>
 
 
 void CMainApp::Run()
 {
-	SystemsRegistry::RegisterAllSingletons();
-	SystemsRegistry::RegisterAllPipeline();
+	PipelineRegistry::RegisterAllSingletons();
+	PipelineRegistry::RegisterAllPipeline();
 
 	CSystemManager* systemManager = CSystemManager::Get();
 	systemManager->Init();
@@ -24,5 +24,5 @@ void CMainApp::Run()
 	}
 
 	systemManager->Shutdown();
-	SystemsRegistry::UnregisterAllSingletons();
+	PipelineRegistry::UnregisterAllSingletons();
 }

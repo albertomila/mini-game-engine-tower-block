@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <Game/Settings.h>
+#include <Game/Settings/Settings.h>
 
 namespace Internal
 {

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <Game/SaveData/SaveData.h>
+#include <Game/Settings/SaveData.h>
 
 void SSaveDataRankingDescriptor::OnLoad(pugi::xml_node& node)
 {
