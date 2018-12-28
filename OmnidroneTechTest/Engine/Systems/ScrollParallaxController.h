@@ -17,7 +17,7 @@ public:
 	void Init(float windowHeightCenter);
 	void AddObject(IObject& object, float parallaxFactor);
 	void Update();
-	void RestoreParallaxTranslation();
+	void RevertParallaxTranslation();
 
 private:
 	const CWorldCamera* _worldCamera = nullptr;

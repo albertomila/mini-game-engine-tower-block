@@ -34,7 +34,7 @@ void CParallaxController::Update()
 	}
 }
 
-void CParallaxController::RestoreParallaxTranslation()
+void CParallaxController::RevertParallaxTranslation()
 {
 	for (SParallaxObjectPair& parallaxObject : _parallaxObjects)
 	{

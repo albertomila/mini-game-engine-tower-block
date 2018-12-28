@@ -17,7 +17,7 @@ CGameplayWorldScreen::CGameplayWorldScreen()
 
 	CMainRenderer* renderer = CSystemManager::Get().GetSystem<CMainRenderer>();
 
-	renderer->AddParallaxObject(*_background, -0.5f);
+	renderer->AddParallaxObject(*_background, -0.0f);
 	renderer->AddParallaxObject(*_backgroundPlants, 0.5f);
 	renderer->AddParallaxObject(*_foreground, 1.f);
 }

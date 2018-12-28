@@ -33,7 +33,7 @@ void CGamePlayState::DoEnterState()
 State::TStateId CGamePlayState::Update()
 {
 	CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
-	worldCamera->MoveY(-0.01f);
+	worldCamera->MoveY(-0.1f);
 
 	_hud->Update();
 	_worldScreen->Update();

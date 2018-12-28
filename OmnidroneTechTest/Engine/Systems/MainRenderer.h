@@ -36,7 +36,7 @@ public:
 
 private:
 	void ApplyParallaxTranslation();
-	void RestoreParallaxTranslation();
+	void RevertParallaxTranslation();
 
 	sf::Texture texture;
 	sf::Sprite sprite;

@@ -72,7 +72,7 @@ void CMainRenderer::Update()
 		viewPair._requestedRenderObjects.clear();
 	}
 
-	RestoreParallaxTranslation();
+	RevertParallaxTranslation();
 
 	_window->display();
 }
@@ -96,7 +96,7 @@ void CMainRenderer::ApplyParallaxTranslation()
 	_parallaxController.Update();
 }
 
-void CMainRenderer::RestoreParallaxTranslation()
+void CMainRenderer::RevertParallaxTranslation()
 {
-	_parallaxController.RestoreParallaxTranslation();
+	_parallaxController.RevertParallaxTranslation();
 }

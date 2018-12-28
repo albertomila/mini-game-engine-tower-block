@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <dbObject>
 	<objects>
-		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0.0f" />
+		<object id="Background" type="0" texture="Assets/background1.png" x="0.0f" y="0.0f" z="0.0f" />
 		
 		<object id="MetersTitle" type="2" x="80.0f" y="240.0f" z="1.0f" text="METERS" />
 		<object id="MetersBackground" type="0" texture="Assets/endgame_meters.png" x="40.0f" y="300.0f" z="0.0f" />
