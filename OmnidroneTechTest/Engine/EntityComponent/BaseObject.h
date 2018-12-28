@@ -24,6 +24,9 @@ public:
 
 	void SetFormatText(const sf::Font& font, const std::string& text, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
 
+	void SetRenderLayer(RenderLayer::ERenderLayer renderLayer) override { _renderLayer = renderLayer; }
+	RenderLayer::ERenderLayer GetRenderLayer() const override { return _renderLayer; }
+
 private:
 	CStringID _id;
 	sf::Texture _texture;
@@ -31,4 +34,5 @@ private:
 	std::unique_ptr<sf::Text> _text;
 	float _z = 0.0f;
 	bool _enabled = true;
+	RenderLayer::ERenderLayer _renderLayer = RenderLayer::ERenderLayer::World;
 };

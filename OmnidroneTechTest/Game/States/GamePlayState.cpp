@@ -6,6 +6,9 @@
 #include <Game/Settings/Settings.h>
 #include <Engine/Core/StringUtils.h>
 #include <Game/Screens/GameplayWorldScreen.h>
+#include <Engine/Systems/MainWindow.h>
+#include <Engine/Systems/SystemManager.h>
+#include <SFML/Graphics/Rect.hpp>
 
 CGamePlayState::CGamePlayState()
 	: CStateBase(GameStateIds::STATE_ID_GAMEPLAY)
@@ -20,6 +23,9 @@ void CGamePlayState::DoEnterState()
 	CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
 	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
 	gameStatus.SetPlayTimeId(saveDataController.GetNextPlayTimeId());
+
+	const CGameConfig& gameConfig = CSettings::Get().GetGameConfig();
+	gameStatus.SetLives(gameConfig.GetLives());
 }
 
 State::TStateId CGamePlayState::Update()

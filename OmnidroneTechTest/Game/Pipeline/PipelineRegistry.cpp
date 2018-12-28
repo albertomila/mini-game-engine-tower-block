@@ -6,6 +6,7 @@
 #include <Engine/Systems/MainRenderer.h>
 #include <Game/Settings/Settings.h>
 #include <Game/Pipeline/GameStateManager.h>
+#include <Game/Settings/AppConfig.h>
 
 void PipelineRegistry::RegisterAllSingletons()
 {
@@ -21,8 +22,10 @@ void PipelineRegistry::UnregisterAllSingletons()
 
 void PipelineRegistry::RegisterAllPipeline()
 {
+	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
+
 	CSystemManager& systemManager = CSystemManager::Get();
-	systemManager.Register<CMainWindow>(576, 1024, "OmnidroneTechTest");
+	systemManager.Register<CMainWindow>(appConfig.GetWindowWidth(), appConfig.GetWindowHeight(), appConfig.GetWindowTitle());
 	systemManager.Register<CGameStateManager>();
-	systemManager.Register<CMainRenderer>();
+	systemManager.Register<CMainRenderer>(appConfig.GetWindowWidth(), appConfig.GetWindowHeight());
 }

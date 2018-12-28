@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Core\StringUtils.h" />
     <ClInclude Include="Engine\EntityComponent\BaseObject.h" />
+    <ClInclude Include="Engine\EntityComponent\RenderLayer.h" />
     <ClInclude Include="Engine\UI\ButtonObject.h" />
     <ClInclude Include="Engine\Core\BasicTypes.h" />
     <ClInclude Include="Engine\Core\Crc32.h" />

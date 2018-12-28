@@ -1,5 +1,6 @@
 #pragma once
 #include <Engine/States/IState.h>
+#include <SFML/Graphics/View.hpp>
 
 class CGameplayHudScreen;
 class CGameplayWorldScreen;

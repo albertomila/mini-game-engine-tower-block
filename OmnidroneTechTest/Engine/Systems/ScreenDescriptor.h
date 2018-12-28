@@ -1,6 +1,7 @@
 #pragma once
 #include <Engine/Serialization/ISerializable.h>
 #include <Engine/Core/StringUtils.h>
+#include <Engine/EntityComponent/RenderLayer.h>
 
 
 struct SObjectDescriptor : public CSerializableObject
@@ -14,8 +15,9 @@ struct SObjectDescriptor : public CSerializableObject
 
 	void OnLoad(pugi::xml_node& node) override
 	{
-		SERIALIZE_ENUM(node, "type", _type);
 		SERIALIZE(node, "id", _id);
+		SERIALIZE_ENUM(node, "renderLayer", _renderLayer);
+		SERIALIZE_ENUM(node, "type", _type);
 		SERIALIZE(node, "texture", _texture);
 		SERIALIZE(node, "x", _x);
 		SERIALIZE(node, "y", _y);
@@ -28,6 +30,7 @@ struct SObjectDescriptor : public CSerializableObject
 		StringUtils::Replace(_text, "<newline>", "\n");
 	}
 
+	RenderLayer::ERenderLayer _renderLayer = RenderLayer::ERenderLayer::World;
 	EType _type = EType::Texture;
 	std::string _id;
 	std::string _texture;

@@ -20,5 +20,6 @@ private:
 	CTextObject* _metersText = nullptr;
 	CTextObject* _pointsTitleText = nullptr;
 	CTextObject* _pointsText = nullptr;
+	CTextObject* _livesText = nullptr;
 };
 

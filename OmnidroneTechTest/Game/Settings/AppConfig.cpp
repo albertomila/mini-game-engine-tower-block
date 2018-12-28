@@ -13,14 +13,8 @@ void CAppConfig::OnLoad(pugi::xml_node& node)
 	{
 		assert(false && "Font not loaded");
 	}
-}
 
-const std::string& CAppConfig::GetPathGameConfig() const
-{
-	return _pathGameConfig;
-}
-
-const std::string& CAppConfig::GetPathSaveData() const
-{
-	return _pathSaveData;
+	SERIALIZE(node, "windowWidth", _windowWidth);
+	SERIALIZE(node, "windowHeight", _windowHeight);
+	SERIALIZE(node, "windowTitle", _windowTitle);
 }

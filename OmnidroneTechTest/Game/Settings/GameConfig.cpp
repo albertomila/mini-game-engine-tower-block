@@ -3,4 +3,5 @@
 
 void CGameConfig::OnLoad(pugi::xml_node& node)
 {
+	SERIALIZE(node, "lives", _lives);
 }

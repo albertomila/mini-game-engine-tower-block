@@ -3,6 +3,8 @@
 pathGameConfig="data/GameConfig.xml" 
 pathSaveData="data/SaveData/SaveData.xml"
 globalFont="Assets/DisposableDroidBB.ttf"
-
+windowWidth="576"
+windowHeight="1024"
+windowTitle="OmnidroneTechTest"
 >
 </dbObject>

@@ -5,4 +5,8 @@ class CGameConfig : public CSerializableObject
 {
 public:
 	void OnLoad(pugi::xml_node& node) override;
+	int GetLives() const { return _lives; }
+
+private:
+	int _lives = 0;
 };

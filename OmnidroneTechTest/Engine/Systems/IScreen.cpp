@@ -46,6 +46,7 @@ void CScreenBase::Load(const std::string& fileName)
 		}
 
 		std::unique_ptr<IObject>& gameObject = _screenObjects.back();
+		gameObject->SetRenderLayer(screenObjectDescriptor._renderLayer);
 		gameObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
 		gameObject->SetZPos(screenObjectDescriptor._z);
 		gameObject->SetAlpha(screenObjectDescriptor._alpha);

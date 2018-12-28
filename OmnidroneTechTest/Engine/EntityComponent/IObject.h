@@ -2,6 +2,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Text.hpp>
+#include <Engine/EntityComponent/RenderLayer.h>
 
 class IObject
 {
@@ -18,4 +19,6 @@ public:
 	virtual void SetAlpha(float alphaNormalized) = 0;
 	virtual void SetEnabled(bool enabled) = 0;
 	virtual bool IsEnabled() const = 0;
+	virtual void SetRenderLayer(RenderLayer::ERenderLayer renderLayer) = 0;
+	virtual RenderLayer::ERenderLayer GetRenderLayer() const = 0;
 };
