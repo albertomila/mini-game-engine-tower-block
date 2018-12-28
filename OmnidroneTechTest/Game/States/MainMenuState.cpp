@@ -36,11 +36,11 @@ void CMainMenuState::OnPlayButtonPress()
 	const bool hasSeenTutorial = CSettings::Get().GetGameStatus().HasSeenTutorial();
 	if (hasSeenTutorial)
 	{
-		SetExitTargetStateId(GameStateIds::STATE_ID_TUTORIAL);
+		SetExitTargetStateId(GameStateIds::STATE_ID_GAMEPLAY);
 	}
 	else
 	{
-		SetExitTargetStateId(GameStateIds::STATE_ID_GAMEPLAY);
+		SetExitTargetStateId(GameStateIds::STATE_ID_TUTORIAL);
 	}
 }
 

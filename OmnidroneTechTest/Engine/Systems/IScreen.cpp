@@ -31,7 +31,8 @@ void CScreenBase::Load(const std::string& fileName)
 
 		if (screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
 		{
-			_screenObjects.emplace_back(std::make_unique<CButtonObject>(CStringID(screenObjectDescriptor._id.c_str())));
+			const std::string& buttonText = screenObjectDescriptor._buttonText;
+			_screenObjects.emplace_back(std::make_unique<CButtonObject>(CStringID(screenObjectDescriptor._id.c_str()), buttonText));
 		}
 		else if(screenObjectDescriptor._type == SObjectDescriptor::EType::Texture)
 		{

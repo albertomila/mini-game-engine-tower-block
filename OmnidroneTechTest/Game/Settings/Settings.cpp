@@ -12,23 +12,3 @@ CSettings::CSettings()
 	_gameConfig.Load(_appConfig.GetPathGameConfig().c_str());
 	_saveData.Load(_appConfig.GetPathSaveData().c_str());
 }
-
-const CGameConfig& CSettings::GetGameConfig() const
-{
-	return _gameConfig;
-}
-
-const CAppConfig& CSettings::GetAppConfig() const
-{
-	return _appConfig;
-}
-
-CGameStatus& CSettings::GetGameStatus()
-{
-	return _gameStatus;
-}
-
-CSaveDataController& CSettings::GetSaveData()
-{
-	return _saveData;
-}

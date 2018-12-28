@@ -6,6 +6,11 @@ CMainWindow::CMainWindow(unsigned int windowWidth, unsigned int WINDOW_HEIGHT, c
 {
 }
 
+void CMainWindow::Init()
+{
+	_hasReset = false;
+}
+
 void CMainWindow::Update()
 {
 	if (_hasQuit)
@@ -20,6 +25,11 @@ void CMainWindow::Update()
 		{
 			_hasQuit = true;
 		}
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		_hasReset = true;
 	}
 }
 

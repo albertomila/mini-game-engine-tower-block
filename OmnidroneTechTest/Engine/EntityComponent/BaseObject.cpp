@@ -30,3 +30,15 @@ void CBaseObject::SetAlpha(float alphaNormalized)
 	_sprite.setColor(sf::Color(255, 255, 255, alpha));
 }
 
+void CBaseObject::SetText(const sf::Font& font, const std::string& text, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin)
+{
+	_text = std::make_unique<sf::Text>();
+	_text->setFont(font);
+	_text->setString(text);
+	_text->setCharacterSize(size);
+	_text->setFillColor(color);
+
+	const sf::Vector2f topLeftPosition = GetTransform().getPosition() + topLefMargin;
+	_text->setPosition(topLeftPosition);
+}
+

@@ -20,6 +20,7 @@ struct SObjectDescriptor : public CSerializableObject
 		SERIALIZE(node, "width", _width);
 		SERIALIZE(node, "height", _height);
 		SERIALIZE(node, "alpha", _alpha);
+		SERIALIZE(node, "buttonText", _buttonText);
 	}
 
 	EType _type = EType::Texture;
@@ -31,6 +32,7 @@ struct SObjectDescriptor : public CSerializableObject
 	float _width = 0.0f;
 	float _height = 0.0f;
 	float _alpha = 1.0f;
+	std::string _buttonText;
 };
 
 struct SScreenDescriptor : public CSerializableObject
