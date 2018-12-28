@@ -11,7 +11,7 @@ public:
 	void Update() override {}
 	void Shutdown() override {}
 
-	const sf::Vector2f& GetPosition() { return _position; }
+	const sf::Vector2f& GetPosition() const { return _position; }
 	void Move(float x, float y);
 	void MoveX(float x);
 	void MoveY(float y);

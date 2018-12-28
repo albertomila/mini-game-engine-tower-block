@@ -2,7 +2,7 @@
 <dbObject>
 	<objects>
 		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0" />
-		<object id="background_plants" type="0" texture="Assets/background_plants.png" x="0.0f" y="0.0f" z="1" />
-		<object id="foreground" type="0" texture="Assets/foreground.png" x="0.0f" y="740.0f" z="2" />
+		<object id="Background_plants" type="0" texture="Assets/background_plants.png" x="0.0f" y="0.0f" z="10" />
+		<object id="Foreground" type="0" texture="Assets/foreground.png" x="0.0f" y="740.0f" z="20" />
 	</objects>
 </dbObject>

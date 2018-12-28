@@ -173,6 +173,7 @@
     <ClInclude Include="Engine\Systems\ScreenDescriptor.h" />
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
     <ClInclude Include="Engine\UI\TextObject.h" />
+    <ClInclude Include="Engine\Systems\ScrollParallaxController.h" />
     <ClInclude Include="Game\Screens\EndGameScreen.h" />
     <ClInclude Include="Game\Screens\GameplayHudScreen.h" />
     <ClInclude Include="Game\Screens\GameplayWorldScreen.h" />
@@ -216,6 +217,7 @@
     <ClCompile Include="Engine\States\IState.cpp" />
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
     <ClCompile Include="Engine\UI\TextObject.cpp" />
+    <ClCompile Include="Engine\Systems\ScrollParallaxController.cpp" />
     <ClCompile Include="Game\Screens\EndGameScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayHudScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayWorldScreen.cpp" />

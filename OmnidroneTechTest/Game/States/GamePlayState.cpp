@@ -20,7 +20,8 @@ void CGamePlayState::DoEnterState()
 {
 	_hud = std::make_unique<CGameplayHudScreen>();
 	_worldScreen = std::make_unique<CGameplayWorldScreen>();
-	
+	_worldScreen->Init();
+
 	CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
 	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
 	gameStatus.SetPlayTimeId(saveDataController.GetNextPlayTimeId());

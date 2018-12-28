@@ -5,6 +5,7 @@
 #include <Engine/Systems/ISystem.h>
 #include <SFML/Graphics/Drawable.hpp>
 #include <Engine/EntityComponent/RenderLayer.h>
+#include <Engine/Systems/ScrollParallaxController.h>
 
 #include <vector>
 #include <array>
@@ -31,8 +32,12 @@ public:
 	void Update() override;
 	void Shutdown() override {}
 	void RequestRender(IObject& object);
+	void AddParallaxObject(IObject& object, float parallaxFactor);
 
 private:
+	void ApplyParallaxTranslation();
+	void RestoreParallaxTranslation();
+
 	sf::Texture texture;
 	sf::Sprite sprite;
 
@@ -40,4 +45,5 @@ private:
 	sf::View _worldView;
 	std::array<SViewObjectsPair, static_cast<int>(ERenderLayer::MAX)> _views;
 	CWorldCamera* _worldCamera = nullptr;
+	CParallaxController _parallaxController;
 };
