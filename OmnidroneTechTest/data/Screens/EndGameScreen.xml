@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<dbObject screenId="TutorialScreen">
+<dbObject>
 	<objects>
 		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0.0f" />
 		

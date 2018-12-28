@@ -26,7 +26,7 @@ void SSaveDataDescriptor::OnSave(pugi::xml_node& node)
 	DESERIALIZE(node, "ranking", _ranking);
 }
 
-void SSaveDataDescriptor::AddRanking(float meters, int points)
+void SSaveDataDescriptor::AddRanking(double meters, int points)
 {
 	_ranking.emplace_back();
 	SSaveDataRankingDescriptor& saveDataRankingDescriptor = _ranking.back();
@@ -42,7 +42,7 @@ void CSaveDataController::Load(const std::string& fileName)
 	_saveDataDescriptor.Load(fileName);
 }
 
-void CSaveDataController::AddRanking(float meters, int points)
+void CSaveDataController::AddRanking(double meters, int points)
 {
 	_saveDataDescriptor.AddRanking(meters, points);
 }

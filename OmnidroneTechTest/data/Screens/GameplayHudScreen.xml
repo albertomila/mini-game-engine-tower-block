@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<dbObject>
+	<objects>
+		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0.0f" />
+		
+		<object id="MetersTitle" type="2" x="80.0f" y="10.0f" z="1.0f" text="METERS" />
+		<object id="MetersBackground" type="0" texture="Assets/endgame_meters.png" x="40.0f" y="70.0f" z="0.0f" />
+		<object id="MetersText" type="2" x="70.0f" y="65.0f" z="1.0f" />
+		
+		<object id="PointsTitle" type="2" x="360.0f" y="10.0f" z="1.0f" text="POINTS" />
+		<object id="PointsBackground" type="0" texture="Assets/endgame_points.png" x="320.0f" y="70.0f" z="0.0f" />
+		<object id="PointsText" type="2" x="340.0f" y="65.0f" z="1.0f" />
+	</objects>
+</dbObject>

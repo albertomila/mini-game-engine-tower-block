@@ -9,14 +9,14 @@ struct SSaveDataRankingDescriptor : public CSerializableObject
 
 	int _playTimeId = 0;
 	int _points = 0;
-	float _meters = 0.0f;
+	double _meters = 0.0f;
 };
 
 struct SSaveDataDescriptor : public CSerializableObject
 {
 	void OnLoad(pugi::xml_node& node) override;
 	void OnSave(pugi::xml_node& node) override;
-	void AddRanking(float meters, int points);
+	void AddRanking(double meters, int points);
 
 	int _nextPlayTimeId = 0;
 	std::vector<SSaveDataRankingDescriptor> _ranking;
@@ -26,7 +26,7 @@ class CSaveDataController
 {
 public:
 	void Load(const std::string& fileName);
-	void AddRanking(float meters, int points);
+	void AddRanking(double meters, int points);
 	void Save(const std::string& fileName);
 	int GetNextPlayTimeId() const;
 

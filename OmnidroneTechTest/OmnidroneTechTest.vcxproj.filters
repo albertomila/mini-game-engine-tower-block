@@ -132,6 +132,9 @@
     <ClInclude Include="Game\Screens\EndGameScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Screens\GameplayHudScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -225,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\Screens\EndGameScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Screens\GameplayHudScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

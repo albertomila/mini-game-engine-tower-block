@@ -1,6 +1,7 @@
 #pragma once
 #include <Engine/States/IState.h>
-#include <Game/Screens/MainMenuScreen.h>
+
+class CGameplayHudScreen;
 
 class CGamePlayState : public CStateBase
 {
@@ -10,8 +11,9 @@ public:
 	void DoEnterState() override;
 	virtual State::TStateId Update() override;
 	void DoExitState()  override;
+	void ClearState() override;
 
 private:
-	std::unique_ptr<CMainMenuScreen> _mainMenuScreen;
+	std::unique_ptr<CGameplayHudScreen> _hud;
 };
 

@@ -2,7 +2,9 @@
 #include <Game/States/GamePlayState.h>
 
 #include <Game/States/GameStateIds.h>
+#include <Game/Screens/GameplayHudScreen.h>
 #include <Game/Settings/Settings.h>
+#include <Engine/Core/StringUtils.h>
 
 CGamePlayState::CGamePlayState()
 	: CStateBase(GameStateIds::STATE_ID_GAMEPLAY)
@@ -11,6 +13,8 @@ CGamePlayState::CGamePlayState()
 
 void CGamePlayState::DoEnterState()
 {
+	_hud = std::make_unique<CGameplayHudScreen>();
+	
 	CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
 	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
 	gameStatus.SetPlayTimeId(saveDataController.GetNextPlayTimeId());
@@ -18,8 +22,13 @@ void CGamePlayState::DoEnterState()
 
 State::TStateId CGamePlayState::Update()
 {
-	return GameStateIds::STATE_ID_FINISH_GAME;
-	//return State::INVALID_STATE_ID;
+	_hud->Update();
+	return GetExitTargetStateId();
+}
+
+void CGamePlayState::ClearState()
+{
+	_hud.reset(nullptr);
 }
 
 void CGamePlayState::DoExitState()
