@@ -10,6 +10,7 @@
 #include <array>
 
 class IObject;
+class CWorldCamera;
 
 using namespace RenderLayer;
 
@@ -17,6 +18,7 @@ class CMainRenderer : public ISystem
 {
 	struct SViewObjectsPair
 	{
+		ERenderLayer _renderLayer;
 		sf::View _view;
 		std::vector<std::reference_wrapper<IObject>> _requestedRenderObjects;
 	};
@@ -37,4 +39,5 @@ private:
 	sf::RenderWindow* _window;
 	sf::View _worldView;
 	std::array<SViewObjectsPair, static_cast<int>(ERenderLayer::MAX)> _views;
+	CWorldCamera* _worldCamera = nullptr;
 };

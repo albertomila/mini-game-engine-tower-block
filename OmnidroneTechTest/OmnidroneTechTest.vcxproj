@@ -163,6 +163,7 @@
     <ClInclude Include="Engine\Core\StringUtils.h" />
     <ClInclude Include="Engine\EntityComponent\BaseObject.h" />
     <ClInclude Include="Engine\EntityComponent\RenderLayer.h" />
+    <ClInclude Include="Engine\Systems\WorldCamera.h" />
     <ClInclude Include="Engine\UI\ButtonObject.h" />
     <ClInclude Include="Engine\Core\BasicTypes.h" />
     <ClInclude Include="Engine\Core\Crc32.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Engine\Core\Crc32.cpp" />
     <ClCompile Include="Engine\Core\StringUtils.cpp" />
     <ClCompile Include="Engine\EntityComponent\BaseObject.cpp" />
+    <ClCompile Include="Engine\Systems\WorldCamera.cpp" />
     <ClCompile Include="Engine\UI\ButtonObject.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />
     <ClCompile Include="Engine\Systems\IScreen.cpp" />

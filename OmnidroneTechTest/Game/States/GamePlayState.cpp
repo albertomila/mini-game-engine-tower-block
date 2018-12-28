@@ -9,6 +9,7 @@
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/SystemManager.h>
 #include <SFML/Graphics/Rect.hpp>
+#include <Engine/Systems/WorldCamera.h>
 
 CGamePlayState::CGamePlayState()
 	: CStateBase(GameStateIds::STATE_ID_GAMEPLAY)
@@ -30,6 +31,9 @@ void CGamePlayState::DoEnterState()
 
 State::TStateId CGamePlayState::Update()
 {
+	CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
+	worldCamera->MoveY(-0.01f);
+
 	_hud->Update();
 	_worldScreen->Update();
 
