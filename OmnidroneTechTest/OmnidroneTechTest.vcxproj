@@ -173,6 +173,7 @@
     <ClInclude Include="Engine\UI\TextObject.h" />
     <ClInclude Include="Game\Screens\EndGameScreen.h" />
     <ClInclude Include="Game\Screens\GameplayHudScreen.h" />
+    <ClInclude Include="Game\Screens\GameplayWorldScreen.h" />
     <ClInclude Include="Game\Screens\TutorialScreen.h" />
     <ClInclude Include="Game\Settings\AppConfig.h" />
     <ClInclude Include="Game\Settings\GameConfig.h" />
@@ -213,6 +214,7 @@
     <ClCompile Include="Engine\UI\TextObject.cpp" />
     <ClCompile Include="Game\Screens\EndGameScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayHudScreen.cpp" />
+    <ClCompile Include="Game\Screens\GameplayWorldScreen.cpp" />
     <ClCompile Include="Game\Screens\TutorialScreen.cpp" />
     <ClCompile Include="Game\Settings\AppConfig.cpp" />
     <ClCompile Include="Game\Settings\GameConfig.cpp" />

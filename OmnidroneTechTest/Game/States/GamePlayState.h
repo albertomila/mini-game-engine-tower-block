@@ -2,6 +2,7 @@
 #include <Engine/States/IState.h>
 
 class CGameplayHudScreen;
+class CGameplayWorldScreen;
 
 class CGamePlayState : public CStateBase
 {
@@ -15,5 +16,6 @@ public:
 
 private:
 	std::unique_ptr<CGameplayHudScreen> _hud;
+	std::unique_ptr<CGameplayWorldScreen> _worldScreen;
 };
 
