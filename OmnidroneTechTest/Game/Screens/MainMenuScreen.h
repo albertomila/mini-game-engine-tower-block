@@ -9,10 +9,10 @@ public:
 	CMainMenuScreen();
 	~CMainMenuScreen() override = default;
 	void SetOnPlayButtonPressCallback(std::function<void()> onPressCallback);
-	void SetOnCreditsButtonPressCallback(std::function<void()> onPressCallback);
+	void SetOnRankingsButtonPressCallback(std::function<void()> onPressCallback);
 
 private:
 	CButtonObject* _playButton = nullptr;
-	CButtonObject* _creditsButton = nullptr;
+	CButtonObject* _rankingsButton = nullptr;
 };
 

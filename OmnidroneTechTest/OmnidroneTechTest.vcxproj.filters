@@ -138,6 +138,9 @@
     <ClInclude Include="Game\Screens\GameplayWorldScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Screens\RankingPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -237,6 +240,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\Screens\GameplayWorldScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Screens\RankingPanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

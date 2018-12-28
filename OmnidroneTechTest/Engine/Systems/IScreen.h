@@ -11,6 +11,8 @@ class IScreen : public IUpdatable
 {
 public:
 	~IScreen() override {}
+	virtual void Show() = 0;
+	virtual void Hide() = 0;
 };
 
 class CScreenBase : public IScreen
@@ -26,8 +28,20 @@ public:
 	template<class T>
 	T* GetObjectById(const CStringID& gameObjectId);
 
+	void Show() override;
+	void Hide() override;
+	bool IsVisible() const { return _isVisible; }
+
+	template<class T>
+	void AddRuntimeObject(T* screenObject);
+
+	void RemoveObject(const CStringID& objectId);
+
 private:
+	void SetVisible(bool visible);
+
 	std::vector<std::unique_ptr<IObject>> _screenObjects;
+	bool _isVisible = true;
 };
 
 template<class T>
@@ -42,4 +56,10 @@ T* CScreenBase::GetObjectById(const CStringID& gameObjectId)
 	}
 
 	return nullptr;
+}
+
+template<class T>
+void CScreenBase::AddRuntimeObject(T* screenObject)
+{
+	_screenObjects.emplace_back(screenObject);
 }

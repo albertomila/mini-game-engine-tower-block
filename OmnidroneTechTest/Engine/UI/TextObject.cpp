@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include <Engine/UI/TextObject.h>
 
-CTextObject::CTextObject(const CStringID& id, const std::string& buttonText)
+CTextObject::CTextObject(const CStringID& id, const std::string& text)
 	:CBaseObject(id)
-	, _defaultText(buttonText)
+	, _defaultText(text)
 {
 }
 

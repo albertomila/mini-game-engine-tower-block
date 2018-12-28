@@ -2,11 +2,11 @@
 <dbObject>
 	<objects>
 		<object id="MetersTitle" type="2" x="80.0f" y="10.0f" z="100" text="METERS" />
-		<object id="MetersBackground" type="0" texture="Assets/endgame_meters.png" x="40.0f" y="70.0f" z="101" />
+		<object id="MetersBackground" type="0" texture="Assets/meters.png" x="40.0f" y="70.0f" z="101" />
 		<object id="MetersText" type="2" x="70.0f" y="65.0f" z="102" />
 		
 		<object id="PointsTitle" type="2" x="360.0f" y="10.0f" z="103.0f" text="POINTS" />
-		<object id="PointsBackground" type="0" texture="Assets/endgame_points.png" x="320.0f" y="70.0f" z="104" />
+		<object id="PointsBackground" type="0" texture="Assets/points.png" x="320.0f" y="70.0f" z="104" />
 		<object id="PointsText" type="2" x="340.0f" y="65.0f" z="105" />
 	</objects>
 </dbObject>

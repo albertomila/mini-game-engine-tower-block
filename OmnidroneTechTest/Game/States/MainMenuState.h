@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine/States/IState.h>
-#include <Game/Screens/MainMenuScreen.h>
+
+class CMainMenuScreen;
+class CRankingPanel;
 
 class CMainMenuState : public CStateBase
 {
@@ -13,8 +15,10 @@ public:
 
 private:
 	void OnPlayButtonPress();
-	void OnCreditsButtonPress();
+	void OnRankingsButtonPress();
 
 	std::unique_ptr<CMainMenuScreen> _mainMenuScreen;
+	std::unique_ptr<CRankingPanel> _rankingsPanel;
+	
 };
 

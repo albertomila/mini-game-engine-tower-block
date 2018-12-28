@@ -49,7 +49,11 @@ void CScreenBase::Load(const std::string& fileName)
 		gameObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
 		gameObject->SetZPos(screenObjectDescriptor._z);
 		gameObject->SetAlpha(screenObjectDescriptor._alpha);
-		gameObject->LoadFromFile(screenObjectDescriptor._texture, textureRect);
+
+		if (!screenObjectDescriptor._texture.empty())
+		{
+			gameObject->LoadFromFile(screenObjectDescriptor._texture, textureRect);
+		}
 	}
 }
 
@@ -76,5 +80,42 @@ void CScreenBase::Update()
 	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
 	{
 		mainRenderer->RequestRender(*screenObject);
+	}
+}
+
+void CScreenBase::Show()
+{
+	SetVisible(true);
+}
+
+void CScreenBase::Hide()
+{
+	SetVisible(false);
+}
+
+void CScreenBase::RemoveObject(const CStringID& objectId)
+{
+	using TObjectList = std::vector<std::unique_ptr<IObject>>;
+	using TObjectIt = TObjectList::iterator;
+	for (TObjectIt it = std::begin(_screenObjects); it != std::end(_screenObjects);)
+	{
+		if (it->get()->GetId() == objectId)
+		{
+			it = _screenObjects.erase(it);
+			break;
+		}
+		else
+		{
+			++it;
+		}
+	}
+}
+
+void CScreenBase::SetVisible(bool visible)
+{
+	_isVisible = visible;
+	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
+	{
+		screenObject->SetEnabled(visible);
 	}
 }

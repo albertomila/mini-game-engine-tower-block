@@ -4,7 +4,7 @@
 class CTextObject : public CBaseObject
 {
 public:
-	CTextObject(const CStringID& id, const std::string& buttonText);
+	CTextObject(const CStringID& id, const std::string& text);
 	sf::Drawable* GetDrawable() override { return nullptr; }
 	
 	void SetFormat(const sf::Font& font, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
