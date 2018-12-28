@@ -2,7 +2,7 @@
 <dbObject screenId="MainMenu">
 	<objects>
 		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0.0f" alpha="1.0f" />
-		<object id="PlayButton" type="1" buttonText="PLAY GAME" texture="Assets/button.png" x="128.0f" y="447.0f" z="1.0f" alpha="1.0f" />
-		<object id="RankingButton" type="1" buttonText="RANKINGS" texture="Assets/button.png" x="128.0f" y="515.0f" z="2.0f" alpha="1.0f" />
+		<object id="PlayButton" type="1" text="PLAY GAME" texture="Assets/button.png" x="128.0f" y="447.0f" z="1.0f" alpha="1.0f" />
+		<object id="RankingButton" type="1" text="RANKINGS" texture="Assets/button.png" x="128.0f" y="515.0f" z="2.0f" alpha="1.0f" />
 	</objects>
 </dbObject>

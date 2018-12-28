@@ -6,23 +6,27 @@
 CTutorialState::CTutorialState()
 	: CStateBase(GameStateIds::STATE_ID_TUTORIAL)
 {
-
 }
 
 void CTutorialState::DoEnterState()
 {
-	//_mainMenuScreen = std::make_unique<CMainMenuScreen>();
+	_tutorialScreen = std::make_unique<CTutorialScreen>();
+	_tutorialScreen->SetOnNextButtonPressCallback([=]() { OnNextButtonPress(); });
 }
 
 State::TStateId CTutorialState::Update()
 {
-	//_mainMenuScreen->Update();
+	_tutorialScreen->Update();
 
-	//return GameStateIds::STATE_ID_GAMEPLAY;
-	return State::INVALID_STATE_ID;
+	return GetExitTargetStateId();
 }
 
-void CTutorialState::DoExitState()
+void CTutorialState::ClearState()
 {
-	//_mainMenuScreen.reset(nullptr);
+	_tutorialScreen.reset(nullptr);
+}
+
+void CTutorialState::OnNextButtonPress()
+{
+	SetExitTargetStateId(GameStateIds::STATE_ID_GAMEPLAY);
 }

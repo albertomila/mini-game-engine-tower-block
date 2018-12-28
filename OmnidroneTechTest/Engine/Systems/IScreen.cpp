@@ -10,6 +10,7 @@
 #include <Engine/EntityComponent/BaseObject.h>
 #include <Engine/UI/ButtonObject.h>
 #include <Engine/Systems/MainWindow.h>
+#include <Engine/UI/TextObject.h>
 
 CScreenBase::CScreenBase(const std::string& fileName)
 {
@@ -31,12 +32,17 @@ void CScreenBase::Load(const std::string& fileName)
 
 		if (screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
 		{
-			const std::string& buttonText = screenObjectDescriptor._buttonText;
-			_screenObjects.emplace_back(std::make_unique<CButtonObject>(CStringID(screenObjectDescriptor._id.c_str()), buttonText));
+			const std::string& text = screenObjectDescriptor._text;
+			_screenObjects.emplace_back(std::make_unique<CButtonObject>(CStringID(screenObjectDescriptor._id.c_str()), text));
 		}
 		else if(screenObjectDescriptor._type == SObjectDescriptor::EType::Texture)
 		{
 			_screenObjects.emplace_back(std::make_unique<CBaseObject>(CStringID(screenObjectDescriptor._id.c_str())));
+		}
+		else if (screenObjectDescriptor._type == SObjectDescriptor::EType::Text)
+		{
+			const std::string& text = screenObjectDescriptor._text;
+			_screenObjects.emplace_back(std::make_unique<CTextObject>(CStringID(screenObjectDescriptor._id.c_str()), text));
 		}
 
 		std::unique_ptr<IObject>& gameObject = _screenObjects.back();

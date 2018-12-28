@@ -2,6 +2,7 @@
 #include <Game/States/GamePlayState.h>
 
 #include <Game/States/GameStateIds.h>
+#include <Game/Settings/Settings.h>
 
 CGamePlayState::CGamePlayState()
 	: CStateBase(GameStateIds::STATE_ID_GAMEPLAY)
@@ -10,18 +11,20 @@ CGamePlayState::CGamePlayState()
 
 void CGamePlayState::DoEnterState()
 {
-	_mainMenuScreen = std::make_unique<CMainMenuScreen>();
+	CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
+	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
+	gameStatus.SetPlayTimeId(saveDataController.GetNextPlayTimeId());
 }
 
 State::TStateId CGamePlayState::Update()
 {
-	_mainMenuScreen->Update();
-
 	return GameStateIds::STATE_ID_FINISH_GAME;
 	//return State::INVALID_STATE_ID;
 }
 
 void CGamePlayState::DoExitState()
 {
-	_mainMenuScreen.reset(nullptr);
+	const CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
+	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
+	saveDataController.AddRanking(gameStatus.GetMeters(), gameStatus.GetPoints());
 }

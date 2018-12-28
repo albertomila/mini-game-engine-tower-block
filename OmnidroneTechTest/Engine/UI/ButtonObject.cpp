@@ -20,8 +20,8 @@ void CButtonObject::OnPressed()
 	}
 }
 
-void CButtonObject::SetFormatText(const sf::Font& font, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin)
+void CButtonObject::SetFormat(const sf::Font& font, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin)
 {
-	SetText(font, _buttonText, size, color, topLefMargin);
+	SetFormatText(font, _buttonText, size, color, topLefMargin);
 }
 

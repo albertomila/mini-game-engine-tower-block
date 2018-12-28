@@ -10,8 +10,8 @@ CMainMenuScreen::CMainMenuScreen()
 	_creditsButton = GetObjectById<CButtonObject>(CStringID("RankingButton"));
 
 	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
-	_playButton->SetFormatText(globalFont, 48, sf::Color::White, {55, -8});
-	_creditsButton->SetFormatText(globalFont, 48, sf::Color::White, { 75, -8 });
+	_playButton->SetFormat(globalFont, 48, sf::Color::White, {55, -8});
+	_creditsButton->SetFormat(globalFont, 48, sf::Color::White, { 75, -8 });
 }
 
 void CMainMenuScreen::SetOnPlayButtonPressCallback(std::function<void()> onPressCallback)

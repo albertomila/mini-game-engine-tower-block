@@ -8,7 +8,7 @@ public:
 	void SetOnPressCallback(std::function<void()> onPressCallback);
 	void OnPressed() override;
 
-	void SetFormatText(const sf::Font& font, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
+	void SetFormat(const sf::Font& font, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
 
 private:
 	std::function<void()> _onPressCallback;

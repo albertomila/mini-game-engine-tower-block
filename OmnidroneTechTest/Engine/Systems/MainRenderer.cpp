@@ -26,7 +26,11 @@ void CMainRenderer::Update()
 
 	for (std::reference_wrapper<IObject>& object : _requestedRenderObjects)
 	{
-		_window->draw(object.get().GetDrawable()); 
+		sf::Drawable* drawable = object.get().GetDrawable();
+		if (drawable)
+		{
+			_window->draw(*drawable);
+		}
 		
 		const std::unique_ptr<sf::Text>& text = object.get().GetText();
 		if (text.get() != nullptr)

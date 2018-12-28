@@ -160,6 +160,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Core\StringUtils.h" />
     <ClInclude Include="Engine\EntityComponent\BaseObject.h" />
     <ClInclude Include="Engine\UI\ButtonObject.h" />
     <ClInclude Include="Engine\Core\BasicTypes.h" />
@@ -169,6 +170,9 @@
     <ClInclude Include="Engine\Core\Singleton.h" />
     <ClInclude Include="Engine\Systems\ScreenDescriptor.h" />
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
+    <ClInclude Include="Engine\UI\TextObject.h" />
+    <ClInclude Include="Game\Screens\EndGameScreen.h" />
+    <ClInclude Include="Game\Screens\TutorialScreen.h" />
     <ClInclude Include="Game\Settings\AppConfig.h" />
     <ClInclude Include="Game\Settings\GameConfig.h" />
     <ClInclude Include="Game\Pipeline\MainApp.h" />
@@ -184,7 +188,7 @@
     <ClInclude Include="Game\Settings\GameStatus.h" />
     <ClInclude Include="Game\Settings\SaveData.h" />
     <ClInclude Include="Game\Settings\Settings.h" />
-    <ClInclude Include="Game\States\FinishGameState.h" />
+    <ClInclude Include="Game\States\EndGameState.h" />
     <ClInclude Include="Game\States\GamePlayState.h" />
     <ClInclude Include="Game\States\GameStateIds.h" />
     <ClInclude Include="Game\States\MainMenuState.h" />
@@ -198,12 +202,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Core\Crc32.cpp" />
+    <ClCompile Include="Engine\Core\StringUtils.cpp" />
     <ClCompile Include="Engine\EntityComponent\BaseObject.cpp" />
     <ClCompile Include="Engine\UI\ButtonObject.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />
     <ClCompile Include="Engine\Systems\IScreen.cpp" />
     <ClCompile Include="Engine\States\IState.cpp" />
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
+    <ClCompile Include="Engine\UI\TextObject.cpp" />
+    <ClCompile Include="Game\Screens\EndGameScreen.cpp" />
+    <ClCompile Include="Game\Screens\TutorialScreen.cpp" />
     <ClCompile Include="Game\Settings\AppConfig.cpp" />
     <ClCompile Include="Game\Settings\GameConfig.cpp" />
     <ClCompile Include="Game\Pipeline\MainApp.cpp" />
@@ -215,7 +223,7 @@
     <ClCompile Include="Game\Settings\GameStatus.cpp" />
     <ClCompile Include="Game\Settings\SaveData.cpp" />
     <ClCompile Include="Game\Settings\Settings.cpp" />
-    <ClCompile Include="Game\States\FinishGameState.cpp" />
+    <ClCompile Include="Game\States\EndGameState.cpp" />
     <ClCompile Include="Game\States\GamePlayState.cpp" />
     <ClCompile Include="Game\States\MainMenuState.cpp" />
     <ClCompile Include="Game\States\TutorialState.cpp" />

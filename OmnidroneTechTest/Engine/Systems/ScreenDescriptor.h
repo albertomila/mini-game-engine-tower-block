@@ -1,12 +1,15 @@
 #pragma once
 #include <Engine/Serialization/ISerializable.h>
+#include <Engine/Core/StringUtils.h>
+
 
 struct SObjectDescriptor : public CSerializableObject
 {
 	enum class EType : char
 	{
 		Texture,
-		Button
+		Button,
+		Text
 	};
 
 	void OnLoad(pugi::xml_node& node) override
@@ -20,7 +23,9 @@ struct SObjectDescriptor : public CSerializableObject
 		SERIALIZE(node, "width", _width);
 		SERIALIZE(node, "height", _height);
 		SERIALIZE(node, "alpha", _alpha);
-		SERIALIZE(node, "buttonText", _buttonText);
+		SERIALIZE(node, "text", _text);
+
+		StringUtils::Replace(_text, "<newline>", "\n");
 	}
 
 	EType _type = EType::Texture;
@@ -32,7 +37,7 @@ struct SObjectDescriptor : public CSerializableObject
 	float _width = 0.0f;
 	float _height = 0.0f;
 	float _alpha = 1.0f;
-	std::string _buttonText;
+	std::string _text;
 };
 
 struct SScreenDescriptor : public CSerializableObject

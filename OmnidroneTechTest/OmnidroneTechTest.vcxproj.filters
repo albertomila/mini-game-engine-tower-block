@@ -69,9 +69,6 @@
     <ClInclude Include="Game\States\TutorialState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\States\FinishGameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\States\GamePlayState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -120,6 +117,21 @@
     <ClInclude Include="Game\Settings\GameStatus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Screens\TutorialScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\UI\TextObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Core\StringUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\States\EndGameState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Screens\EndGameScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -164,9 +176,6 @@
     <ClCompile Include="Game\States\TutorialState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game\States\FinishGameState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game\States\GamePlayState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -201,6 +210,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\Settings\GameStatus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Screens\TutorialScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\UI\TextObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\States\EndGameState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Core\StringUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Screens\EndGameScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

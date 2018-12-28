@@ -7,6 +7,7 @@ struct SSaveDataRankingDescriptor : public CSerializableObject
 	void OnLoad(pugi::xml_node& node) override;
 	void OnSave(pugi::xml_node& node) override;
 
+	int _playTimeId = 0;
 	int _points = 0;
 	float _meters = 0.0f;
 };
@@ -17,6 +18,7 @@ struct SSaveDataDescriptor : public CSerializableObject
 	void OnSave(pugi::xml_node& node) override;
 	void AddRanking(float meters, int points);
 
+	int _nextPlayTimeId = 0;
 	std::vector<SSaveDataRankingDescriptor> _ranking;
 };
 
@@ -26,7 +28,7 @@ public:
 	void Load(const std::string& fileName);
 	void AddRanking(float meters, int points);
 	void Save(const std::string& fileName);
-
+	int GetNextPlayTimeId() const;
 
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> GetRankingSortedByMeters();
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> GetRankingSortedByPoints();

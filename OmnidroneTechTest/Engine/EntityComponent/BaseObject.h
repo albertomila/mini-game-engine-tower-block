@@ -10,7 +10,7 @@ public:
 	void LoadFromFile(const std::string& filename, const sf::IntRect& area) override;
 	const CStringID& GetId() const override { return _id; }
 	sf::Transformable& GetTransform() override { return _sprite; }
-	sf::Drawable& GetDrawable() override { return _sprite; }
+	sf::Drawable* GetDrawable() override { return &_sprite; }
 	const std::unique_ptr<sf::Text>& GetText() override { return _text; }
 	const sf::FloatRect GetRect() const override;
 
@@ -18,10 +18,11 @@ public:
 	void SetZPos(float z) override { _z = z; }
 	float GetZPos() const override { return _z; }
 	void SetAlpha(float alphaNormalized) override;
+	void SetText(const std::string& text);
 	void SetEnabled(bool enabled) override { _enabled = enabled; }
 	bool IsEnabled() const { return _enabled; }
 
-	void SetText(const sf::Font& font, const std::string& text, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
+	void SetFormatText(const sf::Font& font, const std::string& text, unsigned int size, const sf::Color& color, const sf::Vector2f& topLefMargin);
 
 private:
 	CStringID _id;
