@@ -33,10 +33,16 @@ void CGamePlayState::DoEnterState()
 State::TStateId CGamePlayState::Update()
 {
 	CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
-	worldCamera->MoveY(-0.1f);
+	worldCamera->MoveY(-0.01f);
 
 	_hud->Update();
 	_worldScreen->Update();
+
+	const CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
+	if (gameStatus.GetLives() == 0)
+	{
+		SetExitTargetStateId(GameStateIds::STATE_ID_FINISH_GAME);
+	}
 
 	return GetExitTargetStateId();
 }
