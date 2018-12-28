@@ -117,6 +117,9 @@
     <ClInclude Include="Game\Pipeline\MainApp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Settings\GameStatus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -195,6 +198,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Core\Crc32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Settings\GameStatus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

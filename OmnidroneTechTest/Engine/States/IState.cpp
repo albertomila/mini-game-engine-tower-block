@@ -27,6 +27,7 @@ State::TStateId CStateBase::Update()
 void CStateBase::EnterState()
 {
 	SetDirty(false);
+	_exitTargetStateId = State::INVALID_STATE_ID;
 	DoEnterState();
 }
 

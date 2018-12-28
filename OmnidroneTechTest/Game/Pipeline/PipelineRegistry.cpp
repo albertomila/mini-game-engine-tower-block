@@ -22,7 +22,7 @@ void PipelineRegistry::UnregisterAllSingletons()
 void PipelineRegistry::RegisterAllPipeline()
 {
 	CSystemManager& systemManager = CSystemManager::Get();
-	systemManager.Register<CMainWindow>();
+	systemManager.Register<CMainWindow>(576, 1024, "OmnidroneTechTest");
 	systemManager.Register<CGameStateManager>();
 	systemManager.Register<CMainRenderer>();
 }

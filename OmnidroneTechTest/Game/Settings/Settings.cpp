@@ -23,6 +23,11 @@ const CAppConfig& CSettings::GetAppConfig() const
 	return _appConfig;
 }
 
+CGameStatus& CSettings::GetGameStatus()
+{
+	return _gameStatus;
+}
+
 CSaveDataController& CSettings::GetSaveData()
 {
 	return _saveData;

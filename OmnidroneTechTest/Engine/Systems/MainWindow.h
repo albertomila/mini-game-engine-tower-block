@@ -7,7 +7,7 @@
 class CMainWindow : public ISystem
 {
 public:
-	CMainWindow();
+	CMainWindow(unsigned int windowWidth, unsigned int WINDOW_HEIGHT, const std::string& windowName);
 
 	void Init() override {}
 	void Update() override;

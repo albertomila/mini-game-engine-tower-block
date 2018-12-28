@@ -53,10 +53,13 @@ protected:
 	virtual void DoEnterState() {}
 	virtual void DoExitState() {}
 	void SetDirty(bool isDirty) { _isDirty = isDirty; }
-
 	State::TStateId GetNextState(const State::TStateEventId& stateEventId) override;
+	void SetExitTargetStateId(State::TStateId exitTargetStateId) { _exitTargetStateId = exitTargetStateId; }
+	State::TStateId GetExitTargetStateId() const { return _exitTargetStateId; }
 
+private:
 	State::TStateId _stateId = State::INVALID_STATE_ID;
 	std::vector<SStateTransition> _transitionModel;
 	bool _isDirty = false;
+	State::TStateId _exitTargetStateId = State::INVALID_STATE_ID;
 };

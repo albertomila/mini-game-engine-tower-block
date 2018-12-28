@@ -1,11 +1,8 @@
 <?xml version="1.0"?>
 <dbObject screenId="MainMenu">
 	<objects>
-		<object id="test1" type="1" texture="data/textures/tex09.png" x="0.0f" y="0.0f" z="0.0f" width="300.0f" height="300.0f" alpha="1.0f" />
-		<object id="test2" type="1" texture="data/textures/tex09.png" x="10.0f" y="10.0f" z="1.0f" width="300.0f" height="300.0f" alpha="1.0f" />
-		<object id="test3" type="1" texture="data/textures/tex09.png" x="20.0f" y="20.0f" z="2.0f" width="300.0f" height="300.0f" alpha="1.0f" />
-		<object id="test4" type="1" texture="data/textures/tex09.png" x="30.0f" y="30.0f" z="3.0f" width="300.0f" height="300.0f" alpha="1.0f" />
-		<object id="test5" type="1" texture="data/textures/tex09.png" x="40.0f" y="40.0f" z="4.0f" width="300.0f" height="300.0f" alpha="1.0f" />
-		<object id="test6" type="1" texture="data/textures/tex09.png" x="50.0f" y="50.0f" z="5.0f" width="300.0f" height="300.0f" alpha="1.0f" />
+		<object id="Background" type="0" texture="Assets/background.png" x="0.0f" y="0.0f" z="0.0f" alpha="1.0f" />
+		<object id="PlayButton" type="1" texture="Assets/button.png" x="128.0f" y="447.0f" z="1.0f" alpha="1.0f" />
+		<object id="RankingButton" type="1" texture="Assets/button.png" x="128.0f" y="515.0f" z="2.0f" alpha="1.0f" />
 	</objects>
 </dbObject>

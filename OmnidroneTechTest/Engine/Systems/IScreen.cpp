@@ -52,11 +52,12 @@ void CScreenBase::Update()
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
+		sf::Vector2i mousePosition = sf::Mouse::getPosition();
 
 		for (std::unique_ptr<IObject>& screenObject : _screenObjects)
 		{
 			const sf::FloatRect& rect = screenObject->GetRect();
-			const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.x));
+			const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
 			if (objectPressed)
 			{
 				screenObject->OnPressed();

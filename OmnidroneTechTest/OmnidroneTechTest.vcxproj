@@ -181,6 +181,7 @@
     <ClInclude Include="Engine\Systems\SystemManager.h" />
     <ClInclude Include="Engine\Systems\MainWindow.h" />
     <ClInclude Include="Game\Pipeline\GameStateManager.h" />
+    <ClInclude Include="Game\Settings\GameStatus.h" />
     <ClInclude Include="Game\Settings\SaveData.h" />
     <ClInclude Include="Game\Settings\Settings.h" />
     <ClInclude Include="Game\States\FinishGameState.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="Engine\Systems\SystemManager.cpp" />
     <ClCompile Include="Engine\Systems\MainWindow.cpp" />
     <ClCompile Include="Game\Pipeline\GameStateManager.cpp" />
+    <ClCompile Include="Game\Settings\GameStatus.cpp" />
     <ClCompile Include="Game\Settings\SaveData.cpp" />
     <ClCompile Include="Game\Settings\Settings.cpp" />
     <ClCompile Include="Game\States\FinishGameState.cpp" />

@@ -12,6 +12,9 @@ public:
 	void ClearState() override;
 
 private:
+	void OnPlayButtonPress();
+	void OnCreditsButtonPress();
+
 	std::unique_ptr<CMainMenuScreen> _mainMenuScreen;
 };
 

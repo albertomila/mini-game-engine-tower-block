@@ -12,6 +12,6 @@ public:
 	void DoExitState()  override;
 
 private:
-	std::unique_ptr<CMainMenuScreen> _mainMenuScreen;
+	//std::unique_ptr<CMainMenuScreen> _mainMenuScreen;
 };
 

@@ -1,15 +1,8 @@
 #include "stdafx.h"
 #include <Engine/Systems/MainWindow.h>
 
-namespace Internal
-{
-	static const unsigned int WINDOW_WIDTH = 1024;
-	static const unsigned int WINDOW_HEIGHT = 768;
-
-}
-
-CMainWindow::CMainWindow()
-	: _window(sf::VideoMode(Internal::WINDOW_WIDTH, Internal::WINDOW_HEIGHT), "OmnidroneTechTest")
+CMainWindow::CMainWindow(unsigned int windowWidth, unsigned int WINDOW_HEIGHT, const std::string& windowName)
+	: _window(sf::VideoMode(windowWidth, WINDOW_HEIGHT), windowName.c_str())
 {
 }
 

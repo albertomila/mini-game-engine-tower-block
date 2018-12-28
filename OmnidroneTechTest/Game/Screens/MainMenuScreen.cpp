@@ -5,10 +5,16 @@
 CMainMenuScreen::CMainMenuScreen()
 	: CScreenBase("data/Screens/MainMenu.xml")
 {
-	CButtonObject* buttonTest = GetObjectById<CButtonObject>(CStringID("test1"));
-	//buttonTest->GetTransform().setRotation(10);
-	//buttonTest->GetTransform().setPosition(100.0f, 200.0f);
-
-
+	_playButton = GetObjectById<CButtonObject>(CStringID("PlayButton"));
+	_creditsButton = GetObjectById<CButtonObject>(CStringID("RankingButton"));
 }
 
+void CMainMenuScreen::SetOnPlayButtonPressCallback(std::function<void()> onPressCallback)
+{
+	_playButton->SetOnPressCallback([onPressCallback]() { onPressCallback(); });
+}
+
+void CMainMenuScreen::SetOnCreditsButtonPressCallback(std::function<void()> onPressCallback)
+{
+	_creditsButton->SetOnPressCallback([onPressCallback]() { onPressCallback(); });
+}
