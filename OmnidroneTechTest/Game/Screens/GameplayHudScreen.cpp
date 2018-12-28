@@ -5,6 +5,7 @@
 #include <Game/Settings/Settings.h>
 #include <Engine/UI/TextObject.h>
 #include <Engine/Core/StringUtils.h>
+#include <SFML/Window/Mouse.hpp>
 
 CGameplayHudScreen::CGameplayHudScreen()
 	: CScreenBase("data/Screens/GameplayHudScreen.xml")
@@ -33,6 +34,17 @@ void CGameplayHudScreen::Update()
 {
 	CScreenBase::Update();
 	PrintGameStatus();
+	_scoreIndicator.Update();
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		PlayScore(100, { 200, 200 });
+	}
+}
+
+void CGameplayHudScreen::PlayScore(int points, const sf::Vector2f& position)
+{
+	_scoreIndicator.PlayScore(points, position);
 }
 
 void CGameplayHudScreen::PrintGameStatus()

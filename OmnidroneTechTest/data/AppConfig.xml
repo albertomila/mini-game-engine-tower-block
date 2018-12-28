@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <dbObject 
 pathGameConfig="data/GameConfig.xml" 
-pathSaveData="data/SaveData/SaveData.xml"
+pathSaveData="data/SaveData.xml"
 globalFont="Assets/DisposableDroidBB.ttf"
 windowWidth="576"
 windowHeight="1024"

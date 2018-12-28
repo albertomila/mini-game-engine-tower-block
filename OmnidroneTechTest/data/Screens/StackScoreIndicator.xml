@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<dbObject>
+	<objects>
+		<object id="ScoreShadow" text="asdfasdf" renderLayer="1" y="500" z="200" type="2" />
+		<object id="Score"  text="23452345" renderLayer="1" type="2" z="201" />
+	</objects>
+</dbObject>
