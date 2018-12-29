@@ -180,7 +180,6 @@
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
     <ClInclude Include="Engine\UI\SpriteComponent.h" />
     <ClInclude Include="Engine\UI\TextComponent.h" />
-    <ClInclude Include="Engine\Systems\ScrollParallaxController.h" />
     <ClInclude Include="Game\Gameplay\GravityComponent.h" />
     <ClInclude Include="Game\Gameplay\TowerBlockController.h" />
     <ClInclude Include="Game\Gameplay\TowerBlockSpawner.h" />
@@ -232,7 +231,6 @@
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
     <ClCompile Include="Engine\UI\SpriteComponent.cpp" />
     <ClCompile Include="Engine\UI\TextComponent.cpp" />
-    <ClCompile Include="Engine\Systems\ScrollParallaxController.cpp" />
     <ClCompile Include="Game\Gameplay\GravityComponent.cpp" />
     <ClCompile Include="Game\Gameplay\TowerBlockController.cpp" />
     <ClCompile Include="Game\Gameplay\TowerBlockSpawner.cpp" />

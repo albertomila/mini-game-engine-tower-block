@@ -13,7 +13,7 @@ double MathUtils::DegreesToRadians(double degrees)
 	return degrees * Internal::PI / 180.0;
 }
 
-float MathUtils::CoordsTransform(float xf, float xo, float yf, float yo, float inputX)
+float MathUtils::CoordsTransform(float xo, float xf, float yo, float yf, float inputX)
 {
 	/*
 			  (yf - yo)

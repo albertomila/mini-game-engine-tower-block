@@ -28,7 +28,6 @@ CStackScoreIndicator::CStackScoreIndicator()
 	Hide();
 }
 
-
 void CStackScoreIndicator::PlayScore(int points, const sf::Vector2f& worldPosition)
 {
 	CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();

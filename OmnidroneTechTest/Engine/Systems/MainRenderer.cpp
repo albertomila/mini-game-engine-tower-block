@@ -26,9 +26,6 @@ void CMainRenderer::Init()
 	_window = &mainWindow->GerRenderWindow();
 
 	_worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
-
-	const float windowHeightCenter = _window->getSize().y / 2.0f;
-	_parallaxController.Init(windowHeightCenter);
 }
 
 void CMainRenderer::PreUpdate()
@@ -38,8 +35,6 @@ void CMainRenderer::PreUpdate()
 
 void CMainRenderer::Update()
 {
-	ApplyParallaxTranslation();
-
 	using TObjectRef = std::reference_wrapper<CDrawableComponent>;
 
 	for(SViewObjectsPair& viewPair : _views)
@@ -66,8 +61,6 @@ void CMainRenderer::Update()
 		viewPair._requestedRenderObjects.clear();
 	}
 
-	RevertParallaxTranslation();
-
 	_window->display();
 
 	sf::View& worldView = _views[static_cast<int>(ERenderLayer::World)]._view;
@@ -81,24 +74,4 @@ void CMainRenderer::RequestRender(CDrawableComponent& drawableComponent)
 		SViewObjectsPair& viewPair = _views[static_cast<int>(drawableComponent.GetObject().GetRenderLayer())];
 		viewPair._requestedRenderObjects.push_back(std::ref(drawableComponent));
 	}
-}
-
-void CMainRenderer::AddParallaxObject(CGameObject& object, float parallaxFactor)
-{
-	_parallaxController.AddObject(object, parallaxFactor);
-}
-
-void CMainRenderer::ClearParallaxObjects()
-{
-	_parallaxController.Clear();
-}
-
-void CMainRenderer::ApplyParallaxTranslation()
-{
-	_parallaxController.Update();
-}
-
-void CMainRenderer::RevertParallaxTranslation()
-{
-	_parallaxController.RevertParallaxTranslation();
 }

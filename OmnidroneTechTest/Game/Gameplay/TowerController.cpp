@@ -15,12 +15,12 @@ namespace Internal
 	static const float GROUND_MIN_X = 150.f;
 	static const float GROUND_MAX_X = 450.f;
 	static const float MAX_REGION_COLLISION = 1.f / 2.f;
-	static const int MIN_BLOCKS_TO_START_OSCILLATE = 3;
+	static const int MIN_BLOCKS_TO_START_OSCILLATE = 1;
 	static const int MAX_BLOCKS_TO_MAX_OSCILLATION = 30;
 	static const float MIN_OSCILLATION_DISTANCE = 0.f;
-	static const float MAX_OSCILLATION_DISTANCE = 200.f;
-	static const float MIN_OSCILLATION_SPEED = 0.f;
-	static const float MAX_OSCILLATION_SPEED = 0.03f;
+	static const float MAX_OSCILLATION_DISTANCE = 250.f;
+	static const float MIN_OSCILLATION_SPEED = 0.01f;
+	static const float MAX_OSCILLATION_SPEED = 0.02f;
 }
 
 CTowerController::CTowerController()
@@ -108,19 +108,22 @@ void CTowerController::StackTowerBlock(float accuracyNormalized, std::unique_ptr
 {
 	falllingTowerBlock->GetComponent<CGravityComponent>()->SetEnable(false);
 	sf::Vector2f pos = falllingTowerBlock->GetTransform().getPosition();
-	pos.y = _towerTopPosY - _blockSize.y;
 
-	
+	pos.y = _towerTopPosY - _blockSize.y;
+	/*
 	if (!_tower.empty() && accuracyNormalized > CSettings::Get().GetGameConfig().GetPerfectStackAccuracy())
 	{
 		const STowerBlockPair& topTowerBlock = _tower.back();
 		pos.x = topTowerBlock._block->GetTransform().getPosition().x;
 	}
-
+	*/
 	falllingTowerBlock->SetPosition(pos);
 	_towerTopPosY -= _blockSize.y;
 
 	_tower.emplace_back(STowerBlockPair(falllingTowerBlock->GetTransform().getPosition(), std::move(falllingTowerBlock)));
+
+	STowerBlockPair& towerBlock = _tower.back();
+	towerBlock._value = pos.x - _towerContainerPosX;
 }
 
 
@@ -160,21 +163,24 @@ float CTowerController::GetOscillationSpeed()
 	return speed;
 }
 
-
 void CTowerController::Update()
 {
 	if (_tower.size() >= Internal::MIN_BLOCKS_TO_START_OSCILLATE)
 	{
+		for (STowerBlockPair& towerBlock : _tower)
+		{
+			sf::Vector2f position = towerBlock._block->GetTransform().getPosition();
+			position.x = towerBlock._value;
+
+			towerBlock._block->SetPosition(position);
+		}
+
 		float oscillationMaxDistance = GetMaxDistanceOscillation();
 		float oscillationValue = oscillationMaxDistance * sin(_oscillationRadiantsX);
 		_oscillationRadiantsX += GetOscillationSpeed();
+		
+		_towerContainerPosX = oscillationValue;
 
-		for (STowerBlockPair& towerBlock : _tower)
-		{
-			sf::Vector2f position = towerBlock._originalLandingPos;
-			position.x += oscillationValue;
-			towerBlock._block->SetPosition(position);
-		}
 	}
 
 	for (STowerBlockPair& towerBlock : _tower)

@@ -63,10 +63,7 @@ void CGamePlayState::DoExitState()
 	CSaveDataController& saveDataController = CSettings::Get().GetSaveData();
 	saveDataController.AddRanking(gameStatus.GetMeters(), gameStatus.GetPoints());
 	saveDataController.Save();
-
-	CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
-	mainRenderer->ClearParallaxObjects();
-
+	
 	CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
 	worldCamera->SetPosition(_originalCameraPosition);
 }
@@ -80,7 +77,6 @@ State::TStateId  CGamePlayState::Update()
 	}
 
 	UpdateSpawnedTowerBlock();
-
 	_towerController->Update();
 
 	_hud->Update();
@@ -132,10 +128,10 @@ void CGamePlayState::UpdateSpawnedTowerBlock()
 				const sf::Vector2f blockPosition = _spawnedTowerBlock->GetTransform().getPosition();
 				_towerController->StackTowerBlock(accuracyNormalized, std::move(_spawnedTowerBlock));
 				SpawnNewTowerBlock();
-
 				IncreaseMeters();
-
 				IncreasePoints(accuracyNormalized, blockPosition);
+
+				return;
 			}
 		}
 

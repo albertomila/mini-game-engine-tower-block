@@ -135,9 +135,6 @@
     <ClInclude Include="Engine\Systems\WorldCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Systems\ScrollParallaxController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Screens\StackScoreIndicator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -279,9 +276,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Systems\WorldCamera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Systems\ScrollParallaxController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game\Screens\StackScoreIndicator.cpp">

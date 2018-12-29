@@ -15,6 +15,7 @@ class CTowerController
 		}
 
 		sf::Vector2f _originalLandingPos;
+		float _value = 0.f;
 		std::unique_ptr<CGameObject> _block;
 	};
 public:
@@ -35,4 +36,5 @@ private:
 	sf::Vector2f _blockSize;
 
 	float _oscillationRadiantsX = 0.f;
+	float _towerContainerPosX = 0.0f;
 };
