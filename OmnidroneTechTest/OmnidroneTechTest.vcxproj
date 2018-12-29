@@ -164,6 +164,7 @@
     <ClInclude Include="Engine\EntityComponent\BaseComponent.h" />
     <ClInclude Include="Engine\EntityComponent\DrawableComponent.h" />
     <ClInclude Include="Engine\EntityComponent\GameObject.h" />
+    <ClInclude Include="Engine\EntityComponent\ILocalTransformComponent.h" />
     <ClInclude Include="Engine\EntityComponent\IObjectComponent.h" />
     <ClInclude Include="Engine\EntityComponent\RenderLayer.h" />
     <ClInclude Include="Engine\Systems\WorldCamera.h" />
@@ -213,6 +214,7 @@
   <ItemGroup>
     <ClCompile Include="Engine\Core\Crc32.cpp" />
     <ClCompile Include="Engine\Core\StringUtils.cpp" />
+    <ClCompile Include="Engine\EntityComponent\DrawableComponent.cpp" />
     <ClCompile Include="Engine\EntityComponent\GameObject.cpp" />
     <ClCompile Include="Engine\Systems\WorldCamera.cpp" />
     <ClCompile Include="Engine\UI\ButtonComponent.cpp" />

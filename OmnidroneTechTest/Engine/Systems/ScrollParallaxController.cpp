@@ -20,7 +20,7 @@ void CParallaxController::Update()
 
 	for (SParallaxObjectPair& parallaxObject : _parallaxObjects)
 	{
-		sf::Transformable& objectTransform = parallaxObject._object.get().GetTransform();
+		const sf::Transformable& objectTransform = parallaxObject._object.get().GetTransform();
 
 		const sf::Vector2f& objectPositionRef = objectTransform.getPosition();
 		sf::Vector2f objectPosition = objectTransform.getPosition();
@@ -30,7 +30,7 @@ void CParallaxController::Update()
 		y *= parallaxObject.parallaxFactor;
 
 		objectPosition.y = y;
-		objectTransform.setPosition(objectPosition);
+		parallaxObject._object.get().SetPosition(objectPosition);
 	}
 }
 
@@ -38,7 +38,8 @@ void CParallaxController::RevertParallaxTranslation()
 {
 	for (SParallaxObjectPair& parallaxObject : _parallaxObjects)
 	{
-		sf::Transformable& objectTransform = parallaxObject._object.get().GetTransform();
-		objectTransform.setPosition(parallaxObject._absoluteWorldPosition);
+		CGameObject& gameObject = parallaxObject._object.get();
+		const sf::Transformable& objectTransform = gameObject.GetTransform();
+		gameObject.SetPosition(parallaxObject._absoluteWorldPosition);
 	}
 }

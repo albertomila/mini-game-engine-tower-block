@@ -1,16 +1,21 @@
 #include "stdafx.h"
 #include <Engine/EntityComponent/GameObject.h>
+#include <Engine\EntityComponent\ILocalTransformComponent.h>
 
 CGameObject::CGameObject(const CStringID& id)
 	: _id(id)
 {
 }
 
-CGameObject::~CGameObject()
+void CGameObject::SetPosition(const sf::Vector2f& position)
 {
-	for (const TComponentPair& componentPair : _components)
+	_transform.setPosition(position);
+
+	std::vector<std::reference_wrapper<ILocalTransformComponent>> drawableComponents = CGameObject::GetComponents<ILocalTransformComponent>();
+
+	for (auto& drawableComponent : drawableComponents)
 	{
-		delete componentPair.second;
+		drawableComponent.get().UpdatePositionFromParent();
 	}
 }
 

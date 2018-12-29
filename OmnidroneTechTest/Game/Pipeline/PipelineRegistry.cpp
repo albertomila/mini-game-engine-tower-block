@@ -26,10 +26,13 @@ void PipelineRegistry::RegisterAllPipeline()
 	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
 	const int windowWidth = appConfig.GetWindowWidth();
 	const int windowHeight = appConfig.GetWindowHeight();
+	const float midWindowWidth = static_cast<float>(windowWidth) / 2.0f;
+	const float midWindowHeight = static_cast<float>(windowHeight) / 2.0f;
+
 
 	CSystemManager& systemManager = CSystemManager::Get();
 	systemManager.Register<CMainWindow>(windowWidth, windowHeight, appConfig.GetWindowTitle());
 	systemManager.Register<CGameStateManager>();
-	systemManager.Register<CWorldCamera>(static_cast<float>(windowWidth) / 2.0f, static_cast<float>(windowHeight) / 2.0f);
+	systemManager.Register<CWorldCamera>(midWindowWidth, midWindowHeight);
 	systemManager.Register<CMainRenderer>(windowWidth, windowHeight);
 }

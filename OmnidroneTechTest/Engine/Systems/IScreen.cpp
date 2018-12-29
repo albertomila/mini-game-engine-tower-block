@@ -53,7 +53,7 @@ void CScreenBase::Load(const std::string& fileName)
 		}
 
 		baseObject->SetRenderLayer(screenObjectDescriptor._renderLayer);
-		baseObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
+		baseObject->SetPosition({ screenObjectDescriptor._x, screenObjectDescriptor._y });
 		baseObject->SetZPos(screenObjectDescriptor._z);
 
 		_screenObjects.emplace_back(baseObject);

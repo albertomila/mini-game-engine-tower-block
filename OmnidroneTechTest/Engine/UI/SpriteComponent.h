@@ -13,6 +13,7 @@ public:
 	void SetAlpha(float alphaNormalized);
 	const sf::FloatRect GetRect() const;
 	sf::Drawable& GetDrawable() override { return _sprite; }
+	sf::Transformable& GetTransformable() override { return _sprite; }
 
 private:
 	sf::Texture _texture;

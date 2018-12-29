@@ -32,23 +32,23 @@ void CStackScoreIndicator::PlayScore(int points, const sf::Vector2f& position)
 
 	sf::Vector2f textfieldPos = position;
 	
-	_scoreText->GetObject().GetTransform().setPosition(textfieldPos);
+	_scoreText->GetObject().SetPosition(textfieldPos);
 	_scoreText->SetText(pointsText);
 
 	textfieldPos.x += 5.0f;
 	textfieldPos.y += 5.0f;
-	_scoreTextShadow->GetObject().GetTransform().setPosition(textfieldPos);
+	_scoreTextShadow->GetObject().SetPosition(textfieldPos);
 	_scoreTextShadow->SetText(pointsText);
 
 	_framesDisplayed = 0;
 	Show();
 }
 
-void UpdateAnimation(CTextComponent& TextComponent)
+void UpdateAnimation(CTextComponent& textComponent)
 {
-	sf::Vector2f textfieldPos = TextComponent.GetObject().GetTransform().getPosition();
+	sf::Vector2f textfieldPos = textComponent.GetObject().GetTransform().getPosition();
 	textfieldPos.y -= Internal::INCREMENT_POSITION;
-	TextComponent.GetObject().GetTransform().setPosition(textfieldPos);
+	textComponent.GetObject().SetPosition(textfieldPos);
 }
 
 void CStackScoreIndicator::Update()

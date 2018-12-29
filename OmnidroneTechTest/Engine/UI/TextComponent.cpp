@@ -19,7 +19,6 @@ void CTextComponent::SetFormat(const sf::Font& font, unsigned int size, const sf
 	_text.setCharacterSize(size);
 	_text.setFillColor(color);
 	
-	const sf::Vector2f topLeftPosition = GetObject().GetTransform().getPosition() + topLefMargin;
-	_text.setPosition(topLeftPosition);
+	SetLocalPosition(topLefMargin);
 }
 

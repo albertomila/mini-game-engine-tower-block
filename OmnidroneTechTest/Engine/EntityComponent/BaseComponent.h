@@ -14,5 +14,5 @@ public:
 	CGameObject& GetObject() override { return _object; }
 
 private:
-	CGameObject & _object;
+	CGameObject& _object;
 };

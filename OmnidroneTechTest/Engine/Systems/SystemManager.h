@@ -15,7 +15,7 @@ class CSystemManager : public CSingleton<CSystemManager>, public IUpdatable
 public:
 
 	template<class T, class... Args>
-	void Register(Args... args);
+	void Register(Args&... args);
 
 	template<class T>
 	T* GetSystem();
@@ -31,7 +31,7 @@ private:
 };
 
 template<class T, class... Args>
-void CSystemManager::Register(Args... args)
+void CSystemManager::Register(Args&... args)
 {
 	const std::size_t classHash = typeid(T).hash_code();
 	_systems.emplace_back(std::make_pair(classHash, std::make_unique<T>(args...)));
