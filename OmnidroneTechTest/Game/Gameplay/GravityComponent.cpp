@@ -5,7 +5,7 @@
 
 namespace Internal 
 {
-	const float SPEED_FACTOR = 2.0f;
+	const float SPEED_FACTOR = 5.0f;
 	const float GRAVITY_FACTOR = 9.81f;
 }
 

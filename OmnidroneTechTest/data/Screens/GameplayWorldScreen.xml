@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <dbObject>
 	<objects>
-		<object id="Background" type="0" texture="Assets/background1.png" x="0.0f" y="0.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background2.png" x="0.0f" y="-1024.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background3.png" x="0.0f" y="-2048.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background4.png" x="0.0f" y="-3072.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background5.png" x="0.0f" y="-4096.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background6.png" x="0.0f" y="-5120.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background7.png" x="0.0f" y="-6144.0f" z="0" />
-		<object id="Background" type="0" texture="Assets/background8.png" x="0.0f" y="-7168.0f" z="0" />
+		<object id="Background1" type="0" texture="Assets/background1.png" x="0.0f" y="0.0f" z="0" />
+		<object id="Background2" type="0" texture="Assets/background2.png" x="0.0f" y="-1024.0f" z="0" />
+		<object id="Background3" type="0" texture="Assets/background3.png" x="0.0f" y="-2048.0f" z="0" />
+		<object id="Background4" type="0" texture="Assets/background4.png" x="0.0f" y="-3072.0f" z="0" />
+		<object id="Background5" type="0" texture="Assets/background5.png" x="0.0f" y="-4096.0f" z="0" />
+		<object id="Background6" type="0" texture="Assets/background6.png" x="0.0f" y="-5120.0f" z="0" />
+		<object id="Background7" type="0" texture="Assets/background7.png" x="0.0f" y="-6144.0f" z="0" />
+		<object id="Background8" type="0" texture="Assets/background8.png" x="0.0f" y="-7168.0f" z="0" />
 		<object id="Background_plants" type="0" texture="Assets/background_plants.png" x="0.0f" y="0.0f" z="10" />
 		<object id="Foreground" type="0" texture="Assets/foreground.png" x="0.0f" y="740.0f" z="20" />
 	</objects>

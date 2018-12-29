@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<dbObject nextPlayTimeId="23">
+<dbObject nextPlayTimeId="26">
 	<ranking>
 		<element playTimeId="1" points="100" meters="10" />
 		<element playTimeId="2" points="90" meters="20" />
@@ -15,5 +15,8 @@
 		<element playTimeId="12" points="145" meters="192" />
 		<element playTimeId="21" points="100" meters="96" />
 		<element playTimeId="22" points="0" meters="0" />
+		<element playTimeId="23" points="791" meters="1056" />
+		<element playTimeId="24" points="1423" meters="2016" />
+		<element playTimeId="25" points="100" meters="96" />
 	</ranking>
 </dbObject>

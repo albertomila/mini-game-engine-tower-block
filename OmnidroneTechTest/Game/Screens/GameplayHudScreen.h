@@ -12,7 +12,7 @@ public:
 	~CGameplayHudScreen() override = default;
 
 	void Update() override;
-	void PlayScore(int points, const sf::Vector2f& position);
+	void PlayScore(int points, const sf::Vector2f& worldPosition);
 
 private:
 	void InitTextfields();

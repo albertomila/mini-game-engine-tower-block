@@ -37,9 +37,9 @@ void CGameplayHudScreen::Update()
 	_scoreIndicator.Update();
 }
 
-void CGameplayHudScreen::PlayScore(int points, const sf::Vector2f& position)
+void CGameplayHudScreen::PlayScore(int points, const sf::Vector2f& worldPosition)
 {
-	_scoreIndicator.PlayScore(points, position);
+	_scoreIndicator.PlayScore(points, worldPosition);
 }
 
 void CGameplayHudScreen::PrintGameStatus()

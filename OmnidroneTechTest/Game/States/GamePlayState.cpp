@@ -102,6 +102,11 @@ void CGamePlayState::UpdateSpawnedTowerBlock()
 		if (_isSpawning)
 		{
 			_towerBlockSpawer->Update(*_spawnedTowerBlock);
+			if (_towerController->HasExitBoundaries(*_spawnedTowerBlock))
+			{
+				_spawnedTowerBlock.reset(nullptr);
+				SpawnNewTowerBlock();
+			}
 		}
 		else
 		{
@@ -178,7 +183,7 @@ void CGamePlayState::IncreasePoints(const float accuracyNormalized, const sf::Ve
 	CSettings::Get().GetGameStatus().AddPoints(points);
 
 	sf::Vector2f indicatorPosition = blockPosition;
-	indicatorPosition.x += 10.f;
-	indicatorPosition.y -= 10.f;
+	indicatorPosition.x += 40.f;
+	indicatorPosition.y -= 20.f;
 	_hud->PlayScore(points, indicatorPosition);
 }

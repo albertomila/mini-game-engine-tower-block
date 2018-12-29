@@ -29,8 +29,8 @@ CGameObject* CTowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 	sf::FloatRect spawingArea;
 
 	const double randomAngle = static_cast<double>(std::rand() % 30);
-	const float minSpeed = 1.0f;
-	const float maxSpeed = 2.0f;
+	const float minSpeed = 3.0f;
+	const float maxSpeed = 5.0f;
 	const float randomSpeedFactor = maxSpeed - minSpeed;
 	const float randSpeed = minSpeed + (std::rand() % 10)*0.1f*randomSpeedFactor;
 
@@ -86,6 +86,7 @@ void CTowerBlockSpawner::Update(CGameObject& towerBlock)
 			}
 		}
 	}
+
 }
 
 void CTowerBlockSpawner::SetSpawnedTowerBlockClickCallback(std::function<void(CGameObject&)> callback)

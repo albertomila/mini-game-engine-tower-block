@@ -48,7 +48,7 @@ void CEndGameScreen::PrintGameStatus()
 {
 	const CGameStatus& gameStatus = CSettings::Get().GetGameStatus();
 
-	std::string outText = std::to_string(gameStatus.GetMeters());
+	std::string outText = StringUtils::DoubleToString(gameStatus.GetMeters(), 2);
 	_metersText->SetText(outText);
 
 	outText = std::to_string(gameStatus.GetPoints());

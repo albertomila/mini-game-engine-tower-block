@@ -8,12 +8,16 @@
 CGameplayWorldScreen::CGameplayWorldScreen()
 	: CScreenBase("data/Screens/GameplayWorldScreen.xml")
 {
-	_background = GetComponentObjectById<CSpriteComponent>(CStringID("Background"));
-	_backgroundPlants = GetComponentObjectById<CSpriteComponent>(CStringID("Background_plants"));
-	_foreground = GetComponentObjectById<CSpriteComponent>(CStringID("Foreground"));
+	CMainRenderer* renderer = CSystemManager::Get().GetSystem<CMainRenderer>();
+	/*
+	CSpriteComponent* backgroundPlants = GetComponentObjectById<CSpriteComponent>(CStringID("Background_plants"));
+	renderer->AddParallaxObject(backgroundPlants->GetObject(), -0.25f);
 
-	/*CMainRenderer* renderer = CSystemManager::Get().GetSystem<CMainRenderer>();
-	renderer->AddParallaxObject(_background->GetObject(), -0.0f);
-	renderer->AddParallaxObject(_backgroundPlants->GetObject(), 0.5f);
-	renderer->AddParallaxObject(_foreground->GetObject(), 1.f);*/
+	for (int i = 1; i <= 8; ++i)
+	{
+		std::string backgroundId = "Background" + std::to_string(i);
+		CSpriteComponent* background = GetComponentObjectById<CSpriteComponent>(CStringID(backgroundId.c_str()));
+		renderer->AddParallaxObject(background->GetObject(), -0.5f);
+	}
+	*/
 }
