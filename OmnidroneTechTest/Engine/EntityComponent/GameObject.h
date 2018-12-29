@@ -44,7 +44,7 @@ private:
 template<class T, class ...TArgs>
 T& CGameObject::RegisterComponent(TArgs&... args)
 {
-	T* newComponent = new T(args...);
+	T* newComponent = new T(*this, args...);
 	_components.emplace(IObjectComponent::GetComponentId<T>(), newComponent);
 	return *newComponent;
 }

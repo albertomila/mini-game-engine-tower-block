@@ -1,3 +1,4 @@
 <?xml version="1.0"?>
-<dbObject lives="3">
+<dbObject lives="3" towerStartZPos="200.0f">
+		<TowerBlockDescriptor id="TowerBlockDescriptor" renderLayer="0"  type="0" width="96" height="96" texture="Assets/TowerBlock.png" />
 </dbObject>

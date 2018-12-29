@@ -45,7 +45,7 @@ struct SSerializatorTraits
 	static void Serialize(pugi::xml_node& node, const char* key, T& member) 
 	{
 		pugi::xml_node childNode = node.child(key);
-		member.LoadXmlNode(node);
+		member.LoadXmlNode(childNode);
 	}
 };
 

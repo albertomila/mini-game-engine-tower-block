@@ -34,7 +34,7 @@ void CScreenBase::Load(const std::string& fileName)
 				static_cast<int>(screenObjectDescriptor._width),
 				static_cast<int>(screenObjectDescriptor._height));
 
-			CSpriteComponent& spriteComponent = baseObject->RegisterComponent<CSpriteComponent>(*baseObject);
+			CSpriteComponent& spriteComponent = baseObject->RegisterComponent<CSpriteComponent>();
 			spriteComponent.LoadFromFile(screenObjectDescriptor._texture, textureRect);
 			spriteComponent.SetAlpha(screenObjectDescriptor._alpha);
 		}
@@ -43,13 +43,13 @@ void CScreenBase::Load(const std::string& fileName)
 			|| screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
 		{
 			const std::string& text = screenObjectDescriptor._text;
-			baseObject->RegisterComponent<CTextComponent>(*baseObject, text);
+			baseObject->RegisterComponent<CTextComponent>(text);
 		}
 
 		if (screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
 		{
 			const std::string& text = screenObjectDescriptor._text;
-			baseObject->RegisterComponent<CButtonComponent>(*baseObject);
+			baseObject->RegisterComponent<CButtonComponent>();
 		}
 
 		baseObject->SetRenderLayer(screenObjectDescriptor._renderLayer);
@@ -66,8 +66,6 @@ void CScreenBase::Update()
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
-		sf::Vector2i mousePosition = sf::Mouse::getPosition();
-
 		for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 		{
 			CSpriteComponent* spriteComponent = screenObject->GetComponent<CSpriteComponent>();

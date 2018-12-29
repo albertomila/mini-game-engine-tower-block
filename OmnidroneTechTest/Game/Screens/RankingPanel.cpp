@@ -76,7 +76,7 @@ void CRankingPanel::CreateRankingElement(int rankPosition, const std::string& id
 	gameObject->SetPosition(position);
 	gameObject->SetZPos(100.f + static_cast<float>(rankPosition));
 
-	gameObject->RegisterComponent<CTextComponent>(*gameObject, text);
+	gameObject->RegisterComponent<CTextComponent>(text);
 	CTextComponent* textComponent = gameObject->GetComponent<CTextComponent>();
 	textComponent->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
 
