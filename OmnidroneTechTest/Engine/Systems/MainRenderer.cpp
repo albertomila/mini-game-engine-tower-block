@@ -69,6 +69,9 @@ void CMainRenderer::Update()
 	RevertParallaxTranslation();
 
 	_window->display();
+
+	sf::View& worldView = _views[static_cast<int>(ERenderLayer::World)]._view;
+	_window->setView(worldView);
 }
 
 void CMainRenderer::RequestRender(CDrawableComponent& drawableComponent)

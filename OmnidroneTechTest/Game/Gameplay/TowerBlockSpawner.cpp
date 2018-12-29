@@ -76,7 +76,10 @@ void CTowerBlockSpawner::Update(CGameObject& towerBlock)
 		if (spriteComponent)
 		{
 			const sf::FloatRect& rect = spriteComponent->GetRect();
-			const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
+
+			sf::Vector2f mouseWorldPos = mainWindow->GerRenderWindow().mapPixelToCoords(localMousePosition);
+
+			const bool objectPressed = rect.contains(static_cast<float>(mouseWorldPos.x), static_cast<float>(mouseWorldPos.y));
 			if (objectPressed)
 			{
 				_onSpawnedButtonClickCallback(towerBlock);
