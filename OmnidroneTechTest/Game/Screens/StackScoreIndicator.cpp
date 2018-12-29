@@ -8,6 +8,7 @@
 #include <Engine/Core/GameTimer.h>
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/SystemManager.h>
+#include <Engine/Core/MathUtils.h>
 
 namespace Internal
 {
@@ -28,12 +29,34 @@ CStackScoreIndicator::CStackScoreIndicator()
 	Hide();
 }
 
-void CStackScoreIndicator::PlayScore(int points, const sf::Vector2f& worldPosition)
+void CStackScoreIndicator::PlayScore(float accuracyNormalized, int points, const sf::Vector2f& worldPosition)
 {
 	CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();
 	sf::Vector2i uiPosition = mainWindow->GerRenderWindow().mapCoordsToPixel(worldPosition);
 
-	std::string pointsText = std::to_string(points);
+
+	const STowerBlockScoreDescriptor& towerBlockScoreDescriptor = CSettings::Get().GetGameConfig().GetTowerBlockScoreDescriptor();
+	std::string accuracyFeedback;
+	if (accuracyNormalized > towerBlockScoreDescriptor._perfectStackAccuracy)
+	{
+		accuracyFeedback = towerBlockScoreDescriptor._messagePerfect;
+	}
+	else if (accuracyNormalized > towerBlockScoreDescriptor._goodStackAccuracy)
+	{
+		accuracyFeedback = towerBlockScoreDescriptor._messageGood;
+	}
+	else if (accuracyNormalized < 0.0f || MathUtils::IsFloatEqual(accuracyNormalized, 0.0f))
+	{
+		accuracyFeedback = towerBlockScoreDescriptor._messageFail;
+	}
+
+	std::string pointsText;
+	if (points > 0)
+	{
+		pointsText += std::to_string(points) + " ";
+	}
+	
+	pointsText += accuracyFeedback;
 
 	sf::Vector2f textfieldPos;
 	textfieldPos.x = static_cast<float>(uiPosition.x);

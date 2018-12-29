@@ -131,7 +131,7 @@ void CTowerController::StackTowerBlock(float accuracyNormalized, std::unique_ptr
 		_towerContainerPosX = pos.x;
 	}
 
-	if (!_tower.empty() && accuracyNormalized > CSettings::Get().GetGameConfig().GetPerfectStackAccuracy())
+	if (!_tower.empty() && accuracyNormalized > CSettings::Get().GetGameConfig().GetTowerBlockScoreDescriptor()._perfectStackAccuracy)
 	{
 		const STowerBlockPair& topTowerBlock = _tower.back();
 		pos.x = topTowerBlock._block->GetTransform().getPosition().x;

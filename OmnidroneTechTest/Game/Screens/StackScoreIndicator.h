@@ -8,7 +8,7 @@ class CStackScoreIndicator : public CScreenBase
 public:
 	CStackScoreIndicator();
 	~CStackScoreIndicator() override = default;
-	void PlayScore(int points, const sf::Vector2f& worldPosition);
+	void PlayScore(float accuracyNormalized, int points, const sf::Vector2f& worldPosition);
 	void Update() override;
 
 private:

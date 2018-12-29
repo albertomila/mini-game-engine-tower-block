@@ -30,12 +30,10 @@ private:
 	float GetMaxDistanceOscillation();
 
 	std::vector<STowerBlockPair> _tower;
-	float _towerTopPosY = 0.f;
 	sf::Vector2f _blockSize;
 
-	float _oscillationRadiantsX = 0.f;
+	float _towerTopPosY = 0.f;
 	float _towerContainerPosX = 0.0f;
-
 	float _increment = 1.0f;
 	float _incrementDirection = 1.0f;
 	float _incrementFactor = 1.0f;

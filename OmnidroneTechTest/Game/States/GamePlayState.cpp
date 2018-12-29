@@ -43,8 +43,6 @@ void CGamePlayState::DoEnterState()
 
 	const CGameConfig& gameConfig = CSettings::Get().GetGameConfig();
 	gameStatus.SetLives(gameConfig.GetLives());
-
-	SpawnNewTowerBlock();
 }
 
 void CGamePlayState::ClearState()
@@ -93,52 +91,52 @@ State::TStateId  CGamePlayState::Update()
 
 void CGamePlayState::UpdateSpawnedTowerBlock()
 {
+	if (!_spawnedTowerBlock)
+	{
+		SpawnNewTowerBlock();
+	}
+
+	if (_isSpawning)
+	{
+		_towerBlockSpawer->Update(*_spawnedTowerBlock);
+		if (_towerController->HasExitBoundaries(*_spawnedTowerBlock))
+		{
+			_spawnedTowerBlock.reset(nullptr);
+			return;
+		}
+	}
+	else //is falling
+	{
+		if (_towerController->HasExitBoundaries(*_spawnedTowerBlock))
+		{
+			CSettings::Get().GetGameStatus().DecreaseLives(1);
+			_hud->PlayScore(0.0f, 0, _camera->GetPosition());
+			_spawnedTowerBlock.reset(nullptr);
+			return;
+		}
+
+		std::tuple<bool, float> hasColllideWithAccuracy = _towerController->HasCollideWithTopTower(*_spawnedTowerBlock);
+		bool hasCollide = std::get<bool>(hasColllideWithAccuracy);
+		float accuracyNormalized = std::get<float>(hasColllideWithAccuracy);
+
+		if (!hasCollide)
+		{
+			hasCollide = _towerController->HasCollidedWithGroundTarget(*_spawnedTowerBlock);
+			accuracyNormalized = 1.0f;
+		}
+			
+		if (hasCollide)
+		{
+			const sf::Vector2f blockPosition = _spawnedTowerBlock->GetTransform().getPosition();
+			_towerController->StackTowerBlock(accuracyNormalized, std::move(_spawnedTowerBlock));
+			IncreaseMeters();
+			IncreasePoints(accuracyNormalized, blockPosition);
+		}
+	}
+
 	if (_spawnedTowerBlock)
 	{
-		if (_isSpawning)
-		{
-			_towerBlockSpawer->Update(*_spawnedTowerBlock);
-			if (_towerController->HasExitBoundaries(*_spawnedTowerBlock))
-			{
-				_spawnedTowerBlock.reset(nullptr);
-				SpawnNewTowerBlock();
-			}
-		}
-		else
-		{
-			if (_towerController->HasExitBoundaries(*_spawnedTowerBlock))
-			{
-				_spawnedTowerBlock.reset(nullptr);
-				SpawnNewTowerBlock();
-				CSettings::Get().GetGameStatus().DecreaseLives(1);
-			}
-
-			std::tuple<bool, float> hasColllideWithAccuracy = _towerController->HasCollideWithTopTower(*_spawnedTowerBlock);
-			bool hasCollide = std::get<bool>(hasColllideWithAccuracy);
-			float accuracyNormalized = std::get<float>(hasColllideWithAccuracy);
-
-			if (!hasCollide)
-			{
-				hasCollide = _towerController->HasCollidedWithGroundTarget(*_spawnedTowerBlock);
-				accuracyNormalized = 1.0f;
-			}
-			
-			if (hasCollide)
-			{
-				const sf::Vector2f blockPosition = _spawnedTowerBlock->GetTransform().getPosition();
-				_towerController->StackTowerBlock(accuracyNormalized, std::move(_spawnedTowerBlock));
-				SpawnNewTowerBlock();
-				IncreaseMeters();
-				IncreasePoints(accuracyNormalized, blockPosition);
-
-				return;
-			}
-		}
-
-		if (_spawnedTowerBlock)
-		{
-			_spawnedTowerBlock->Update();
-		}
+		_spawnedTowerBlock->Update();
 	}
 }
 
@@ -165,14 +163,16 @@ void CGamePlayState::IncreaseMeters()
 
 void CGamePlayState::IncreasePoints(const float accuracyNormalized, const sf::Vector2f& blockPosition)
 {
+	const STowerBlockScoreDescriptor& towerBlockScore = CSettings::Get().GetGameConfig().GetTowerBlockScoreDescriptor();
+
 	int points = 0;
-	if (accuracyNormalized > CSettings::Get().GetGameConfig().GetPerfectStackAccuracy())
+	if (accuracyNormalized > towerBlockScore._perfectStackAccuracy)
 	{
-		points = CSettings::Get().GetGameConfig().GetPerfectPoints();
+		points = towerBlockScore._perfectPoints;
 	}
 	else 
 	{
-		const int maxPoints = CSettings::Get().GetGameConfig().GetMaxPoints();
+		const int maxPoints = towerBlockScore._maxPoints;
 		points = static_cast<int>(ceil(accuracyNormalized * static_cast<float>(maxPoints)));
 	}
 
@@ -181,5 +181,5 @@ void CGamePlayState::IncreasePoints(const float accuracyNormalized, const sf::Ve
 	sf::Vector2f indicatorPosition = blockPosition;
 	indicatorPosition.x += 40.f;
 	indicatorPosition.y -= 20.f;
-	_hud->PlayScore(points, indicatorPosition);
+	_hud->PlayScore(accuracyNormalized, points, indicatorPosition);
 }

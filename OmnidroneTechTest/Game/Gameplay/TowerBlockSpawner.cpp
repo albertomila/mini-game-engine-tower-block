@@ -109,12 +109,12 @@ CGameObject* CTowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPositi
 	CGameObject* gameObject = new CGameObject(CStringID(towerBlockId.c_str()));
 	gameObject->SetZPos(_nextZPosition);
 
+	gameObject->RegisterComponent<CGravityComponent>();
+	gameObject->SetPosition(spawnPosition);
+
 	CSpriteComponent& spriteComponent = gameObject->RegisterComponent<CSpriteComponent>();
 	spriteComponent.LoadFromFile(screenObjectDescriptor._texture, textureRect);
 	spriteComponent.SetAlpha(screenObjectDescriptor._alpha);
-
-	gameObject->RegisterComponent<CGravityComponent>();
-	gameObject->SetPosition(spawnPosition);
 
 	return gameObject;
 }
