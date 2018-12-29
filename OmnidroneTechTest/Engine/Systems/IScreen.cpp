@@ -2,7 +2,6 @@
 #include <Engine/Systems/IScreen.h>
 
 #include <Engine/Systems/ScreenDescriptor.h>
-#include <Engine/Systems/MainRenderer.h>
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Core/StringID.h>
 #include <Engine/EntityComponent/GameObject.h>
@@ -85,10 +84,9 @@ void CScreenBase::Update()
 		}
 	}
 
-	CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
 	for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 	{
-		mainRenderer->RequestRender(*screenObject);
+		screenObject->Update();
 	}
 }
 

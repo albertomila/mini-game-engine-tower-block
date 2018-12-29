@@ -40,7 +40,7 @@ void CMainRenderer::Update()
 {
 	ApplyParallaxTranslation();
 
-	using TObjectRef = std::reference_wrapper<CGameObject>;
+	using TObjectRef = std::reference_wrapper<CDrawableComponent>;
 
 	for(SViewObjectsPair& viewPair : _views)
 	{
@@ -54,18 +54,13 @@ void CMainRenderer::Update()
 		std::sort(std::begin(viewPair._requestedRenderObjects), std::end(viewPair._requestedRenderObjects),
 		[](const TObjectRef& element1, const TObjectRef& element2)
 		{
-			return element1.get().GetZPos() < element2.get().GetZPos();
+			return element1.get().GetObject().GetZPos() < element2.get().GetObject().GetZPos();
 		});
 
-		for (std::reference_wrapper<CGameObject>& object : viewPair._requestedRenderObjects)
+		for (std::reference_wrapper<CDrawableComponent>& drawableObject : viewPair._requestedRenderObjects)
 		{
-			CGameObject* baseObject = dynamic_cast<CGameObject*>(&object.get());
-			std::vector<std::reference_wrapper<CDrawableComponent>> drawableComponents = baseObject->GetComponents<CDrawableComponent>();
-			for (auto& drawableComponent : drawableComponents)
-			{
-				sf::Drawable& drawable = drawableComponent.get().GetDrawable();
-				_window->draw(drawable);
-			}
+			sf::Drawable& drawable = drawableObject.get().GetDrawable();
+			_window->draw(drawable);
 		}
 
 		viewPair._requestedRenderObjects.clear();
@@ -76,12 +71,12 @@ void CMainRenderer::Update()
 	_window->display();
 }
 
-void CMainRenderer::RequestRender(CGameObject& gameObject)
+void CMainRenderer::RequestRender(CDrawableComponent& drawableComponent)
 {
-	if (gameObject.IsEnabled())
+	if (drawableComponent.GetObject().IsEnabled())
 	{
-		SViewObjectsPair& viewPair = _views[static_cast<int>(gameObject.GetRenderLayer())];
-		viewPair._requestedRenderObjects.push_back(std::ref(gameObject));
+		SViewObjectsPair& viewPair = _views[static_cast<int>(drawableComponent.GetObject().GetRenderLayer())];
+		viewPair._requestedRenderObjects.push_back(std::ref(drawableComponent));
 	}
 }
 

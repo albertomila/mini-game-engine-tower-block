@@ -12,6 +12,7 @@
 
 class CGameObject;
 class CWorldCamera;
+class CDrawableComponent;
 
 using namespace RenderLayer;
 
@@ -21,7 +22,7 @@ class CMainRenderer : public ISystem
 	{
 		ERenderLayer _renderLayer;
 		sf::View _view;
-		std::vector<std::reference_wrapper<CGameObject>> _requestedRenderObjects;
+		std::vector<std::reference_wrapper<CDrawableComponent>> _requestedRenderObjects;
 	};
 
 public:
@@ -31,7 +32,7 @@ public:
 	void PreUpdate() override;
 	void Update() override;
 	void Shutdown() override {}
-	void RequestRender(CGameObject& object);
+	void RequestRender(CDrawableComponent& object);
 	void AddParallaxObject(CGameObject& object, float parallaxFactor);
 
 private:

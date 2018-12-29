@@ -15,6 +15,7 @@ public:
 	sf::Drawable& GetDrawable() override { return _sprite; }
 	sf::Transformable& GetTransformable() override { return _sprite; }
 
+
 private:
 	sf::Texture _texture;
 	sf::Sprite _sprite;

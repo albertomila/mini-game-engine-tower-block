@@ -12,6 +12,7 @@ public:
 	const CStringID& GetId() const { return _id; }
 	const sf::Transformable& GetTransform() const { return _transform; }
 	void SetPosition(const sf::Vector2f& position);
+	void Update();
 
 	void SetZPos(float z) { _z = z; }
 	float GetZPos() const { return _z; }

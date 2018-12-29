@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include <Engine/UI/SpriteComponent.h>
-
 CSpriteComponent::CSpriteComponent(CGameObject& object)
 	: CDrawableComponent(object)
 {

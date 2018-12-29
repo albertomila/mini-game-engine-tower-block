@@ -58,7 +58,6 @@ void TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 	randomPosition.x = spawingArea.left + std::rand() % static_cast<int>(spawingArea.width);
 	randomPosition.y = spawingArea.top + std::rand() % static_cast<int>(spawingArea.height);
 
-	//_spawnedTowerBlock = SpanwTowerBlock({ worldCamera->GetPosition().x,worldCamera->GetPosition().y });
 	_spawnedTowerBlock = SpanwTowerBlock(randomPosition);
 }
 
@@ -86,8 +85,7 @@ void TowerBlockSpawner::Update()
 			}
 		}
 
-		CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
-		mainRenderer->RequestRender(*_spawnedTowerBlock);
+		_spawnedTowerBlock->Update();
 	}
 }
 

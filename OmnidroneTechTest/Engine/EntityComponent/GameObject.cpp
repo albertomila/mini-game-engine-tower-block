@@ -19,3 +19,11 @@ void CGameObject::SetPosition(const sf::Vector2f& position)
 	}
 }
 
+void CGameObject::Update()
+{
+	for (const TComponentPair& componentPair : _components)
+	{
+		componentPair.second.get()->Update();
+	}
+}
+

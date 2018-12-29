@@ -19,6 +19,8 @@ public:
 	const sf::Transform& GetLocalTransform() const override { return _localTransform.getTransform(); }
 	void UpdatePositionFromParent() override;
 
+	void Update() override;
+
 protected:
 	virtual sf::Transformable& GetTransformable() = 0;
 	void SetLocalPosition(const sf::Vector2f& localposition);
