@@ -8,17 +8,23 @@
 #include <Game/Pipeline/GameStateManager.h>
 #include <Game/Settings/AppConfig.h>
 #include <Engine/Systems/WorldCamera.h>
+#include <Engine/Core/GameTimer.h>
 
 void PipelineRegistry::RegisterAllSingletons()
 {
+	CGameTimer::CreateInstance();
 	CSettings::CreateInstance();
 	CSystemManager::CreateInstance();
+
+	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
+	CGameTimer::Get().SetMaxFps(appConfig.GetMaxFps());
 }
 
 void PipelineRegistry::UnregisterAllSingletons()
 {
 	CSystemManager::DestroyInstance();
 	CSettings::DestroyInstance();
+	CGameTimer::DestroyInstance();
 }
 
 void PipelineRegistry::RegisterAllPipeline()

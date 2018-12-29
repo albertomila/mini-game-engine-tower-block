@@ -5,6 +5,8 @@
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Systems/MainRenderer.h>
 #include <Engine/UI/SpriteComponent.h>
+#include <Game/Gameplay/GravityComponent.h>
+#include <Engine/EntityComponent/GameObject.h>
 
 CGameplayWorldScreen::CGameplayWorldScreen()
 	: CScreenBase("data/Screens/GameplayWorldScreen.xml")
@@ -19,22 +21,31 @@ CGameplayWorldScreen::CGameplayWorldScreen()
 	renderer->AddParallaxObject(_backgroundPlants->GetObject(), 0.5f);
 	renderer->AddParallaxObject(_foreground->GetObject(), 1.f);
 
-	_towerBlockSpawer.SetSpawnedTowerBlockClickCallback([=](CGameObject* spawnedTowerBlock) {OnSpawnedTowerBlockClick(spawnedTowerBlock); });
+	_towerBlockSpawer.SetSpawnedTowerBlockClickCallback([=](CGameObject& spawnedTowerBlock) {OnSpawnedTowerBlockClick(spawnedTowerBlock); });
 }
 
 void CGameplayWorldScreen::Init()
 {
-	_towerBlockSpawer.SpawnTowerBlockAtRandomPos();
+	_isSpawning = true;
+	_spawnedTowerBlock = _towerBlockSpawer.SpawnTowerBlockAtRandomPos();
 }
 
 void CGameplayWorldScreen::Update()
 {
 	CScreenBase::Update();
 
-	_towerBlockSpawer.Update();
+	if (_spawnedTowerBlock) 
+	{
+		if (_isSpawning)
+		{
+			_towerBlockSpawer.Update(*_spawnedTowerBlock);
+		}
+		_spawnedTowerBlock->Update();
+	}
 }
 
-void CGameplayWorldScreen::OnSpawnedTowerBlockClick(CGameObject* spawnedTowerBlock)
+void CGameplayWorldScreen::OnSpawnedTowerBlockClick(CGameObject& spawnedTowerBlock)
 {
-
+	spawnedTowerBlock.GetComponent<CGravityComponent>()->SetEnable(true);
+	_isSpawning = false;
 }

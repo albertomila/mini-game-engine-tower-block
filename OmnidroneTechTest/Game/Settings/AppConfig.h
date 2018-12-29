@@ -13,6 +13,7 @@ public:
 	int GetWindowWidth() const { return _windowWidth; }
 	int GetWindowHeight() const { return _windowHeight; }
 	const std::string& GetWindowTitle() const { return _windowTitle; }
+	float GetMaxFps() const { return _maxFps; }
 
 private:
 	std::string _pathGameConfig;
@@ -20,5 +21,6 @@ private:
 	sf::Font _globalFont;
 	int _windowWidth = 0;
 	int _windowHeight = 0;
+	float _maxFps = 0.0f;
 	std::string _windowTitle;
 };

@@ -14,11 +14,13 @@ public:
 	void Update() override;
 
 private:
-	void OnSpawnedTowerBlockClick(CGameObject* spawnedTowerBlock);
+	void OnSpawnedTowerBlockClick(CGameObject& spawnedTowerBlock);
 
 	CSpriteComponent* _background = nullptr;
 	CSpriteComponent* _backgroundPlants = nullptr;
 	CSpriteComponent* _foreground = nullptr;
 	TowerBlockSpawner _towerBlockSpawer;
+	CGameObject* _spawnedTowerBlock = nullptr;
+	bool _isSpawning = false;
 };
 

@@ -17,4 +17,5 @@ void CAppConfig::OnLoad(pugi::xml_node& node)
 	SERIALIZE(node, "windowWidth", _windowWidth);
 	SERIALIZE(node, "windowHeight", _windowHeight);
 	SERIALIZE(node, "windowTitle", _windowTitle);
+	SERIALIZE(node, "maxFps", _maxFps);
 }

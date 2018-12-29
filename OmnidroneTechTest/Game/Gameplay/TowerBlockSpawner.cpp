@@ -10,13 +10,14 @@
 #include <Engine/Core/MathUtils.h>
 #include <Engine/Systems/MainRenderer.h>
 #include <Engine/Systems/MainWindow.h>
+#include <Game/Gameplay/GravityComponent.h>
 
 TowerBlockSpawner::TowerBlockSpawner()
 	:_nextZPosition(CSettings::Get().GetGameConfig().GetTowerStartZPos())
 {
 }
 
-void TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
+CGameObject* TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 {
 	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
 	const int windowWidth = appConfig.GetWindowWidth();
@@ -28,8 +29,8 @@ void TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 	sf::FloatRect spawingArea;
 
 	const double randomAngle = static_cast<double>(std::rand() % 30);
-	const float minSpeed = 0.05f;
-	const float maxSpeed = 0.1f;
+	const float minSpeed = 1.0f;
+	const float maxSpeed = 2.0f;
 	const float randomSpeedFactor = maxSpeed - minSpeed;
 	const float randSpeed = minSpeed + (std::rand() % 10)*0.1f*randomSpeedFactor;
 
@@ -58,38 +59,33 @@ void TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 	randomPosition.x = spawingArea.left + std::rand() % static_cast<int>(spawingArea.width);
 	randomPosition.y = spawingArea.top + std::rand() % static_cast<int>(spawingArea.height);
 
-	_spawnedTowerBlock = SpanwTowerBlock(randomPosition);
+	return SpanwTowerBlock(randomPosition);
 }
 
-void TowerBlockSpawner::Update()
+void TowerBlockSpawner::Update(CGameObject& towerBlock)
 {
-	if (_spawnedTowerBlock) 
-	{
-		sf::Vector2f position = _spawnedTowerBlock->GetTransform().getPosition();
-		position += _randomDirectionAndSpeed;
-		_spawnedTowerBlock->SetPosition(position);
+	sf::Vector2f position = towerBlock.GetTransform().getPosition();
+	position += _randomDirectionAndSpeed;
+	towerBlock.SetPosition(position);
 
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();
+		sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
+		CSpriteComponent* spriteComponent = towerBlock.GetComponent<CSpriteComponent>();
+		if (spriteComponent)
 		{
-			CMainWindow* mainWindow = CSystemManager::Get().GetSystem<CMainWindow>();
-			sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
-			CSpriteComponent* spriteComponent = _spawnedTowerBlock->GetComponent<CSpriteComponent>();
-			if (spriteComponent)
+			const sf::FloatRect& rect = spriteComponent->GetRect();
+			const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
+			if (objectPressed)
 			{
-				const sf::FloatRect& rect = spriteComponent->GetRect();
-				const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
-				if (objectPressed) 
-				{
-					_onSpawnedButtonClickCallback(_spawnedTowerBlock);
-				}
+				_onSpawnedButtonClickCallback(towerBlock);
 			}
 		}
-
-		_spawnedTowerBlock->Update();
 	}
 }
 
-void TowerBlockSpawner::SetSpawnedTowerBlockClickCallback(std::function<void(CGameObject*)> callback)
+void TowerBlockSpawner::SetSpawnedTowerBlockClickCallback(std::function<void(CGameObject&)> callback)
 {
 	_onSpawnedButtonClickCallback = callback;
 }
@@ -113,6 +109,8 @@ CGameObject* TowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPositio
 	CSpriteComponent& spriteComponent = gameObject->RegisterComponent<CSpriteComponent>();
 	spriteComponent.LoadFromFile(screenObjectDescriptor._texture, textureRect);
 	spriteComponent.SetAlpha(screenObjectDescriptor._alpha);
+
+	gameObject->RegisterComponent<CGravityComponent>();
 
 	return gameObject;
 }
