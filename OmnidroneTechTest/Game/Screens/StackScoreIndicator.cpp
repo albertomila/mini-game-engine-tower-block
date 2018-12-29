@@ -5,11 +5,12 @@
 #include <Game/Settings/Settings.h>
 #include <Engine/UI/TextComponent.h>
 #include <Engine/Core/StringUtils.h>
+#include <Engine/Core/GameTimer.h>
 
 namespace Internal
 {
-	static const int MAX_FRAMES_DISPLAYING = 1000;
-	static const float INCREMENT_POSITION = 0.1f;
+	static const float MAX_SECONDS_DISPLAYED = 1.0f;
+	static const float INCREMENT_POSITION = 1.0f;
 }
 
 CStackScoreIndicator::CStackScoreIndicator()
@@ -40,7 +41,7 @@ void CStackScoreIndicator::PlayScore(int points, const sf::Vector2f& position)
 	_scoreTextShadow->GetObject().SetPosition(textfieldPos);
 	_scoreTextShadow->SetText(pointsText);
 
-	_framesDisplayed = 0;
+	_timeDisplayed = 0.0;
 	Show();
 }
 
@@ -57,14 +58,14 @@ void CStackScoreIndicator::Update()
 
 	if (IsVisible())
 	{
-		++_framesDisplayed;
+		_timeDisplayed += CGameTimer::Get().GetFrameTime();
 
 		UpdateAnimation(*_scoreText);
 		UpdateAnimation(*_scoreTextShadow);
 
-		if (_framesDisplayed == Internal::MAX_FRAMES_DISPLAYING)
+		if (_timeDisplayed > Internal::MAX_SECONDS_DISPLAYED)
 		{
-			_framesDisplayed = 0;
+			_timeDisplayed = 0.0;
 			Hide();
 		}
 	}

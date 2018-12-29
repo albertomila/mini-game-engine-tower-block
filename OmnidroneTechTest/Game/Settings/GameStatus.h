@@ -16,6 +16,7 @@ public:
 
 	void SetLives(int lives) { _lives = lives; }
 	int GetLives() const { return _lives; }
+	void DecreaseLives(int amount) { _lives -= amount; }
 
 private:
 	bool _hasSeenTutorial = false;

@@ -24,6 +24,7 @@ State::TStateId CTutorialState::Update()
 void CTutorialState::ClearState()
 {
 	_tutorialScreen.reset(nullptr);
+	SetDirty(false);
 }
 
 void CTutorialState::OnNextButtonPress()

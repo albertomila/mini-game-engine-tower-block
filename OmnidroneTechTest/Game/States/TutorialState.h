@@ -12,7 +12,8 @@ public:
 	void ClearState() override;
 
 private:
-	std::unique_ptr<CTutorialScreen> _tutorialScreen;
 	void OnNextButtonPress();
+
+	std::unique_ptr<CTutorialScreen> _tutorialScreen;
 };
 

@@ -12,12 +12,12 @@
 #include <Engine/Systems/MainWindow.h>
 #include <Game/Gameplay/GravityComponent.h>
 
-TowerBlockSpawner::TowerBlockSpawner()
+CTowerBlockSpawner::CTowerBlockSpawner()
 	:_nextZPosition(CSettings::Get().GetGameConfig().GetTowerStartZPos())
 {
 }
 
-CGameObject* TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
+CGameObject* CTowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 {
 	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
 	const int windowWidth = appConfig.GetWindowWidth();
@@ -62,7 +62,7 @@ CGameObject* TowerBlockSpawner::SpawnTowerBlockAtRandomPos()
 	return SpanwTowerBlock(randomPosition);
 }
 
-void TowerBlockSpawner::Update(CGameObject& towerBlock)
+void CTowerBlockSpawner::Update(CGameObject& towerBlock)
 {
 	sf::Vector2f position = towerBlock.GetTransform().getPosition();
 	position += _randomDirectionAndSpeed;
@@ -85,12 +85,12 @@ void TowerBlockSpawner::Update(CGameObject& towerBlock)
 	}
 }
 
-void TowerBlockSpawner::SetSpawnedTowerBlockClickCallback(std::function<void(CGameObject&)> callback)
+void CTowerBlockSpawner::SetSpawnedTowerBlockClickCallback(std::function<void(CGameObject&)> callback)
 {
 	_onSpawnedButtonClickCallback = callback;
 }
 
-CGameObject* TowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPosition)
+CGameObject* CTowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPosition)
 {
 	++_nextTowerBlockId;
 	_nextZPosition += 1.f;
@@ -103,7 +103,6 @@ CGameObject* TowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPositio
 
 	const std::string towerBlockId = "towerBlock_" + std::to_string(_nextTowerBlockId);
 	CGameObject* gameObject = new CGameObject(CStringID(towerBlockId.c_str()));
-	gameObject->SetPosition(spawnPosition);
 	gameObject->SetZPos(_nextZPosition);
 
 	CSpriteComponent& spriteComponent = gameObject->RegisterComponent<CSpriteComponent>();
@@ -111,6 +110,7 @@ CGameObject* TowerBlockSpawner::SpanwTowerBlock(const sf::Vector2f& spawnPositio
 	spriteComponent.SetAlpha(screenObjectDescriptor._alpha);
 
 	gameObject->RegisterComponent<CGravityComponent>();
+	gameObject->SetPosition(spawnPosition);
 
 	return gameObject;
 }

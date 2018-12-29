@@ -15,6 +15,7 @@ class CParallaxController
 
 public:
 	void Init(float windowHeightCenter);
+	void Clear();
 	void AddObject(CGameObject& object, float parallaxFactor);
 	void Update();
 	void RevertParallaxTranslation();

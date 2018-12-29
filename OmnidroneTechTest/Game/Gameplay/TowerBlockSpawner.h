@@ -4,10 +4,10 @@
 
 class CGameObject;
 
-class TowerBlockSpawner 
+class CTowerBlockSpawner
 {
 public:
-	TowerBlockSpawner();
+	CTowerBlockSpawner();
 
 	CGameObject* SpawnTowerBlockAtRandomPos();
 	void Update(CGameObject& towerBlock);

@@ -184,6 +184,7 @@
     <ClInclude Include="Game\Gameplay\GravityComponent.h" />
     <ClInclude Include="Game\Gameplay\TowerBlockController.h" />
     <ClInclude Include="Game\Gameplay\TowerBlockSpawner.h" />
+    <ClInclude Include="Game\Gameplay\TowerController.h" />
     <ClInclude Include="Game\Screens\EndGameScreen.h" />
     <ClInclude Include="Game\Screens\GameplayHudScreen.h" />
     <ClInclude Include="Game\Screens\GameplayWorldScreen.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="Game\Gameplay\GravityComponent.cpp" />
     <ClCompile Include="Game\Gameplay\TowerBlockController.cpp" />
     <ClCompile Include="Game\Gameplay\TowerBlockSpawner.cpp" />
+    <ClCompile Include="Game\Gameplay\TowerController.cpp" />
     <ClCompile Include="Game\Screens\EndGameScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayHudScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayWorldScreen.cpp" />

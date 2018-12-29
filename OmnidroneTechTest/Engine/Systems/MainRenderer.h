@@ -34,6 +34,7 @@ public:
 	void Shutdown() override {}
 	void RequestRender(CDrawableComponent& object);
 	void AddParallaxObject(CGameObject& object, float parallaxFactor);
+	void ClearParallaxObjects();
 
 private:
 	void ApplyParallaxTranslation();

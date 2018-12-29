@@ -85,6 +85,11 @@ void CMainRenderer::AddParallaxObject(CGameObject& object, float parallaxFactor)
 	_parallaxController.AddObject(object, parallaxFactor);
 }
 
+void CMainRenderer::ClearParallaxObjects()
+{
+	_parallaxController.Clear();
+}
+
 void CMainRenderer::ApplyParallaxTranslation()
 {
 	_parallaxController.Update();

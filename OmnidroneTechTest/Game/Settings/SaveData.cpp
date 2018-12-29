@@ -10,6 +10,7 @@ void SSaveDataRankingDescriptor::OnLoad(pugi::xml_node& node)
 
 void SSaveDataRankingDescriptor::OnSave(pugi::xml_node& node)
 {
+	DESERIALIZE(node, "playTimeId", _playTimeId);
 	DESERIALIZE(node, "points", _points);
 	DESERIALIZE(node, "meters", _meters);
 }
@@ -39,7 +40,8 @@ void SSaveDataDescriptor::AddRanking(double meters, int points)
 
 void CSaveDataController::Load(const std::string& fileName)
 {
-	_saveDataDescriptor.Load(fileName);
+	_fileName = fileName;
+	_saveDataDescriptor.Load(_fileName);
 }
 
 void CSaveDataController::AddRanking(double meters, int points)
@@ -47,9 +49,9 @@ void CSaveDataController::AddRanking(double meters, int points)
 	_saveDataDescriptor.AddRanking(meters, points);
 }
 
-void CSaveDataController::Save(const std::string& fileName)
+void CSaveDataController::Save()
 {
-	_saveDataDescriptor.Save(fileName);
+	_saveDataDescriptor.Save(_fileName);
 }
 
 int CSaveDataController::GetNextPlayTimeId() const
@@ -64,7 +66,7 @@ std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> CSaveDataControl
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> sortedRank = GetRankingReference();
 	std::sort(std::begin(sortedRank), std::end(sortedRank), [](const TRanking& element1, const TRanking& element2)
 	{
-		return element1.get()._meters < element2.get()._meters;
+		return element1.get()._meters > element2.get()._meters;
 	});
 
 	return sortedRank;
@@ -77,7 +79,7 @@ std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> CSaveDataControl
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> sortedRank = GetRankingReference();
 	std::sort(std::begin(sortedRank), std::end(sortedRank), [](const TRanking& element1, const TRanking& element2)
 	{
-		return element1.get()._points < element2.get()._points;
+		return element1.get()._points > element2.get()._points;
 	});
 
 	return sortedRank;

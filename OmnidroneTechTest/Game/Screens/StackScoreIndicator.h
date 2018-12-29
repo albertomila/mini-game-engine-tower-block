@@ -14,6 +14,6 @@ public:
 private:
 	CTextComponent* _scoreText = nullptr;
 	CTextComponent* _scoreTextShadow = nullptr;
-	int _framesDisplayed = 0;
+	double _timeDisplayed = 0;
 };
 

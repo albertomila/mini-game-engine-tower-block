@@ -1,35 +1,23 @@
 <?xml version="1.0"?>
-<dbObject>
+<dbObject nextPlayTimeId="19">
 	<ranking>
-		<element points="100" meters="10" />
-		<element points="90" meters="20" />
-		<element points="40" meters="30" />
-		<element points="50" meters="40" />
-		<element points="20" meters="50" />
-		<element points="200" meters="2" />
-		<element points="100" meters="10" />
-		<element points="90" meters="20" />
-		<element points="40" meters="30" />
-		<element points="50" meters="40" />
-		<element points="20" meters="50" />
-		<element points="200" meters="2" />
-		<element points="100" meters="10" />
-		<element points="90" meters="20" />
-		<element points="40" meters="30" />
-		<element points="50" meters="40" />
-		<element points="20" meters="50" />
-		<element points="200" meters="2" />
-		<element points="100" meters="10" />
-		<element points="90" meters="20" />
-		<element points="40" meters="30" />
-		<element points="50" meters="40" />
-		<element points="20" meters="50" />
-		<element points="200" meters="2" />
-		<element points="100" meters="10" />
-		<element points="90" meters="20" />
-		<element points="40" meters="30" />
-		<element points="50" meters="40" />
-		<element points="20" meters="50" />
-		<element points="200" meters="2" />
+		<element playTimeId="1" points="100" meters="10" />
+		<element playTimeId="2" points="90" meters="20" />
+		<element playTimeId="3" points="40" meters="30" />
+		<element playTimeId="4" points="50" meters="40" />
+		<element playTimeId="5" points="20" meters="50" />
+		<element playTimeId="6" points="200" meters="2" />
+		<element playTimeId="7" points="100" meters="10" />
+		<element playTimeId="8" points="90" meters="20" />
+		<element playTimeId="9" points="40" meters="30" />
+		<element playTimeId="10" points="50" meters="40" />
+		<element playTimeId="11" points="200" meters="2" />
+		<element playTimeId="12" points="145" meters="192" />
+		<element playTimeId="13" points="0" meters="0" />
+		<element playTimeId="14" points="0" meters="0" />
+		<element playTimeId="15" points="0" meters="0" />
+		<element playTimeId="16" points="0" meters="0" />
+		<element playTimeId="17" points="0" meters="0" />
+		<element playTimeId="18" points="0" meters="0" />
 	</ranking>
 </dbObject>

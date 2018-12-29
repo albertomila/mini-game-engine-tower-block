@@ -27,7 +27,7 @@ class CSaveDataController
 public:
 	void Load(const std::string& fileName);
 	void AddRanking(double meters, int points);
-	void Save(const std::string& fileName);
+	void Save();
 	int GetNextPlayTimeId() const;
 
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> GetRankingSortedByMeters();
@@ -37,4 +37,5 @@ private:
 	std::vector<std::reference_wrapper<SSaveDataRankingDescriptor>> GetRankingReference();
 
 	SSaveDataDescriptor _saveDataDescriptor;
+	std::string _fileName;
 };
