@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include <Game/Screens/RankingPanel.h>
-#include <Engine/UI/ButtonObject.h>
+#include <Engine/UI/ButtonComponent.h>
 #include <Game/Settings/Settings.h>
-#include <Engine/UI/TextObject.h>
+#include <Engine/UI/TextComponent.h>
 #include <Engine/Core/StringUtils.h>
 
 namespace Internal
@@ -17,24 +17,24 @@ CRankingPanel::CRankingPanel()
 {
 	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
 
-	_closeButton = GetObjectById<CButtonObject>(CStringID("CloseButton"));
+	_closeButton = GetComponentObjectById<CButtonComponent>(CStringID("CloseButton"));
 	_closeButton->SetOnPressCallback([=]() { OnCloseButtonPress(); });
 
-	_sortByMetersButton = GetObjectById<CButtonObject>(CStringID("MetersButton"));
+	_sortByMetersButton = GetComponentObjectById<CButtonComponent>(CStringID("MetersButton"));
 	_sortByMetersButton->SetOnPressCallback([=]() { OnSortByMetersButtonPress(); });
-	_sortByMetersButton->SetFormat(globalFont, 48, sf::Color::White, { 30, -8 });
+	_sortByMetersButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, { 30, -8 });
 
-	_sortByPointsButton = GetObjectById<CButtonObject>(CStringID("PointsButton"));
+	_sortByPointsButton = GetComponentObjectById<CButtonComponent>(CStringID("PointsButton"));
 	_sortByPointsButton->SetOnPressCallback([=]() { OnSortByPointsButtonPress(); });
-	_sortByPointsButton->SetFormat(globalFont, 48, sf::Color::White, { 30, -8 });
+	_sortByPointsButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, { 30, -8 });
 
-	_idTitleText = GetObjectById<CTextObject>(CStringID("TitleId"));
+	_idTitleText = GetComponentObjectById<CTextComponent>(CStringID("TitleId"));
 	_idTitleText->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
 
-	_metersTitleText = GetObjectById<CTextObject>(CStringID("TitleMeters"));
+	_metersTitleText = GetComponentObjectById<CTextComponent>(CStringID("TitleMeters"));
 	_metersTitleText->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
 
-	_scoreTitleText = GetObjectById<CTextObject>(CStringID("TitleScore"));
+	_scoreTitleText = GetComponentObjectById<CTextComponent>(CStringID("TitleScore"));
 	_scoreTitleText->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
 
 	CreateRankingElements(ESortType::SortByMeters, { Internal::DEFAULT_RANK_POS_X, Internal::DEFAULT_RANK_POS_Y });
@@ -66,6 +66,23 @@ void CRankingPanel::RemoveAllRankingElements()
 	_rankingElementsId.resize(0);
 }
 
+void CRankingPanel::CreateRankingElement(int rankPosition, const std::string& id, const sf::Vector2f& position, const std::string& text)
+{
+	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
+
+	CStringID objectId = CStringID(id.c_str());
+
+	CGameObject* gameObject = new CGameObject(objectId);
+	gameObject->GetTransform().setPosition(position);
+	gameObject->SetZPos(100.f + static_cast<float>(rankPosition));
+
+	CTextComponent& textComponent = gameObject->RegisterComponent<CTextComponent>(*gameObject, text);
+	textComponent.SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
+
+	AddRuntimeObject(gameObject);
+	_rankingElementsId.push_back(objectId);
+}
+
 void CRankingPanel::CreateRankingElements(ESortType sortType, const sf::Vector2f& rootPosition)
 {
 	static const float INCREMENT_Y = 50.0f;
@@ -89,41 +106,19 @@ void CRankingPanel::CreateRankingElements(ESortType sortType, const sf::Vector2f
 		sf::Vector2f position = rootPosition;
 		position.y += ((rankPosition - 1) * INCREMENT_Y);
 
-		CTextObject* positionTextObject = nullptr;
-		{
-			std::string positionTextId = baseTextId + "_pos";
-			CStringID positionId = CStringID(positionTextId.c_str());
-			positionTextObject = new CTextObject(positionId, std::to_string(rankPosition));
-			positionTextObject->GetTransform().setPosition(position);
-			positionTextObject->SetZPos(100.f + static_cast<float>(rankPosition));
-			positionTextObject->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
-			AddRuntimeObject(positionTextObject);
-			_rankingElementsId.push_back(positionId);
-		}
+		std::string objectTextID = baseTextId + "_pos";
+		std::string text = std::to_string(rankPosition);
+		CreateRankingElement(rankPosition, objectTextID, position, text);
 
-		{
-			position.x += INCREMENT_X_ELEMENT_1;
-			std::string metersTextId = baseTextId + "_meters";
-			CStringID metersId = CStringID(metersTextId.c_str());
-			CTextObject* metersTextObject = new CTextObject(metersId, StringUtils::DoubleToString(rankEntry.get()._meters, 2));
-			metersTextObject->GetTransform().setPosition(position);
-			metersTextObject->SetZPos(100.f + static_cast<float>(rankPosition));
-			metersTextObject->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
-			AddRuntimeObject(metersTextObject);
-			_rankingElementsId.push_back(metersId);
-		}
+		position.x += INCREMENT_X_ELEMENT_1;
+		objectTextID = baseTextId + "_meters";
+		text = StringUtils::DoubleToString(rankEntry.get()._meters, 2);
+		CreateRankingElement(rankPosition, objectTextID, position, text);
 
-		{
-			position.x += INCREMENT_X_ELEMENT_2;
-			std::string pointsTextId = baseTextId + "_points";
-			CStringID pointsId = CStringID(pointsTextId.c_str());
-			CTextObject* pointsTextObject = new CTextObject(pointsId, std::to_string(rankEntry.get()._points));
-			pointsTextObject->GetTransform().setPosition(position);
-			pointsTextObject->SetZPos(100.f + static_cast<float>(rankPosition));
-			pointsTextObject->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
-			AddRuntimeObject(pointsTextObject);
-			_rankingElementsId.push_back(pointsId);
-		}
+		position.x += INCREMENT_X_ELEMENT_2;
+		objectTextID = baseTextId + "_points";
+		text = std::to_string(rankEntry.get()._points);
+		CreateRankingElement(rankPosition, objectTextID, position, text);
 
 		++rankPosition;
 		if (rankPosition > Internal::MAX_RANK_ELEMENTS_DISPLAYED)

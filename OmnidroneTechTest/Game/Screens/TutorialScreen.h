@@ -1,8 +1,8 @@
 #pragma once
 #include <Engine/Systems/IScreen.h>
 
-class CButtonObject;
-class CTextObject;
+class CButtonComponent;
+class CTextComponent;
 
 class CTutorialScreen : public CScreenBase
 {
@@ -12,7 +12,7 @@ public:
 	void SetOnNextButtonPressCallback(std::function<void()> onPressCallback);
 
 private:
-	CButtonObject * _nextButton = nullptr;
-	CTextObject* _tutorialText = nullptr;
+	CButtonComponent * _nextButton = nullptr;
+	CTextComponent* _tutorialText = nullptr;
 };
 

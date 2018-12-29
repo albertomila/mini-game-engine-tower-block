@@ -2,8 +2,8 @@
 #include <Engine/Systems/IScreen.h>
 #include <Game/Screens/StackScoreIndicator.h>
 
-class CButtonObject;
-class CTextObject;
+class CButtonComponent;
+class CTextComponent;
 
 class CGameplayHudScreen : public CScreenBase
 {
@@ -18,11 +18,11 @@ private:
 	void InitTextfields();
 	void PrintGameStatus();
 
-	CTextObject* _metersTitleText = nullptr;
-	CTextObject* _metersText = nullptr;
-	CTextObject* _pointsTitleText = nullptr;
-	CTextObject* _pointsText = nullptr;
-	CTextObject* _livesText = nullptr;
+	CTextComponent* _metersTitleText = nullptr;
+	CTextComponent* _metersText = nullptr;
+	CTextComponent* _pointsTitleText = nullptr;
+	CTextComponent* _pointsText = nullptr;
+	CTextComponent* _livesText = nullptr;
 	CStackScoreIndicator _scoreIndicator;
 };
 

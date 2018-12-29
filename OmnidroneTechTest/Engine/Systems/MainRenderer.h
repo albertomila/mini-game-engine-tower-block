@@ -10,7 +10,7 @@
 #include <vector>
 #include <array>
 
-class IObject;
+class CGameObject;
 class CWorldCamera;
 
 using namespace RenderLayer;
@@ -21,7 +21,7 @@ class CMainRenderer : public ISystem
 	{
 		ERenderLayer _renderLayer;
 		sf::View _view;
-		std::vector<std::reference_wrapper<IObject>> _requestedRenderObjects;
+		std::vector<std::reference_wrapper<CGameObject>> _requestedRenderObjects;
 	};
 
 public:
@@ -31,8 +31,8 @@ public:
 	void PreUpdate() override;
 	void Update() override;
 	void Shutdown() override {}
-	void RequestRender(IObject& object);
-	void AddParallaxObject(IObject& object, float parallaxFactor);
+	void RequestRender(CGameObject& object);
+	void AddParallaxObject(CGameObject& object, float parallaxFactor);
 
 private:
 	void ApplyParallaxTranslation();

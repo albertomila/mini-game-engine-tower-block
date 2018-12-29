@@ -9,7 +9,7 @@ void CParallaxController::Init(float windowHeightCenter)
 	_worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
 }
 
-void CParallaxController::AddObject(IObject& object, float parallaxFactor)
+void CParallaxController::AddObject(CGameObject& object, float parallaxFactor)
 {
 	_parallaxObjects.emplace_back(SParallaxObjectPair{ std::ref(object), parallaxFactor });
 }

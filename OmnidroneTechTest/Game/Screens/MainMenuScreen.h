@@ -1,7 +1,7 @@
 #pragma once
 #include <Engine/Systems/IScreen.h>
 
-class CButtonObject;
+class CButtonComponent;
 
 class CMainMenuScreen : public CScreenBase
 {
@@ -12,7 +12,7 @@ public:
 	void SetOnRankingsButtonPressCallback(std::function<void()> onPressCallback);
 
 private:
-	CButtonObject* _playButton = nullptr;
-	CButtonObject* _rankingsButton = nullptr;
+	CButtonComponent* _playButton = nullptr;
+	CButtonComponent* _rankingsButton = nullptr;
 };
 

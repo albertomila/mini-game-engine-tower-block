@@ -1,17 +1,18 @@
 #include "stdafx.h"
 #include <Game/Screens/MainMenuScreen.h>
-#include <Engine/UI/ButtonObject.h>
+#include <Engine/UI/ButtonComponent.h>
 #include <Game/Settings/Settings.h>
+#include <Engine/UI/TextComponent.h>
 
 CMainMenuScreen::CMainMenuScreen()
 	: CScreenBase("data/Screens/MainMenu.xml")
 {
-	_playButton = GetObjectById<CButtonObject>(CStringID("PlayButton"));
-	_rankingsButton = GetObjectById<CButtonObject>(CStringID("RankingButton"));
+	_playButton = GetComponentObjectById<CButtonComponent>(CStringID("PlayButton"));
+	_rankingsButton = GetComponentObjectById<CButtonComponent>(CStringID("RankingButton"));
 
 	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
-	_playButton->SetFormat(globalFont, 48, sf::Color::White, {55, -8});
-	_rankingsButton->SetFormat(globalFont, 48, sf::Color::White, { 75, -8 });
+	_playButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, {55, -8});
+	_rankingsButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, { 75, -8 });
 }
 
 void CMainMenuScreen::SetOnPlayButtonPressCallback(std::function<void()> onPressCallback)

@@ -1,7 +1,7 @@
 #pragma once
 #include <Engine/Systems/IScreen.h>
 
-class CBaseObject;
+class CGameObject;
 
 class CGameplayWorldScreen : public CScreenBase
 {
@@ -12,8 +12,8 @@ public:
 	void Update() override;
 
 private:
-	CBaseObject* _background = nullptr;
-	CBaseObject* _backgroundPlants = nullptr;
-	CBaseObject* _foreground = nullptr;
+	CGameObject* _background = nullptr;
+	CGameObject* _backgroundPlants = nullptr;
+	CGameObject* _foreground = nullptr;
 };
 

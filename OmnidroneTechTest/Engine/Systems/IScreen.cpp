@@ -2,15 +2,14 @@
 #include <Engine/Systems/IScreen.h>
 
 #include <Engine/Systems/ScreenDescriptor.h>
-#include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <Engine/Systems/MainRenderer.h>
 #include <Engine/Systems/SystemManager.h>
 #include <Engine/Core/StringID.h>
-#include <Engine/EntityComponent/BaseObject.h>
-#include <Engine/UI/ButtonObject.h>
+#include <Engine/EntityComponent/GameObject.h>
 #include <Engine/Systems/MainWindow.h>
-#include <Engine/UI/TextObject.h>
+#include <Engine/UI/TextComponent.h>
+#include <Engine/UI/ButtonComponent.h>
+#include <Engine/UI/SpriteComponent.h>
 
 CScreenBase::CScreenBase(const std::string& fileName)
 {
@@ -25,36 +24,39 @@ void CScreenBase::Load(const std::string& fileName)
 	_screenObjects.reserve(screenDescriptor._objects.size());
 	for (const SObjectDescriptor& screenObjectDescriptor : screenDescriptor._objects)
 	{
-		sf::IntRect textureRect(static_cast<int>(0),
-			static_cast<int>(0),
-			static_cast<int>(screenObjectDescriptor._width),
-			static_cast<int>(screenObjectDescriptor._height));
+		CGameObject* baseObject = new CGameObject(CStringID(screenObjectDescriptor._id.c_str()));
+
+		if (   screenObjectDescriptor._type == SObjectDescriptor::EType::Texture 
+			|| screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
+		{
+			sf::IntRect textureRect(static_cast<int>(0),
+				static_cast<int>(0),
+				static_cast<int>(screenObjectDescriptor._width),
+				static_cast<int>(screenObjectDescriptor._height));
+
+			CSpriteComponent& spriteComponent = baseObject->RegisterComponent<CSpriteComponent>(*baseObject);
+			spriteComponent.LoadFromFile(screenObjectDescriptor._texture, textureRect);
+			spriteComponent.SetAlpha(screenObjectDescriptor._alpha);
+		}
+
+		if (   screenObjectDescriptor._type == SObjectDescriptor::EType::Text
+			|| screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
+		{
+			const std::string& text = screenObjectDescriptor._text;
+			baseObject->RegisterComponent<CTextComponent>(*baseObject, text);
+		}
 
 		if (screenObjectDescriptor._type == SObjectDescriptor::EType::Button)
 		{
 			const std::string& text = screenObjectDescriptor._text;
-			_screenObjects.emplace_back(std::make_unique<CButtonObject>(CStringID(screenObjectDescriptor._id.c_str()), text));
-		}
-		else if(screenObjectDescriptor._type == SObjectDescriptor::EType::Texture)
-		{
-			_screenObjects.emplace_back(std::make_unique<CBaseObject>(CStringID(screenObjectDescriptor._id.c_str())));
-		}
-		else if (screenObjectDescriptor._type == SObjectDescriptor::EType::Text)
-		{
-			const std::string& text = screenObjectDescriptor._text;
-			_screenObjects.emplace_back(std::make_unique<CTextObject>(CStringID(screenObjectDescriptor._id.c_str()), text));
+			baseObject->RegisterComponent<CButtonComponent>(*baseObject);
 		}
 
-		std::unique_ptr<IObject>& gameObject = _screenObjects.back();
-		gameObject->SetRenderLayer(screenObjectDescriptor._renderLayer);
-		gameObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
-		gameObject->SetZPos(screenObjectDescriptor._z);
-		gameObject->SetAlpha(screenObjectDescriptor._alpha);
+		baseObject->SetRenderLayer(screenObjectDescriptor._renderLayer);
+		baseObject->GetTransform().setPosition(screenObjectDescriptor._x, screenObjectDescriptor._y);
+		baseObject->SetZPos(screenObjectDescriptor._z);
 
-		if (!screenObjectDescriptor._texture.empty())
-		{
-			gameObject->LoadFromFile(screenObjectDescriptor._texture, textureRect);
-		}
+		_screenObjects.emplace_back(baseObject);
 	}
 }
 
@@ -66,19 +68,27 @@ void CScreenBase::Update()
 		sf::Vector2i localMousePosition = sf::Mouse::getPosition(mainWindow->GerRenderWindow());
 		sf::Vector2i mousePosition = sf::Mouse::getPosition();
 
-		for (std::unique_ptr<IObject>& screenObject : _screenObjects)
+		for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 		{
-			const sf::FloatRect& rect = screenObject->GetRect();
-			const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
-			if (objectPressed)
+			CSpriteComponent* spriteComponent = screenObject->GetComponent<CSpriteComponent>();
+			if (spriteComponent)
 			{
-				screenObject->OnPressed();
+				const sf::FloatRect& rect = spriteComponent->GetRect();
+				const bool objectPressed = rect.contains(static_cast<float>(localMousePosition.x), static_cast<float>(localMousePosition.y));
+				if (objectPressed)
+				{
+					CButtonComponent* buttonComponent = screenObject->GetComponent<CButtonComponent>();
+					if (buttonComponent)
+					{
+						buttonComponent->OnPressed();
+					}
+				}
 			}
 		}
 	}
 
 	CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
-	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
+	for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 	{
 		mainRenderer->RequestRender(*screenObject);
 	}
@@ -96,7 +106,7 @@ void CScreenBase::Hide()
 
 void CScreenBase::RemoveObject(const CStringID& objectId)
 {
-	using TObjectList = std::vector<std::unique_ptr<IObject>>;
+	using TObjectList = std::vector<std::unique_ptr<CGameObject>>;
 	using TObjectIt = TObjectList::iterator;
 	for (TObjectIt it = std::begin(_screenObjects); it != std::end(_screenObjects);)
 	{
@@ -115,7 +125,7 @@ void CScreenBase::RemoveObject(const CStringID& objectId)
 void CScreenBase::SetVisible(bool visible)
 {
 	_isVisible = visible;
-	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
+	for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 	{
 		screenObject->SetEnabled(visible);
 	}

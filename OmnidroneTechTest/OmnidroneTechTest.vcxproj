@@ -161,10 +161,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Core\StringUtils.h" />
-    <ClInclude Include="Engine\EntityComponent\BaseObject.h" />
+    <ClInclude Include="Engine\EntityComponent\BaseComponent.h" />
+    <ClInclude Include="Engine\EntityComponent\DrawableComponent.h" />
+    <ClInclude Include="Engine\EntityComponent\GameObject.h" />
+    <ClInclude Include="Engine\EntityComponent\IObjectComponent.h" />
     <ClInclude Include="Engine\EntityComponent\RenderLayer.h" />
     <ClInclude Include="Engine\Systems\WorldCamera.h" />
-    <ClInclude Include="Engine\UI\ButtonObject.h" />
+    <ClInclude Include="Engine\UI\ButtonComponent.h" />
     <ClInclude Include="Engine\Core\BasicTypes.h" />
     <ClInclude Include="Engine\Core\Crc32.h" />
     <ClInclude Include="Engine\Core\IUpdatable.h" />
@@ -172,7 +175,8 @@
     <ClInclude Include="Engine\Core\Singleton.h" />
     <ClInclude Include="Engine\Systems\ScreenDescriptor.h" />
     <ClInclude Include="Engine\Systems\MainRenderer.h" />
-    <ClInclude Include="Engine\UI\TextObject.h" />
+    <ClInclude Include="Engine\UI\SpriteComponent.h" />
+    <ClInclude Include="Engine\UI\TextComponent.h" />
     <ClInclude Include="Engine\Systems\ScrollParallaxController.h" />
     <ClInclude Include="Game\Screens\EndGameScreen.h" />
     <ClInclude Include="Game\Screens\GameplayHudScreen.h" />
@@ -186,7 +190,6 @@
     <ClInclude Include="Engine\Core\StringID.h" />
     <ClInclude Include="Engine\Systems\IScreen.h" />
     <ClInclude Include="Engine\States\IState.h" />
-    <ClInclude Include="Engine\EntityComponent\IObject.h" />
     <ClInclude Include="Engine\Systems\ISystem.h" />
     <ClInclude Include="Engine\States\StateManager.h" />
     <ClInclude Include="Engine\Systems\SystemManager.h" />
@@ -210,14 +213,15 @@
   <ItemGroup>
     <ClCompile Include="Engine\Core\Crc32.cpp" />
     <ClCompile Include="Engine\Core\StringUtils.cpp" />
-    <ClCompile Include="Engine\EntityComponent\BaseObject.cpp" />
+    <ClCompile Include="Engine\EntityComponent\GameObject.cpp" />
     <ClCompile Include="Engine\Systems\WorldCamera.cpp" />
-    <ClCompile Include="Engine\UI\ButtonObject.cpp" />
+    <ClCompile Include="Engine\UI\ButtonComponent.cpp" />
     <ClCompile Include="Engine\Serialization\ISerializable.cpp" />
     <ClCompile Include="Engine\Systems\IScreen.cpp" />
     <ClCompile Include="Engine\States\IState.cpp" />
     <ClCompile Include="Engine\Systems\MainRenderer.cpp" />
-    <ClCompile Include="Engine\UI\TextObject.cpp" />
+    <ClCompile Include="Engine\UI\SpriteComponent.cpp" />
+    <ClCompile Include="Engine\UI\TextComponent.cpp" />
     <ClCompile Include="Engine\Systems\ScrollParallaxController.cpp" />
     <ClCompile Include="Game\Screens\EndGameScreen.cpp" />
     <ClCompile Include="Game\Screens\GameplayHudScreen.cpp" />

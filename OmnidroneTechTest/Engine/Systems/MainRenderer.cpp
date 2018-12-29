@@ -3,8 +3,11 @@
 
 #include <Engine/Systems/MainWindow.h>
 #include <Engine/Systems/SystemManager.h>
-#include <Engine/EntityComponent/IObject.h>
+#include <Engine/EntityComponent/GameObject.h>
 #include <Engine/Systems/WorldCamera.h>
+#include <Engine/EntityComponent/GameObject.h>
+#include <Engine/EntityComponent/IObjectComponent.h>
+#include <Engine/EntityComponent/DrawableComponent.h>
 
 CMainRenderer::CMainRenderer(unsigned int windowWidth, unsigned int windowHeight)
 {
@@ -37,7 +40,7 @@ void CMainRenderer::Update()
 {
 	ApplyParallaxTranslation();
 
-	using TObjectRef = std::reference_wrapper<IObject>;
+	using TObjectRef = std::reference_wrapper<CGameObject>;
 
 	for(SViewObjectsPair& viewPair : _views)
 	{
@@ -54,18 +57,14 @@ void CMainRenderer::Update()
 			return element1.get().GetZPos() < element2.get().GetZPos();
 		});
 
-		for (std::reference_wrapper<IObject>& object : viewPair._requestedRenderObjects)
+		for (std::reference_wrapper<CGameObject>& object : viewPair._requestedRenderObjects)
 		{
-			sf::Drawable* drawable = object.get().GetDrawable();
-			if (drawable)
+			CGameObject* baseObject = dynamic_cast<CGameObject*>(&object.get());
+			std::vector<std::reference_wrapper<CDrawableComponent>> drawableComponents = baseObject->GetComponents<CDrawableComponent>();
+			for (auto& drawableComponent : drawableComponents)
 			{
-				_window->draw(*drawable);
-			}
-
-			const std::unique_ptr<sf::Text>& text = object.get().GetText();
-			if (text.get() != nullptr)
-			{
-				_window->draw(*text.get());
+				sf::Drawable& drawable = drawableComponent.get().GetDrawable();
+				_window->draw(drawable);
 			}
 		}
 
@@ -77,7 +76,7 @@ void CMainRenderer::Update()
 	_window->display();
 }
 
-void CMainRenderer::RequestRender(IObject& gameObject)
+void CMainRenderer::RequestRender(CGameObject& gameObject)
 {
 	if (gameObject.IsEnabled())
 	{
@@ -86,7 +85,7 @@ void CMainRenderer::RequestRender(IObject& gameObject)
 	}
 }
 
-void CMainRenderer::AddParallaxObject(IObject& object, float parallaxFactor)
+void CMainRenderer::AddParallaxObject(CGameObject& object, float parallaxFactor)
 {
 	_parallaxController.AddObject(object, parallaxFactor);
 }

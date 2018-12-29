@@ -1,7 +1,7 @@
 #pragma once
 #include <Engine/Systems/IScreen.h>
 
-class CTextObject;
+class CTextComponent;
 
 class CStackScoreIndicator : public CScreenBase
 {
@@ -12,8 +12,8 @@ public:
 	void Update() override;
 
 private:
-	CTextObject* _scoreText = nullptr;
-	CTextObject* _scoreTextShadow = nullptr;
+	CTextComponent* _scoreText = nullptr;
+	CTextComponent* _scoreTextShadow = nullptr;
 	int _framesDisplayed = 0;
 };
 

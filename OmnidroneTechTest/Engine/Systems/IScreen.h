@@ -1,11 +1,11 @@
 #pragma once
 
 #include <Engine/Core/IUpdatable.h>
-#include <Engine/EntityComponent/IObject.h>
+#include <Engine/EntityComponent/GameObject.h>
 
 #include <vector>
 
-class IObject;
+class CGameObject;
 
 class IScreen : public IUpdatable
 {
@@ -25,8 +25,10 @@ public:
 	void Shutdown() override {}
 	void Update() override;
 
-	template<class T>
-	T* GetObjectById(const CStringID& gameObjectId);
+	CGameObject* GetObjectById(const CStringID& gameObjectId);
+
+	template<class TComponent>
+	TComponent* GetComponentObjectById(const CStringID& gameObjectId);
 
 	void Show() override;
 	void Hide() override;
@@ -40,18 +42,18 @@ public:
 private:
 	void SetVisible(bool visible);
 
-	std::vector<std::unique_ptr<IObject>> _screenObjects;
+	std::vector<std::unique_ptr<CGameObject>> _screenObjects;
 	bool _isVisible = true;
 };
 
-template<class T>
-T* CScreenBase::GetObjectById(const CStringID& gameObjectId)
+template<class TComponent>
+TComponent* CScreenBase::GetComponentObjectById(const CStringID& gameObjectId)
 {
-	for (std::unique_ptr<IObject>& screenObject : _screenObjects)
+	for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
 	{
 		if (gameObjectId == screenObject->GetId())
 		{
-			return dynamic_cast<T*>(screenObject.get());
+			return screenObject->GetComponent<TComponent>();
 		}
 	}
 

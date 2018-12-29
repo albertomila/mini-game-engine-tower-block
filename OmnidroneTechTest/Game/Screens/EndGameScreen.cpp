@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include <Game/Screens/EndGameScreen.h>
-#include <Engine/UI/ButtonObject.h>
+#include <Engine/UI/ButtonComponent.h>
 #include <Game/Settings/Settings.h>
-#include <Engine/UI/TextObject.h>
+#include <Engine/UI/TextComponent.h>
 #include <Engine/Core/StringUtils.h>
 
 CEndGameScreen::CEndGameScreen()
@@ -10,7 +10,6 @@ CEndGameScreen::CEndGameScreen()
 {
 	InitTextfields();
 	PrintGameStatus();
-
 }
 
 void CEndGameScreen::SetOnRetryButtonPressCallback(std::function<void()> onPressCallback)
@@ -25,18 +24,18 @@ void CEndGameScreen::SetOnMainMenuButtonPressCallback(std::function<void()> onPr
 
 void CEndGameScreen::InitTextfields()
 {
-	_retryButton = GetObjectById<CButtonObject>(CStringID("RetryButton"));
-	_mainMenuButton = GetObjectById<CButtonObject>(CStringID("MainMenu"));
-	_metersTitleText = GetObjectById<CTextObject>(CStringID("MetersTitle"));
-	_metersText = GetObjectById<CTextObject>(CStringID("MetersText"));
-	_pointsTitleText = GetObjectById<CTextObject>(CStringID("PointsTitle"));
-	_pointsText = GetObjectById<CTextObject>(CStringID("PointsText"));
-	_rankTitleText = GetObjectById<CTextObject>(CStringID("RankTitle"));
-	_rankText = GetObjectById<CTextObject>(CStringID("RankText"));
+	_retryButton = GetComponentObjectById<CButtonComponent>(CStringID("RetryButton"));
+	_mainMenuButton = GetComponentObjectById<CButtonComponent>(CStringID("MainMenu"));
+	_metersTitleText = GetComponentObjectById<CTextComponent>(CStringID("MetersTitle"));
+	_metersText = GetComponentObjectById<CTextComponent>(CStringID("MetersText"));
+	_pointsTitleText = GetComponentObjectById<CTextComponent>(CStringID("PointsTitle"));
+	_pointsText = GetComponentObjectById<CTextComponent>(CStringID("PointsText"));
+	_rankTitleText = GetComponentObjectById<CTextComponent>(CStringID("RankTitle"));
+	_rankText = GetComponentObjectById<CTextComponent>(CStringID("RankText"));
 
 	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
-	_retryButton->SetFormat(globalFont, 48, sf::Color::White, { 70, -8 });
-	_mainMenuButton->SetFormat(globalFont, 48, sf::Color::White, { 65, -8 });
+	_retryButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, { 70, -8 });
+	_mainMenuButton->GetObject().GetComponent<CTextComponent>()->SetFormat(globalFont, 48, sf::Color::White, { 65, -8 });
 	_metersTitleText->SetFormat(globalFont, 48, sf::Color::Black, { 0, 0 });
 	_metersText->SetFormat(globalFont, 48, sf::Color::White, { 0, 0 });
 	_pointsTitleText->SetFormat(globalFont, 48, sf::Color::Black, { 0, 0 });

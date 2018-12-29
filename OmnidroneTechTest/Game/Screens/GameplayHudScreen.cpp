@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include <Game/Screens/GameplayHudScreen.h>
 
-#include <Engine/UI/ButtonObject.h>
+#include <Engine/UI/ButtonComponent.h>
 #include <Game/Settings/Settings.h>
-#include <Engine/UI/TextObject.h>
+#include <Engine/UI/TextComponent.h>
 #include <Engine/Core/StringUtils.h>
 #include <SFML/Window/Mouse.hpp>
 
@@ -16,11 +16,11 @@ CGameplayHudScreen::CGameplayHudScreen()
 
 void CGameplayHudScreen::InitTextfields()
 {
-	_metersTitleText = GetObjectById<CTextObject>(CStringID("MetersTitle"));
-	_metersText = GetObjectById<CTextObject>(CStringID("MetersText"));
-	_pointsTitleText = GetObjectById<CTextObject>(CStringID("PointsTitle"));
-	_pointsText = GetObjectById<CTextObject>(CStringID("PointsText"));
-	_livesText = GetObjectById<CTextObject>(CStringID("LivesText"));
+	_metersTitleText = GetComponentObjectById<CTextComponent>(CStringID("MetersTitle"));
+	_metersText = GetComponentObjectById<CTextComponent>(CStringID("MetersText"));
+	_pointsTitleText = GetComponentObjectById<CTextComponent>(CStringID("PointsTitle"));
+	_pointsText = GetComponentObjectById<CTextComponent>(CStringID("PointsText"));
+	_livesText = GetComponentObjectById<CTextComponent>(CStringID("LivesText"));
 
 	const sf::Font& globalFont = CSettings::Get().GetAppConfig().GetGlobalFont();
 	_metersTitleText->SetFormat(globalFont, 48, sf::Color::Black, { 0, 0 });
