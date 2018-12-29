@@ -15,12 +15,10 @@ namespace Internal
 	static const float GROUND_MIN_X = 150.f;
 	static const float GROUND_MAX_X = 450.f;
 	static const float MAX_REGION_COLLISION = 1.f / 2.f;
-	static const int MIN_BLOCKS_TO_START_OSCILLATE = 1;
+	static const int MIN_BLOCKS_TO_START_OSCILLATE = 4;
 	static const int MAX_BLOCKS_TO_MAX_OSCILLATION = 30;
 	static const float MIN_OSCILLATION_DISTANCE = 0.f;
-	static const float MAX_OSCILLATION_DISTANCE = 250.f;
-	static const float MIN_OSCILLATION_SPEED = 0.01f;
-	static const float MAX_OSCILLATION_SPEED = 0.02f;
+	static const float MAX_OSCILLATION_DISTANCE = 1.f;
 }
 
 CTowerController::CTowerController()
@@ -104,29 +102,6 @@ std::tuple<bool, float> CTowerController::HasCollideWithTopTower(CGameObject& fa
 	return { false, -1.f };
 }
 
-void CTowerController::StackTowerBlock(float accuracyNormalized, std::unique_ptr<CGameObject>&& falllingTowerBlock)
-{
-	falllingTowerBlock->GetComponent<CGravityComponent>()->SetEnable(false);
-	sf::Vector2f pos = falllingTowerBlock->GetTransform().getPosition();
-
-	pos.y = _towerTopPosY - _blockSize.y;
-	/*
-	if (!_tower.empty() && accuracyNormalized > CSettings::Get().GetGameConfig().GetPerfectStackAccuracy())
-	{
-		const STowerBlockPair& topTowerBlock = _tower.back();
-		pos.x = topTowerBlock._block->GetTransform().getPosition().x;
-	}
-	*/
-	falllingTowerBlock->SetPosition(pos);
-	_towerTopPosY -= _blockSize.y;
-
-	_tower.emplace_back(STowerBlockPair(falllingTowerBlock->GetTransform().getPosition(), std::move(falllingTowerBlock)));
-
-	STowerBlockPair& towerBlock = _tower.back();
-	towerBlock._value = pos.x - _towerContainerPosX;
-}
-
-
 float CTowerController::GetMaxDistanceOscillation()
 {
 	using namespace Internal;
@@ -145,42 +120,70 @@ float CTowerController::GetMaxDistanceOscillation()
 	return distance;
 }
 
-float CTowerController::GetOscillationSpeed()
+void CTowerController::StackTowerBlock(float accuracyNormalized, std::unique_ptr<CGameObject>&& falllingTowerBlock)
 {
-	using namespace Internal;
+	falllingTowerBlock->GetComponent<CGravityComponent>()->SetEnable(false);
+	sf::Vector2f pos = falllingTowerBlock->GetTransform().getPosition();
+	pos.y = _towerTopPosY - _blockSize.y;
 
-	float speed = MathUtils::CoordsTransform
-	(
-		static_cast<float>(MIN_BLOCKS_TO_START_OSCILLATE)
-		, static_cast<float>(MAX_BLOCKS_TO_MAX_OSCILLATION)
-		, static_cast<float>(MIN_OSCILLATION_SPEED)
-		, static_cast<float>(MAX_OSCILLATION_SPEED)
-		, static_cast<float>(_tower.size())
-	);
+	if (_tower.empty())
+	{
+		_towerContainerPosX = pos.x;
+	}
 
-	speed = MathUtils::Clamp(speed, 0.f, MAX_OSCILLATION_SPEED);
+	if (!_tower.empty() && accuracyNormalized > CSettings::Get().GetGameConfig().GetPerfectStackAccuracy())
+	{
+		const STowerBlockPair& topTowerBlock = _tower.back();
+		pos.x = topTowerBlock._block->GetTransform().getPosition().x;
+	}
+	
+	falllingTowerBlock->SetPosition(pos);
+	_towerTopPosY -= _blockSize.y;
 
-	return speed;
+	_tower.emplace_back(STowerBlockPair(falllingTowerBlock->GetTransform().getPosition(), std::move(falllingTowerBlock)));
+
+	STowerBlockPair& towerBlock = _tower.back();
 }
 
 void CTowerController::Update()
 {
 	if (_tower.size() >= Internal::MIN_BLOCKS_TO_START_OSCILLATE)
 	{
+		_incrementFactor = GetMaxDistanceOscillation();
+
 		for (STowerBlockPair& towerBlock : _tower)
 		{
 			sf::Vector2f position = towerBlock._block->GetTransform().getPosition();
-			position.x = towerBlock._value;
+
+			if (_incrementDirection > 0)
+			{
+				position.x += _incrementFactor * _increment;
+			}
+			else
+			{
+				position.x -= _incrementFactor * _increment;
+			}
 
 			towerBlock._block->SetPosition(position);
 		}
 
-		float oscillationMaxDistance = GetMaxDistanceOscillation();
-		float oscillationValue = oscillationMaxDistance * sin(_oscillationRadiantsX);
-		_oscillationRadiantsX += GetOscillationSpeed();
-		
-		_towerContainerPosX = oscillationValue;
+		if (_incrementDirection > 0)
+		{
+			_towerContainerPosX += _incrementFactor*_increment;
+		}
+		else
+		{
+			_towerContainerPosX -= _incrementFactor * _increment;
+		}
 
+		if (_incrementDirection > 0 && _towerContainerPosX > 400.0f)
+		{
+			_incrementDirection = -1.0f;
+		}
+		else if (_incrementDirection < 0 && _towerContainerPosX < 100.0f)
+		{
+			_incrementDirection = 1.0f;
+		}
 	}
 
 	for (STowerBlockPair& towerBlock : _tower)

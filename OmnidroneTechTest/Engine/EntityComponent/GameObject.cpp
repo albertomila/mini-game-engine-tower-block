@@ -12,7 +12,6 @@ void CGameObject::SetPosition(const sf::Vector2f& position)
 	_transform.setPosition(position);
 
 	std::vector<std::reference_wrapper<ILocalTransformComponent>> drawableComponents = CGameObject::GetComponents<ILocalTransformComponent>();
-
 	for (auto& drawableComponent : drawableComponents)
 	{
 		drawableComponent.get().UpdatePositionFromParent();

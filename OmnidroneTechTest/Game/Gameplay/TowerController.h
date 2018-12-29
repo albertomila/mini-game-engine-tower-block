@@ -15,7 +15,6 @@ class CTowerController
 		}
 
 		sf::Vector2f _originalLandingPos;
-		float _value = 0.f;
 		std::unique_ptr<CGameObject> _block;
 	};
 public:
@@ -29,7 +28,6 @@ public:
 
 private:
 	float GetMaxDistanceOscillation();
-	float GetOscillationSpeed();
 
 	std::vector<STowerBlockPair> _tower;
 	float _towerTopPosY = 0.f;
@@ -37,4 +35,8 @@ private:
 
 	float _oscillationRadiantsX = 0.f;
 	float _towerContainerPosX = 0.0f;
+
+	float _increment = 1.0f;
+	float _incrementDirection = 1.0f;
+	float _incrementFactor = 1.0f;
 };
