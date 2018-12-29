@@ -12,8 +12,8 @@ CGameplayWorldScreen::CGameplayWorldScreen()
 	_backgroundPlants = GetComponentObjectById<CSpriteComponent>(CStringID("Background_plants"));
 	_foreground = GetComponentObjectById<CSpriteComponent>(CStringID("Foreground"));
 
-	CMainRenderer* renderer = CSystemManager::Get().GetSystem<CMainRenderer>();
+	/*CMainRenderer* renderer = CSystemManager::Get().GetSystem<CMainRenderer>();
 	renderer->AddParallaxObject(_background->GetObject(), -0.0f);
 	renderer->AddParallaxObject(_backgroundPlants->GetObject(), 0.5f);
-	renderer->AddParallaxObject(_foreground->GetObject(), 1.f);
+	renderer->AddParallaxObject(_foreground->GetObject(), 1.f);*/
 }

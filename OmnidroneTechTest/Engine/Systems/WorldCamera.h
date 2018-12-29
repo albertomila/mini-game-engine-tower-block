@@ -15,6 +15,7 @@ public:
 	void Move(float x, float y);
 	void MoveX(float x);
 	void MoveY(float y);
+	void SetPosition(const sf::Vector2f& position);
 	void SetPosition(float x, float y);
 
 private:

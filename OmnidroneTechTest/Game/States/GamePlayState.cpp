@@ -13,6 +13,11 @@
 #include <Game/Gameplay/GravityComponent.h>
 #include <Engine/Systems/MainRenderer.h>
 
+namespace Internal
+{
+	static const float CAMERA_ANIMATION_INCREMENT_POS_Y = 1.0f;
+}
+
 CGamePlayState::CGamePlayState()
 	: CStateBase(GameStateIds::STATE_ID_GAMEPLAY)
 {
@@ -20,6 +25,10 @@ CGamePlayState::CGamePlayState()
 
 void CGamePlayState::DoEnterState()
 {
+	_camera = CSystemManager::Get().GetSystem<CWorldCamera>();
+	_originalCameraPosition = _camera->GetPosition();
+	_targetYCameraAnimation = _camera->GetPosition().y;
+
 	_hud = std::make_unique<CGameplayHudScreen>();
 	_worldScreen = std::make_unique<CGameplayWorldScreen>();
 	_worldScreen->Init();
@@ -57,12 +66,18 @@ void CGamePlayState::DoExitState()
 
 	CMainRenderer* mainRenderer = CSystemManager::Get().GetSystem<CMainRenderer>();
 	mainRenderer->ClearParallaxObjects();
+
+	CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
+	worldCamera->SetPosition(_originalCameraPosition);
 }
 
 State::TStateId  CGamePlayState::Update()
 {
-	//CWorldCamera* worldCamera = CSystemManager::Get().GetSystem<CWorldCamera>();
-	//worldCamera->MoveY(-0.01f);
+	sf::Vector2f cameraPos = _camera->GetPosition();
+	if (cameraPos.y > _targetYCameraAnimation)
+	{
+		_camera->MoveY(-Internal::CAMERA_ANIMATION_INCREMENT_POS_Y);
+	}
 
 	UpdateSpawnedTowerBlock();
 
@@ -143,6 +158,8 @@ void CGamePlayState::IncreaseMeters()
 {
 	const SObjectDescriptor& blockDescriptor = CSettings::Get().GetGameConfig().GetTowerBlockDescriptor();
 	CSettings::Get().GetGameStatus().IncreaseMeters(blockDescriptor._height);
+
+	_targetYCameraAnimation -= blockDescriptor._height;
 }
 
 void CGamePlayState::IncreasePoints(const float accuracyNormalized, const sf::Vector2f& blockPosition)

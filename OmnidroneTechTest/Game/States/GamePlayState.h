@@ -7,6 +7,7 @@
 class CGameplayHudScreen;
 class CGameplayWorldScreen;
 class CGameObject;
+class CWorldCamera;
 
 class CGamePlayState : public CStateBase
 {
@@ -31,5 +32,8 @@ private:
 	std::unique_ptr<CTowerController> _towerController;
 	std::unique_ptr<CGameObject> _spawnedTowerBlock;
 	bool _isSpawning = false;
+	float _targetYCameraAnimation = 0.f;
+	sf::Vector2f _originalCameraPosition;
+	CWorldCamera* _camera;
 };
 
