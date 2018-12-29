@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<dbObject>
+	<objects>
+		<object id="MetersTitle" renderLayer="1" type="2" x="80.0f" y="10.0f" z="100" text="METERS" />
+		<object id="MetersBackground" renderLayer="1"  type="0" texture="Assets/meters.png" x="40.0f" y="70.0f" z="101" />
+		<object id="MetersText" renderLayer="1"  type="2" x="70.0f" y="65.0f" z="102" />
+		
+		<object id="PointsTitle" renderLayer="1"  type="2" x="360.0f" y="10.0f" z="103.0f" text="POINTS" />
+		<object id="PointsBackground" renderLayer="1"  type="0" texture="Assets/points.png" x="320.0f" y="70.0f" z="104" />
+		<object id="PointsText" renderLayer="1"  type="2" x="340.0f" y="65.0f" z="105" />
+		
+		<object id="LivesIcon" renderLayer="1"  type="0" texture="Assets/lives.png" x="10.0f" y="135.0f" z="100" />
+		<object id="LivesText" renderLayer="1"  type="2" x="50.0f" y="130.0f" z="100.0f" />
+	</objects>
+</dbObject>

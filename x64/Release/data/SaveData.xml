@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<dbObject nextPlayTimeId="28">
+	<ranking>
+		<element playTimeId="1" points="100" meters="10" />
+		<element playTimeId="2" points="90" meters="20" />
+		<element playTimeId="3" points="40" meters="30" />
+		<element playTimeId="4" points="50" meters="40" />
+		<element playTimeId="5" points="20" meters="50" />
+		<element playTimeId="6" points="200" meters="2" />
+		<element playTimeId="7" points="100" meters="10" />
+		<element playTimeId="8" points="90" meters="20" />
+		<element playTimeId="9" points="40" meters="30" />
+		<element playTimeId="10" points="50" meters="40" />
+		<element playTimeId="11" points="200" meters="2" />
+		<element playTimeId="12" points="145" meters="192" />
+		<element playTimeId="21" points="100" meters="96" />
+		<element playTimeId="22" points="0" meters="0" />
+		<element playTimeId="23" points="791" meters="1056" />
+		<element playTimeId="24" points="1423" meters="2016" />
+		<element playTimeId="25" points="100" meters="96" />
+		<element playTimeId="26" points="100" meters="96" />
+		<element playTimeId="27" points="200" meters="192" />
+	</ranking>
+</dbObject>

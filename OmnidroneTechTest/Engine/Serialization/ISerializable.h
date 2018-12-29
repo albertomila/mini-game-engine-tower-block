@@ -30,19 +30,19 @@ private:
 };
 
 
-template<class T>
+template<class TEnumType>
 struct SSerializatorEnum
 {
-	static void Serialize(pugi::xml_node& node, const char* key, T& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, TEnumType& member)
 	{
-		member = static_cast<T>(node.attribute(key).as_int(static_cast<int>(member)));
+		member = static_cast<TEnumType>(node.attribute(key).as_int(static_cast<int>(member)));
 	}
 };
 
 template<class T>
 struct SSerializatorTraits
 {
-	static void Serialize(pugi::xml_node& node, const char* key, T& member) 
+	static void Serialize(const pugi::xml_node& node, const char* key, T& member)
 	{
 		pugi::xml_node childNode = node.child(key);
 		member.LoadXmlNode(childNode);
@@ -52,9 +52,9 @@ struct SSerializatorTraits
 template<class T>
 struct SSerializatorTraits<std::vector<T>>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, std::vector<T>& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, std::vector<T>& member)
 	{
-		pugi::xml_node groupNode = node.child(key);
+		const pugi::xml_node groupNode = node.child(key);
 
 		for (pugi::xml_node_iterator it = groupNode.begin(); it != groupNode.end(); ++it)
 		{
@@ -69,7 +69,7 @@ struct SSerializatorTraits<std::vector<T>>
 template<>
 struct SSerializatorTraits<int>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, int& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, int& member)
 	{
 		member = node.attribute(key).as_int(member);
 	}
@@ -78,7 +78,7 @@ struct SSerializatorTraits<int>
 template<>
 struct SSerializatorTraits<bool>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, bool& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, bool& member)
 	{
 		member = node.attribute(key).as_bool(member);
 	}
@@ -87,7 +87,7 @@ struct SSerializatorTraits<bool>
 template<>
 struct SSerializatorTraits<float>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, float& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, float& member)
 	{
 		member = node.attribute(key).as_float(member);
 	}
@@ -96,7 +96,7 @@ struct SSerializatorTraits<float>
 template<>
 struct SSerializatorTraits<double>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, double& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, double& member)
 	{
 		member = node.attribute(key).as_double(member);
 	}
@@ -105,7 +105,7 @@ struct SSerializatorTraits<double>
 template<>
 struct SSerializatorTraits<long long>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, long long& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, long long& member)
 	{
 		member = node.attribute(key).as_llong(member);
 	}
@@ -114,18 +114,23 @@ struct SSerializatorTraits<long long>
 template<>
 struct SSerializatorTraits<std::string>
 {
-	static void Serialize(pugi::xml_node& node, const char* key, std::string& member)
+	static void Serialize(const pugi::xml_node& node, const char* key, std::string& member)
 	{
 		member = node.attribute(key).as_string(member.c_str());
 	}
 };
 
-#define SERIALIZE(XmlNode, KeyId, Member) \
-	SSerializatorTraits<decltype(Member)>::Serialize(XmlNode, KeyId, Member);
+template<class TXmlNode, class TMember>
+void SERIALIZE(TXmlNode& xmlNode, const char* keyId, TMember& memberRef)
+{
+	SSerializatorTraits<TMember>::Serialize(xmlNode, keyId, memberRef);
+}
 
-#define SERIALIZE_ENUM(XmlNode, KeyId, Member) \
-	SSerializatorEnum<decltype(Member)>::Serialize(XmlNode, KeyId, Member);
-
+template<class TXmlNode, class TMember>
+void SERIALIZE_ENUM(TXmlNode& xmlNode, const char* keyId, TMember& memberRef)
+{
+	SSerializatorEnum<TMember>::Serialize(xmlNode, keyId, memberRef);
+}
 
 
 template<class T>
@@ -152,5 +157,8 @@ struct SDeserializatorTraits<std::vector<T>>
 	}
 };
 
-#define DESERIALIZE(XmlNode, KeyId, Member) \
-	SDeserializatorTraits<decltype(Member)>::Deserialize(XmlNode, KeyId, Member);
+template<class TXmlNode, class TMember>
+void DESERIALIZE(TXmlNode& xmlNode, const char* keyId, TMember& memberRef)
+{
+	SDeserializatorTraits<TMember>::Deserialize(xmlNode, keyId, memberRef);
+}
