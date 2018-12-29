@@ -12,19 +12,14 @@
 
 void PipelineRegistry::RegisterAllSingletons()
 {
-	CGameTimer::CreateInstance();
 	CSettings::CreateInstance();
 	CSystemManager::CreateInstance();
-
-	const CAppConfig& appConfig = CSettings::Get().GetAppConfig();
-	CGameTimer::Get().SetMaxFps(appConfig.GetMaxFps());
 }
 
 void PipelineRegistry::UnregisterAllSingletons()
 {
 	CSystemManager::DestroyInstance();
 	CSettings::DestroyInstance();
-	CGameTimer::DestroyInstance();
 }
 
 void PipelineRegistry::RegisterAllPipeline()
@@ -37,8 +32,11 @@ void PipelineRegistry::RegisterAllPipeline()
 
 
 	CSystemManager& systemManager = CSystemManager::Get();
+	systemManager.Register<CGameTimer>();
+	systemManager.GetSystem<CGameTimer>()->SetMaxFps(appConfig.GetMaxFps());
 	systemManager.Register<CMainWindow>(windowWidth, windowHeight, appConfig.GetWindowTitle());
 	systemManager.Register<CGameStateManager>();
 	systemManager.Register<CWorldCamera>(midWindowWidth, midWindowHeight);
 	systemManager.Register<CMainRenderer>(windowWidth, windowHeight);
+
 }

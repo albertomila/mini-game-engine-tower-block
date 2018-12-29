@@ -25,7 +25,6 @@ State::TStateId CEndGameState::Update()
 void CEndGameState::ClearState()
 {
 	_gameEndScreen.reset(nullptr);
-	SetDirty(false);
 }
 
 void CEndGameState::OnRetryButtonPress()

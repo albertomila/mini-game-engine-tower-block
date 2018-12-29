@@ -8,8 +8,8 @@ public:
 	CGameStateManager();
 
 	void Init() override;
-	void PreUpdate() override;
 	void Update() override;
+	void PostUpdate() override;
 	void Shutdown() override;
 
 private:

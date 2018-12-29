@@ -17,15 +17,12 @@ void CMainApp::Run()
 	CSystemManager& systemManager = CSystemManager::Get();
 	systemManager.Init();
 
-	CGameTimer& gameTimer = CGameTimer::Get();
-
 	CMainWindow* mainWindow = systemManager.GetSystem<CMainWindow>();
 	while (!mainWindow->HasQuit())
 	{
-		gameTimer.PreUpdate();
 		systemManager.PreUpdate();
 		systemManager.Update();
-		gameTimer.PostUpdate();
+		systemManager.PostUpdate();
 	}
 
 	systemManager.Shutdown();

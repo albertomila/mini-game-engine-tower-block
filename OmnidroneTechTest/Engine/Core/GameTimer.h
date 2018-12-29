@@ -1,18 +1,21 @@
 #pragma once
-#include <Engine\Core\Singleton.h>
+#include <Engine\Systems\ISystem.h>
 
-class CGameTimer : public CSingleton<CGameTimer>
+class CGameTimer : public ISystem
 {
 public:
-    CGameTimer();
-    
+	CGameTimer();
+
 	void SetMaxFps(float fps) { _maxFps = fps; }
 	float GetFPS() const { return _fps; }
 	double GetFrameTime() const { return _currentDt; }
 	double GetGameTime() const { return _currentTime; }
 
-    void PreUpdate();
-    void PostUpdate();
+	void Init() override {}
+	void PreUpdate() override;
+	void Update() override {}
+	void PostUpdate() override;
+	void Shutdown() override {}
     
 private:
     double GetClockTime() const;

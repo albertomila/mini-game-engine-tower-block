@@ -89,7 +89,7 @@ void CStackScoreIndicator::Update()
 
 	if (IsVisible())
 	{
-		_timeDisplayed += CGameTimer::Get().GetFrameTime();
+		_timeDisplayed += CSystemManager::Get().GetSystem<CGameTimer>()->GetFrameTime();
 
 		UpdateAnimation(*_scoreText);
 		UpdateAnimation(*_scoreTextShadow);

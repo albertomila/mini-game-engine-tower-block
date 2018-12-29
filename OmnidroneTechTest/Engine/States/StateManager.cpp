@@ -78,6 +78,7 @@ void CStateManagerBase::CleanDirtyState()
 		if (state->IsDirty())
 		{
 			state->ClearState();
+			state->SetDirty(false);
 		}
 	}
 }

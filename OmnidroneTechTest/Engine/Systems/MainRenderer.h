@@ -40,5 +40,5 @@ private:
 	sf::RenderWindow* _window;
 	sf::View _worldView;
 	std::array<SViewObjectsPair, static_cast<int>(ERenderLayer::MAX)> _views;
-	CWorldCamera* _worldCamera = nullptr;
+	CWorldCamera& _worldCamera;
 };

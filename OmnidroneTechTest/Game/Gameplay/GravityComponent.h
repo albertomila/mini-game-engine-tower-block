@@ -3,6 +3,7 @@
 #include <Engine/EntityComponent/BaseComponent.h>
 
 class CGameObject;
+class CGameTimer;
 
 class CGravityComponent : public CBaseComponent
 {
@@ -15,4 +16,5 @@ public:
 private:
 	bool _isEnabled = false;
 	double _simulationDt = 0.0;
+	CGameTimer& _gameTimer;
 };

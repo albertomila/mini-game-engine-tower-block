@@ -4,7 +4,6 @@
 
 #include <vector>
 
-
 namespace State
 {
 	using TStateId = size_t;
@@ -29,6 +28,7 @@ public:
 	virtual State::TStateId Update() = 0;
 	virtual void ExitState() = 0;
 	virtual bool IsDirty() const = 0;
+	virtual void SetDirty(bool isDirty) = 0;
 	virtual void ClearState() = 0;
 
 protected:
@@ -45,6 +45,7 @@ public:
 	virtual State::TStateId GetStateId() const override;
 	State::TStateId Update() override;
 	bool IsDirty() const override { return _isDirty; }
+	void SetDirty(bool isDirty) override { _isDirty = isDirty; }
 	void EnterState() override;
 	void ExitState()  override;
 	void ClearState()  override {}
@@ -52,7 +53,6 @@ public:
 protected:
 	virtual void DoEnterState() {}
 	virtual void DoExitState() {}
-	void SetDirty(bool isDirty) { _isDirty = isDirty; }
 	State::TStateId GetNextState(const State::TStateEventId& stateEventId) override;
 	void SetExitTargetStateId(State::TStateId exitTargetStateId) { _exitTargetStateId = exitTargetStateId; }
 	State::TStateId GetExitTargetStateId() const { return _exitTargetStateId; }

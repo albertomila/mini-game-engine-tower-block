@@ -23,6 +23,7 @@ public:
 	void Init() override;
 	void PreUpdate();
 	void Update() override;
+	void PostUpdate();
 	void Shutdown() override;
 
 private:

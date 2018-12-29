@@ -2,6 +2,7 @@
 #include <Game/Gameplay/GravityComponent.h>
 #include <Engine/Core/GameTimer.h>
 #include <Engine/EntityComponent/GameObject.h>
+#include <Engine/Systems/SystemManager.h>
 
 namespace Internal 
 {
@@ -11,6 +12,7 @@ namespace Internal
 
 CGravityComponent::CGravityComponent(CGameObject& object)
 	: CBaseComponent(object)
+	, _gameTimer(*CSystemManager::Get().GetSystem<CGameTimer>())
 {
 }
 
@@ -18,10 +20,10 @@ void CGravityComponent::Update()
 {
 	if (_isEnabled) 
 	{
-		_simulationDt += CGameTimer::Get().GetFrameTime();
+		_simulationDt += _gameTimer.GetFrameTime();
 
 		sf::Vector2f position = GetObject().GetTransform().getPosition();
-		position.y += Internal::SPEED_FACTOR * Internal::GRAVITY_FACTOR * pow(_simulationDt, 2);
+		position.y += Internal::SPEED_FACTOR * Internal::GRAVITY_FACTOR * static_cast<float>(pow(_simulationDt, 2.0f));
 		GetObject().SetPosition(position);
 	}
 }

@@ -35,7 +35,6 @@ void CMainMenuState::ClearState()
 {
 	_mainMenuScreen.reset(nullptr);
 	_rankingsPanel.reset(nullptr);
-	SetDirty(false);
 }
 
 void CMainMenuState::OnPlayButtonPress()

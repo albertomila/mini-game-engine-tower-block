@@ -30,6 +30,14 @@ void CSystemManager::Update()
 	}
 }
 
+void CSystemManager::PostUpdate()
+{
+	for (TSystemPair& systemPair : _systems)
+	{
+		systemPair.second->PostUpdate();
+	}
+}
+
 void CSystemManager::Shutdown()
 {
 	for (TSystemPair& systemPair : _systems)

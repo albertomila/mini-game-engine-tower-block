@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<dbObject lives="30" towerStartZPos="200.0f"  >
+<dbObject lives="6" towerStartZPos="200.0f"  >
 		<TowerBlockDescriptor id="TowerBlockDescriptor" renderLayer="0"  type="0" width="96" height="96" texture="Assets/TowerBlock.png" />
 		<TowerBlockScore 
 			maxPoints="70" 

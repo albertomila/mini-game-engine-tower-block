@@ -18,7 +18,7 @@ void CGameStateManager::Init()
 	_gameStateManager.Init();
 }
 
-void CGameStateManager::PreUpdate()
+void CGameStateManager::PostUpdate()
 {
 	_gameStateManager.CleanDirtyState();
 }
