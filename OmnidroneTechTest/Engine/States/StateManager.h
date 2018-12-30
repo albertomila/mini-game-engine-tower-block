@@ -7,10 +7,10 @@
 
 class IState;
 
-class CStateManagerBase : public IUpdatable
+class CStateManager : public IUpdatable
 {
 public:
-	CStateManagerBase();
+	CStateManager();
 
 	template<class T>
 	void RegisterState();
@@ -26,20 +26,7 @@ private:
 };
 
 template<class T>
-void CStateManagerBase::RegisterState()
+void CStateManager::RegisterState()
 {
 	_states.emplace_back(std::make_unique<T>());
-}
-
-template<class T>
-class CStateManager : public CStateManagerBase
-{
-public:
-	CStateManager();
-};
-
-template<class T>
-CStateManager<T>::CStateManager()
-{
-	static_assert(std::is_base_of<IState, T>::value, "T must derive from IState");
 }

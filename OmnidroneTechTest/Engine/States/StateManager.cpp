@@ -3,12 +3,12 @@
 
 #include <Engine/States/IState.h>
 
-CStateManagerBase::CStateManagerBase()
+CStateManager::CStateManager()
 	: _currentStateId(State::INVALID_STATE_ID)
 {
 }
 
-void CStateManagerBase::Init()
+void CStateManager::Init()
 {
 	if (!_states.empty())
 	{
@@ -18,7 +18,7 @@ void CStateManagerBase::Init()
 	}
 }
 
-void CStateManagerBase::Update()
+void CStateManager::Update()
 {
 	if (_currentStateId == State::INVALID_STATE_ID){
 		return;
@@ -62,7 +62,7 @@ void CStateManagerBase::Update()
 	}
 }
 
-void CStateManagerBase::Shutdown()
+void CStateManager::Shutdown()
 {
 	if (_currentStateId > State::INVALID_STATE_ID)
 	{
@@ -71,7 +71,7 @@ void CStateManagerBase::Shutdown()
 	}
 }
 
-void CStateManagerBase::CleanDirtyState()
+void CStateManager::CleanDirtyState()
 {
 	for (std::unique_ptr<IState>& state : _states)
 	{

@@ -8,12 +8,6 @@ CStateBase::CStateBase(State::TStateId stateId)
 {
 }
 
-CStateBase::CStateBase(State::TStateId stateId, std::vector<SStateTransition>&& transitionModel)
-	: _stateId(stateId)
-	, _transitionModel(std::move(transitionModel))
-{
-}
-
 State::TStateId CStateBase::GetStateId() const
 {
 	return _stateId;
@@ -35,19 +29,4 @@ void CStateBase::ExitState()
 {
 	SetDirty(true);
 	DoExitState();
-}
-
-State::TStateId CStateBase::GetNextState(const State::TStateEventId& stateEventId)
-{
-	auto it = std::find_if(std::begin(_transitionModel), std::end(_transitionModel), [stateEventId](const SStateTransition& transition)
-	{
-		return stateEventId == transition._stateEventId;
-	});
-
-	if (it != std::end(_transitionModel))
-	{
-		return it->_nextState;
-	}
-		
-	return State::INVALID_STATE_ID;
 }

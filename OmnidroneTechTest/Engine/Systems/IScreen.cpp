@@ -90,6 +90,19 @@ void CScreenBase::Update()
 	}
 }
 
+CGameObject* CScreenBase::GetObjectById(const CStringID& gameObjectId)
+{
+	for (std::unique_ptr<CGameObject>& screenObject : _screenObjects)
+	{
+		if (gameObjectId == screenObject->GetId())
+		{
+			return screenObject.get();
+		}
+	}
+
+	return nullptr;
+}
+
 void CScreenBase::Show()
 {
 	SetVisible(true);

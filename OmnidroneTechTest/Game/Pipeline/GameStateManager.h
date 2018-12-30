@@ -13,5 +13,5 @@ public:
 	void Shutdown() override;
 
 private:
-	CStateManagerBase _gameStateManager;
+	CStateManager _gameStateManager;
 };
