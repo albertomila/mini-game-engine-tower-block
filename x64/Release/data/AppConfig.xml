@@ -5,7 +5,7 @@ pathSaveData="data/SaveData.xml"
 globalFont="Assets/DisposableDroidBB.ttf"
 windowWidth="576"
 windowHeight="1024"
-windowTitle="OmnidroneTechTest"
+windowTitle="TechTest"
 maxFps="60.0"
 >
 </dbObject>

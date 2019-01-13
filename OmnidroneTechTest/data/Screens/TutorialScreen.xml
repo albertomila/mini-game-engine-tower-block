@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<dbObject>
-	<objects>
-		<object id="Background" type="0" texture="Assets/background1.png" x="0.0f" y="0.0f" z="0.0f" />
-		<object id="Tutorial" type="0" texture="Assets/tutorial.png" x="70.0f" y="300.0f" z="0.0f" />
-		<object id="TutorialText" type="2" x="90.0f" y="310.0f" z="1.0f" text="Tutorial<newline>-------------<newline>Stack blocks to<newline>create the tallest<newline>tower!" texture="Assets/button.png" />
-		<object id="NextButton" type="1" text="CONTINUE" texture="Assets/button.png" x="140.0f" y="650.0f" z="1.0f" />
-	</objects>
-</dbObject>

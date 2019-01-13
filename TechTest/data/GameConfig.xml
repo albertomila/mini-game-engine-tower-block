@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<dbObject lives="6" towerStartZPos="200.0f"  >
+		<TowerBlockDescriptor id="TowerBlockDescriptor" renderLayer="0"  type="0" width="96" height="96" texture="Assets/TowerBlock.png" />
+		<TowerBlockScore 
+			maxPoints="70" 
+			perfectPoints="100" 
+			goodStackAccuracy="0.5"
+			perfectStackAccuracy="0.8"
+			messageFail="FAIL"
+			messageGood="GOOD!"
+			messagePerfect="PERFECT!!"
+		/>
+</dbObject>

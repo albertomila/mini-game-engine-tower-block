@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<dbObject>
+	<objects>
+		<object id="Background" type="0" texture="Assets/background1.png" x="0.0f" y="0.0f" z="0.0f" />
+		
+		<object id="MetersTitle" type="2" x="80.0f" y="240.0f" z="1.0f" text="METERS" />
+		<object id="MetersBackground" type="0" texture="Assets/meters.png" x="40.0f" y="300.0f" z="2.0f" />
+		<object id="MetersText" type="2" x="70.0f" y="295.0f" z="3.0f" />
+		
+		<object id="PointsTitle" type="2" x="360.0f" y="240.0f" z="4.0f" text="POINTS" />
+		<object id="PointsBackground" type="0" texture="Assets/points.png" x="320.0f" y="300.0f" z="5.0f" />
+		<object id="PointsText" type="2" x="340.0f" y="295.0f" z="6.0f" />
+		
+		<object id="RankTitle" type="2" x="250.0f" y="380.0f" z="7.0f" text="RANK" />
+		<object id="RankText" type="2" x="200.0f" y="380.0f" z="8.0f" />
+		
+		<object id="RetryButton" type="1" text="TRY AGAIN" texture="Assets/button.png" x="140.0f" y="650.0f" z="9.0f" />
+		<object id="MainMenu" type="1" text="MAIN MENU" texture="Assets/button.png" x="140.0f" y="720.0f" z="10.0f" />
+	</objects>
+</dbObject>
